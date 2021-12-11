@@ -1,0 +1,1 @@
+const origins = "*.xoniaapp.com";
