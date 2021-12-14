@@ -18,5 +18,5 @@ bc1q7fz9kwapa2dlr9t7gxtel7t60v5mqn86wxcn6d
 ---
 ###### Copyright (C) Xonia, Inc - All Rights Reserved.
 ---
-  ### Powered by Vercel
-  [![Vercel](https://avatars.githubusercontent.com/u/14985020?s=200&v=4)](https://vercel.com)
+  ### Deploys by Netlify
+![Netlify](https://upload.wikimedia.org/wikipedia/commons/b/b8/Netlify_logo.svg)
