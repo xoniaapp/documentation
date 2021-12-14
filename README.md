@@ -18,5 +18,5 @@ bc1q7fz9kwapa2dlr9t7gxtel7t60v5mqn86wxcn6d
 ---
 ###### Copyright (C) Xonia, Inc - All Rights Reserved.
 ---
-  ### Deploys by Netlify
-![Netlify](https://upload.wikimedia.org/wikipedia/commons/b/b8/Netlify_logo.svg)
+  ### Deploys by Cloudflare
+![Cloudflare Pages](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP2QmB5WRNxLLEMAMX1RINKYrJI_MQzRpoXQ&usqp=CAU)
