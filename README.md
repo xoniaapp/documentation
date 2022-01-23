@@ -1,1 +1,1 @@
-Powered by React
+Powered by typescript & react
