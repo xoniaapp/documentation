@@ -1,0 +1,7387 @@
+(this["webpackJsonpxoniaapp-web"] = this["webpackJsonpxoniaapp-web"] || []).push([
+  [0],
+  {
+    527: function (e, n, t) {},
+    528: function (e, n, t) {},
+    579: function (e, n, t) {
+      "use strict";
+      t.r(n);
+      var r,
+        a = t(626),
+        c = t(635),
+        i = t(1),
+        s = t.n(i),
+        o = t(78),
+        l = t.n(o),
+        u = t(14),
+        d = t(24),
+        b = t(45),
+        j = t(10),
+        h = t.n(j),
+        x = t(18),
+        f = t(330),
+        O = t(331),
+        p = t(614),
+        m = t(332),
+        g = t(333),
+        v = t(198),
+        y = t(295),
+        w = t(28),
+        k = t(19),
+        C = t(7),
+        S = t(233),
+        _ = t(91),
+        I = t(294),
+        R = t(296),
+        G = t(297),
+        z = t(2),
+        T = ["label"],
+        A = function (e) {
+          var n = e.label,
+            t = Object(S.a)(e, T),
+            r = Object(w.c)(t),
+            a = Object(C.a)(r, 2),
+            c = a[0],
+            i = a[1],
+            s = i.error,
+            o = i.touched;
+          return Object(z.jsxs)(_.a, {
+            mt: 4,
+            isInvalid: null != s && o,
+            children: [
+              Object(z.jsx)(I.a, {
+                htmlFor: c.name,
+                children: Object(z.jsx)(y.a, { fontSize: "12px", textTransform: "uppercase", children: n }),
+              }),
+              Object(z.jsx)(
+                R.a,
+                Object(k.a)(
+                  Object(k.a)(
+                    {
+                      bg: "brandGray.dark",
+                      borderColor: "black",
+                      borderRadius: "3px",
+                      focusBorderColor: "highlight.standard",
+                    },
+                    c
+                  ),
+                  t
+                )
+              ),
+              Object(z.jsx)(G.b, { children: s }),
+            ],
+          });
+        },
+        E = function (e) {
+          var n = {};
+          return (
+            e.forEach(function (e) {
+              var t = e.field,
+                r = e.message;
+              n[t.toLowerCase()] = r;
+            }),
+            n
+          );
+        },
+        N = t(117),
+        D = t.n(N),
+        Q = t(217),
+        P = D()(
+          Object(Q.persist)(
+            function (e) {
+              return {
+                current: null,
+                setUser: function (n) {
+                  return e({ current: n });
+                },
+                logout: function () {
+                  return e({ current: null });
+                },
+              };
+            },
+            { name: "user-storage" }
+          )
+        ),
+        M = t(30),
+        L = M.d().shape({
+          email: M.f().required("Email is required").defined(),
+          password: M.f().required("Password is required").defined(),
+        }),
+        F = M.d().shape({
+          username: M.f().min(3).max(30).trim().required("Username is required").defined(),
+          email: M.f().email().lowercase().required("Email is required").defined(),
+          password: M.f()
+            .min(6, "Password must be at least 6 characters long")
+            .max(150)
+            .required("Password is required")
+            .defined(),
+        }),
+        q = M.d().shape({
+          email: M.f().email().lowercase().required("Email is required").defined(),
+          username: M.f().min(3).max(30).trim().required("Username is required").defined(),
+        }),
+        W = M.d().shape({
+          newPassword: M.f()
+            .min(6, "Password must be at least 6 characters long")
+            .max(150)
+            .required("New Password is required")
+            .defined(),
+          confirmNewPassword: M.f()
+            .oneOf([M.e("newPassword"), void 0], "Passwords do not match")
+            .required("Confirm New Password is required")
+            .defined(),
+        }),
+        B = M.d().shape({
+          currentPassword: M.f().required("Old Password is required").defined(),
+          newPassword: M.f()
+            .min(6, "Password must be at least 6 characters long")
+            .max(150)
+            .required("New Password is required")
+            .defined(),
+          confirmNewPassword: M.f()
+            .oneOf([M.e("newPassword"), void 0], "Passwords do not match")
+            .required("Confirm New Password is required")
+            .defined(),
+        }),
+        J = M.d().shape({ email: M.f().email().lowercase().required("Email is required").defined() }),
+        U = t(354),
+        V = t.n(U).a.create({ baseURL: "".concat("https://gateway.xoniaapp.com", "/api"), withCredentials: !0 }),
+        Y = function () {
+          var e = Object(b.g)(),
+            n = P(function (e) {
+              return e.setUser;
+            });
+          return Object(z.jsx)(f.a, {
+            minHeight: "100vh",
+            width: "full",
+            align: "center",
+            justifyContent: "center",
+            children: Object(z.jsxs)(O.a, {
+              px: 4,
+              width: "full",
+              maxWidth: "500px",
+              textAlign: "center",
+              children: [
+                Object(z.jsx)(f.a, {
+                  mb: "4",
+                  justify: "center",
+                  children: Object(z.jsx)(p.a, { src: "".concat("", "/logo.png"), w: "80px" }),
+                }),
+                Object(z.jsxs)(O.a, {
+                  p: 4,
+                  borderRadius: 4,
+                  background: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(O.a, {
+                      textAlign: "center",
+                      children: Object(z.jsx)(m.a, { fontSize: "24px", children: "Welcome Back" }),
+                    }),
+                    Object(z.jsx)(O.a, {
+                      my: 4,
+                      textAlign: "left",
+                      children: Object(z.jsx)(w.b, {
+                        initialValues: { email: "", password: "" },
+                        validationSchema: L,
+                        onSubmit: (function () {
+                          var t = Object(x.a)(
+                            h.a.mark(function t(r, a) {
+                              var c, i, s, o, l, u, d, b, j;
+                              return h.a.wrap(
+                                function (t) {
+                                  for (;;)
+                                    switch ((t.prev = t.next)) {
+                                      case 0:
+                                        return (
+                                          (c = a.setErrors),
+                                          (t.prev = 1),
+                                          (t.next = 4),
+                                          (h = r),
+                                          V.post("/account/login", h)
+                                        );
+                                      case 4:
+                                        (i = t.sent), (s = i.data) && (n(s), e.push("/channels/me")), (t.next = 13);
+                                        break;
+                                      case 9:
+                                        (t.prev = 9),
+                                          (t.t0 = t.catch(1)),
+                                          401 ===
+                                            (null === t.t0 ||
+                                            void 0 === t.t0 ||
+                                            null === (o = t.t0.response) ||
+                                            void 0 === o
+                                              ? void 0
+                                              : o.status) && c({ password: "Invalid Credentials" }),
+                                          (null === t.t0 ||
+                                          void 0 === t.t0 ||
+                                          null === (l = t.t0.response) ||
+                                          void 0 === l ||
+                                          null === (u = l.data) ||
+                                          void 0 === u
+                                            ? void 0
+                                            : u.errors) &&
+                                            ((j =
+                                              null === t.t0 ||
+                                              void 0 === t.t0 ||
+                                              null === (d = t.t0.response) ||
+                                              void 0 === d ||
+                                              null === (b = d.data) ||
+                                              void 0 === b
+                                                ? void 0
+                                                : b.errors),
+                                            c(E(j)));
+                                      case 13:
+                                      case "end":
+                                        return t.stop();
+                                    }
+                                  var h;
+                                },
+                                t,
+                                null,
+                                [[1, 9]]
+                              );
+                            })
+                          );
+                          return function (e, n) {
+                            return t.apply(this, arguments);
+                          };
+                        })(),
+                        children: function (e) {
+                          var n = e.isSubmitting;
+                          return Object(z.jsxs)(w.a, {
+                            children: [
+                              Object(z.jsx)(A, { label: "Email", name: "email", autoComplete: "email", type: "email" }),
+                              Object(z.jsx)(A, {
+                                label: "password",
+                                name: "password",
+                                autoComplete: "password",
+                                type: "password",
+                              }),
+                              Object(z.jsx)(O.a, {
+                                mt: 4,
+                                children: Object(z.jsx)(g.a, {
+                                  as: d.b,
+                                  to: "/forgot-password",
+                                  textColor: "highlight.standard",
+                                  _focus: { outline: "none" },
+                                  children: "Forgot Password?",
+                                }),
+                              }),
+                              Object(z.jsx)(v.a, {
+                                background: "highlight.standard",
+                                color: "white",
+                                width: "full",
+                                mt: 4,
+                                type: "submit",
+                                isLoading: n,
+                                _hover: { bg: "highlight.hover" },
+                                _active: { bg: "highlight.active" },
+                                _focus: { boxShadow: "none" },
+                                children: "Login",
+                              }),
+                              Object(z.jsxs)(y.a, {
+                                mt: "4",
+                                children: [
+                                  "Don't have an account yet?",
+                                  " ",
+                                  Object(z.jsx)(g.a, {
+                                    as: d.b,
+                                    to: "/register",
+                                    textColor: "highlight.standard",
+                                    _focus: { outline: "none" },
+                                    children: "Sign Up",
+                                  }),
+                                ],
+                              }),
+                            ],
+                          });
+                        },
+                      }),
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          });
+        },
+        H = function () {
+          var e = Object(b.g)(),
+            n = P(function (e) {
+              return e.setUser;
+            }),
+            t = Object(i.useState)(!1),
+            r = Object(C.a)(t, 2),
+            a = r[0],
+            c = r[1];
+          return Object(z.jsx)(f.a, {
+            minHeight: "100vh",
+            width: "full",
+            align: "center",
+            justifyContent: "center",
+            children: Object(z.jsxs)(O.a, {
+              px: 4,
+              width: "full",
+              maxWidth: "500px",
+              textAlign: "center",
+              children: [
+                Object(z.jsx)(f.a, {
+                  mb: "4",
+                  justify: "center",
+                  children: Object(z.jsx)(p.a, { src: "".concat("", "/logo.png"), w: "80px" }),
+                }),
+                Object(z.jsxs)(O.a, {
+                  p: 4,
+                  borderRadius: 4,
+                  background: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(O.a, {
+                      textAlign: "center",
+                      children: Object(z.jsx)(m.a, { fontSize: "24px", children: "Welcome" }),
+                    }),
+                    Object(z.jsx)(O.a, {
+                      my: 4,
+                      textAlign: "left",
+                      children: Object(z.jsx)(w.b, {
+                        initialValues: { email: "", username: "", password: "" },
+                        validationSchema: F,
+                        onSubmit: (function () {
+                          var t = Object(x.a)(
+                            h.a.mark(function t(r, a) {
+                              var i, s, o, l, u, d, b, j, x;
+                              return h.a.wrap(
+                                function (t) {
+                                  for (;;)
+                                    switch ((t.prev = t.next)) {
+                                      case 0:
+                                        return (
+                                          (i = a.setErrors),
+                                          (t.prev = 1),
+                                          (t.next = 4),
+                                          (h = r),
+                                          V.post("/account/register", h)
+                                        );
+                                      case 4:
+                                        (s = t.sent), (o = s.data) && (n(o), e.push("/channels/me")), (t.next = 13);
+                                        break;
+                                      case 9:
+                                        (t.prev = 9),
+                                          (t.t0 = t.catch(1)),
+                                          500 ===
+                                            (null === t.t0 ||
+                                            void 0 === t.t0 ||
+                                            null === (l = t.t0.response) ||
+                                            void 0 === l
+                                              ? void 0
+                                              : l.status) && c(!0),
+                                          (null === t.t0 ||
+                                          void 0 === t.t0 ||
+                                          null === (u = t.t0.response) ||
+                                          void 0 === u ||
+                                          null === (d = u.data) ||
+                                          void 0 === d
+                                            ? void 0
+                                            : d.errors) &&
+                                            ((x =
+                                              null === t.t0 ||
+                                              void 0 === t.t0 ||
+                                              null === (b = t.t0.response) ||
+                                              void 0 === b ||
+                                              null === (j = b.data) ||
+                                              void 0 === j
+                                                ? void 0
+                                                : j.errors),
+                                            i(E(x)));
+                                      case 13:
+                                      case "end":
+                                        return t.stop();
+                                    }
+                                  var h;
+                                },
+                                t,
+                                null,
+                                [[1, 9]]
+                              );
+                            })
+                          );
+                          return function (e, n) {
+                            return t.apply(this, arguments);
+                          };
+                        })(),
+                        children: function (e) {
+                          var n = e.isSubmitting;
+                          return Object(z.jsxs)(w.a, {
+                            children: [
+                              Object(z.jsx)(A, { label: "Email", name: "email", autoComplete: "email", type: "email" }),
+                              Object(z.jsx)(A, { label: "username", name: "username" }),
+                              Object(z.jsx)(A, {
+                                label: "password",
+                                name: "password",
+                                autoComplete: "password",
+                                type: "password",
+                              }),
+                              Object(z.jsx)(v.a, {
+                                background: "highlight.standard",
+                                color: "white",
+                                width: "full",
+                                mt: 4,
+                                type: "submit",
+                                isLoading: n,
+                                _hover: { bg: "highlight.hover" },
+                                _active: { bg: "highlight.active" },
+                                _focus: { boxShadow: "none" },
+                                children: "Register",
+                              }),
+                              a &&
+                                Object(z.jsx)(y.a, {
+                                  mt: "4",
+                                  color: "menuRed",
+                                  align: "center",
+                                  children: "Server Error. Try again later",
+                                }),
+                              Object(z.jsxs)(y.a, {
+                                mt: "4",
+                                children: [
+                                  "Already have an account?",
+                                  " ",
+                                  Object(z.jsx)(g.a, {
+                                    as: d.b,
+                                    to: "/login",
+                                    textColor: "highlight.standard",
+                                    _focus: { outline: "none" },
+                                    children: "Sign In",
+                                  }),
+                                ],
+                              }),
+                            ],
+                          });
+                        },
+                      }),
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          });
+        },
+        K = t(631),
+        Z = function () {
+          var e = Object(b.g)(),
+            n = Object(K.a)();
+          return Object(z.jsx)(f.a, {
+            minHeight: "100vh",
+            width: "full",
+            align: "center",
+            justifyContent: "center",
+            children: Object(z.jsxs)(O.a, {
+              px: 4,
+              width: "full",
+              maxWidth: "500px",
+              textAlign: "center",
+              children: [
+                Object(z.jsx)(f.a, {
+                  mb: "4",
+                  justify: "center",
+                  children: Object(z.jsx)(p.a, { src: "".concat("", "/logo.png"), w: "80px" }),
+                }),
+                Object(z.jsxs)(O.a, {
+                  p: 4,
+                  borderRadius: 4,
+                  background: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(O.a, {
+                      textAlign: "center",
+                      children: Object(z.jsx)(m.a, { fontSize: "24px", children: "Forgot Password" }),
+                    }),
+                    Object(z.jsx)(O.a, {
+                      my: 4,
+                      textAlign: "left",
+                      children: Object(z.jsx)(w.b, {
+                        initialValues: { email: "" },
+                        validationSchema: J,
+                        onSubmit: (function () {
+                          var t = Object(x.a)(
+                            h.a.mark(function t(r, a) {
+                              var c, i, s, o, l, u, d;
+                              return h.a.wrap(
+                                function (t) {
+                                  for (;;)
+                                    switch ((t.prev = t.next)) {
+                                      case 0:
+                                        return (
+                                          (c = a.setErrors),
+                                          (t.prev = 1),
+                                          (t.next = 4),
+                                          (b = r.email),
+                                          V.post("/account/forgot-password", { email: b })
+                                        );
+                                      case 4:
+                                        (i = t.sent),
+                                          i.data &&
+                                            (n({
+                                              title: "Reset Mail.",
+                                              description:
+                                                "If an account with that email already exists, we sent you an email",
+                                              status: "success",
+                                              duration: 5e3,
+                                              isClosable: !0,
+                                            }),
+                                            e.push("/")),
+                                          (t.next = 12);
+                                        break;
+                                      case 9:
+                                        (t.prev = 9),
+                                          (t.t0 = t.catch(1)),
+                                          (null === t.t0 ||
+                                          void 0 === t.t0 ||
+                                          null === (s = t.t0.response) ||
+                                          void 0 === s ||
+                                          null === (o = s.data) ||
+                                          void 0 === o
+                                            ? void 0
+                                            : o.errors) &&
+                                            ((d =
+                                              null === t.t0 ||
+                                              void 0 === t.t0 ||
+                                              null === (l = t.t0.response) ||
+                                              void 0 === l ||
+                                              null === (u = l.data) ||
+                                              void 0 === u
+                                                ? void 0
+                                                : u.errors),
+                                            c(E(d)));
+                                      case 12:
+                                      case "end":
+                                        return t.stop();
+                                    }
+                                  var b;
+                                },
+                                t,
+                                null,
+                                [[1, 9]]
+                              );
+                            })
+                          );
+                          return function (e, n) {
+                            return t.apply(this, arguments);
+                          };
+                        })(),
+                        children: function (e) {
+                          var n = e.isSubmitting;
+                          return Object(z.jsxs)(w.a, {
+                            children: [
+                              Object(z.jsx)(A, { label: "Email", name: "email", autoComplete: "email", type: "email" }),
+                              Object(z.jsx)(v.a, {
+                                background: "highlight.standard",
+                                color: "white",
+                                width: "full",
+                                mt: 4,
+                                type: "submit",
+                                isLoading: n,
+                                _hover: { bg: "highlight.hover" },
+                                _active: { bg: "highlight.active" },
+                                _focus: { boxShadow: "none" },
+                                fontSize: "14px",
+                                children: "Send Mail",
+                              }),
+                            ],
+                          });
+                        },
+                      }),
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          });
+        },
+        $ = function () {
+          var e = Object(b.g)(),
+            n = Object(b.i)().token,
+            t = Object(i.useState)(!1),
+            r = Object(C.a)(t, 2),
+            a = r[0],
+            c = r[1],
+            s = Object(i.useState)(""),
+            o = Object(C.a)(s, 2),
+            l = o[0],
+            u = o[1],
+            j = P(function (e) {
+              return e.setUser;
+            });
+          return Object(z.jsx)(f.a, {
+            minHeight: "100vh",
+            width: "full",
+            align: "center",
+            justifyContent: "center",
+            children: Object(z.jsxs)(O.a, {
+              px: 4,
+              width: "full",
+              maxWidth: "500px",
+              textAlign: "center",
+              children: [
+                Object(z.jsx)(f.a, {
+                  mb: "4",
+                  justify: "center",
+                  children: Object(z.jsx)(p.a, { src: "".concat("", "/logo.png"), w: "80px" }),
+                }),
+                Object(z.jsxs)(O.a, {
+                  p: 4,
+                  borderRadius: 4,
+                  background: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(O.a, {
+                      textAlign: "center",
+                      children: Object(z.jsx)(m.a, { fontSize: "24px", children: "Reset Password" }),
+                    }),
+                    Object(z.jsxs)(O.a, {
+                      my: 4,
+                      textAlign: "left",
+                      children: [
+                        Object(z.jsx)(w.b, {
+                          initialValues: { newPassword: "", confirmNewPassword: "" },
+                          validationSchema: W,
+                          onSubmit: (function () {
+                            var t = Object(x.a)(
+                              h.a.mark(function t(r, a) {
+                                var i, s, o, l, d, b, x, f;
+                                return h.a.wrap(
+                                  function (t) {
+                                    for (;;)
+                                      switch ((t.prev = t.next)) {
+                                        case 0:
+                                          return (
+                                            (i = a.setErrors),
+                                            (t.prev = 1),
+                                            (t.next = 4),
+                                            (h = Object(k.a)(Object(k.a)({}, r), {}, { token: n })),
+                                            V.post("/account/reset-password", h)
+                                          );
+                                        case 4:
+                                          (s = t.sent), (o = s.data) && (j(o), e.push("/channels/me")), (t.next = 12);
+                                          break;
+                                        case 9:
+                                          (t.prev = 9),
+                                            (t.t0 = t.catch(1)),
+                                            500 ===
+                                            (null === t.t0 ||
+                                            void 0 === t.t0 ||
+                                            null === (l = t.t0.response) ||
+                                            void 0 === l
+                                              ? void 0
+                                              : l.status)
+                                              ? c(!0)
+                                              : ((x =
+                                                  null === t.t0 ||
+                                                  void 0 === t.t0 ||
+                                                  null === (d = t.t0.response) ||
+                                                  void 0 === d ||
+                                                  null === (b = d.data) ||
+                                                  void 0 === b
+                                                    ? void 0
+                                                    : b.errors),
+                                                "token" in (f = E(x)) && u(f.token),
+                                                i(f));
+                                        case 12:
+                                        case "end":
+                                          return t.stop();
+                                      }
+                                    var h;
+                                  },
+                                  t,
+                                  null,
+                                  [[1, 9]]
+                                );
+                              })
+                            );
+                            return function (e, n) {
+                              return t.apply(this, arguments);
+                            };
+                          })(),
+                          children: function (e) {
+                            var n = e.isSubmitting;
+                            return Object(z.jsxs)(w.a, {
+                              children: [
+                                Object(z.jsx)(A, {
+                                  label: "New Password",
+                                  name: "newPassword",
+                                  autoComplete: "new-password",
+                                  type: "password",
+                                }),
+                                Object(z.jsx)(A, {
+                                  label: "Confirm New Password",
+                                  name: "confirmNewPassword",
+                                  type: "password",
+                                }),
+                                Object(z.jsx)(v.a, {
+                                  background: "highlight.standard",
+                                  color: "white",
+                                  width: "full",
+                                  mt: 4,
+                                  type: "submit",
+                                  isLoading: n,
+                                  _hover: { bg: "highlight.hover" },
+                                  _active: { bg: "highlight.active" },
+                                  _focus: { boxShadow: "none" },
+                                  children: "Reset Password",
+                                }),
+                              ],
+                            });
+                          },
+                        }),
+                        a &&
+                          Object(z.jsx)(y.a, {
+                            mt: "4",
+                            color: "menuRed",
+                            align: "center",
+                            children: "Server Error. Try again later",
+                          }),
+                        l &&
+                          Object(z.jsxs)(f.a, {
+                            direction: "column",
+                            mt: "4",
+                            justify: "center",
+                            align: "center",
+                            children: [
+                              Object(z.jsx)(y.a, { color: "menuRed", children: "Invalid or expired token." }),
+                              Object(z.jsx)(g.a, {
+                                as: d.b,
+                                to: "/forgot-password",
+                                _focus: { outline: "none" },
+                                children: "Click here to get a new token",
+                              }),
+                            ],
+                          }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          });
+        },
+        X = t(617),
+        ee = t(197),
+        ne = t(337),
+        te = t(334),
+        re = t(13),
+        ae = t(629),
+        ce = t(348),
+        ie = M.d().shape({ name: M.f().min(3).max(30).required() }),
+        se = function (e) {
+          return V.post("guilds/join", e);
+        },
+        oe = function (e) {
+          var n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+          return V.get("guilds/".concat(e, "/invite").concat(n ? "?isPermanent=true" : ""));
+        },
+        le = function (e) {
+          return V.get("guilds/".concat(e, "/members"));
+        },
+        ue = "guilds",
+        de = "dms",
+        be = "friends",
+        je = "requests",
+        he = "notification",
+        xe = function (e) {
+          return "channels-".concat(e);
+        },
+        fe = function (e) {
+          return "members-".concat(e);
+        };
+      !(function (e) {
+        (e[(e.START = 0)] = "START"), (e[(e.INVITE = 1)] = "INVITE"), (e[(e.CREATE = 2)] = "CREATE");
+      })(r || (r = {}));
+      var Oe = function (e) {
+          var n = e.isOpen,
+            t = e.onClose,
+            a = Object(i.useState)(r.START),
+            c = Object(C.a)(a, 2),
+            s = c[0],
+            o = c[1],
+            l = function () {
+              return o(r.START);
+            },
+            u = function () {
+              o(r.START), t();
+            };
+          return Object(z.jsxs)(ae.a, {
+            isOpen: n,
+            onClose: u,
+            isCentered: !0,
+            size: "sm",
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              s === r.INVITE && Object(z.jsx)(pe, { goBack: l, submitClose: u }),
+              s === r.CREATE && Object(z.jsx)(me, { goBack: l, submitClose: u }),
+              s === r.START &&
+                Object(z.jsxs)(ae.d, {
+                  bg: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(ae.f, { textAlign: "center", fontWeight: "bold", children: "Create a server" }),
+                    Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                    Object(z.jsx)(ae.b, {
+                      pb: 6,
+                      children: Object(z.jsxs)(ce.e, {
+                        spacing: "5",
+                        children: [
+                          Object(z.jsx)(y.a, { textAlign: "center", children: "Create a Server to Hangout & Chill!" }),
+                          Object(z.jsx)(v.a, {
+                            background: "highlight.standard",
+                            color: "white",
+                            type: "submit",
+                            _hover: { bg: "highlight.hover" },
+                            _active: { bg: "highlight.active" },
+                            _focus: { boxShadow: "none" },
+                            w: "full",
+                            onClick: function () {
+                              return o(r.CREATE);
+                            },
+                            children: "Create My Own",
+                          }),
+                          Object(z.jsx)(te.a, {}),
+                          Object(z.jsx)(y.a, { children: "Have an invite already?" }),
+                          Object(z.jsx)(v.a, {
+                            mt: "4",
+                            background: "highlight.standard",
+                            color: "white",
+                            type: "submit",
+                            _hover: { bg: "highlight.hover" },
+                            _active: { bg: "highlight.active" },
+                            _focus: { boxShadow: "none" },
+                            w: "full",
+                            onClick: function () {
+                              return o(r.INVITE);
+                            },
+                            children: "Join a Server",
+                          }),
+                        ],
+                      }),
+                    }),
+                  ],
+                }),
+            ],
+          });
+        },
+        pe = function (e) {
+          var n = e.goBack,
+            t = e.submitClose,
+            r = Object(u.useQueryClient)(),
+            a = Object(b.g)();
+          return Object(z.jsx)(ae.d, {
+            bg: "brandGray.light",
+            children: Object(z.jsx)(w.b, {
+              initialValues: { link: "" },
+              onSubmit: (function () {
+                var e = Object(x.a)(
+                  h.a.mark(function e(n, c) {
+                    var i, s, o, l, u, d, b;
+                    return h.a.wrap(
+                      function (e) {
+                        for (;;)
+                          switch ((e.prev = e.next)) {
+                            case 0:
+                              if (((i = c.setErrors), "" !== n.link)) {
+                                e.next = 5;
+                                break;
+                              }
+                              i({ link: "Enter a valid link" }), (e.next = 17);
+                              break;
+                            case 5:
+                              return (e.prev = 5), (e.next = 8), se(n);
+                            case 8:
+                              (s = e.sent),
+                                (o = s.data) &&
+                                  (r.setQueryData(ue, function (e) {
+                                    return [].concat(Object(re.a)(e), [o]);
+                                  }),
+                                  t(),
+                                  a.push("/channels/".concat(o.id, "/").concat(o.default_channel_id))),
+                                (e.next = 17);
+                              break;
+                            case 13:
+                              (e.prev = 13),
+                                (e.t0 = e.catch(5)),
+                                (400 !==
+                                  (u =
+                                    null === e.t0 || void 0 === e.t0 || null === (l = e.t0.response) || void 0 === l
+                                      ? void 0
+                                      : l.status) &&
+                                  500 !== u) ||
+                                  i({
+                                    link:
+                                      null === e.t0 ||
+                                      void 0 === e.t0 ||
+                                      null === (d = e.t0.response) ||
+                                      void 0 === d ||
+                                      null === (b = d.data) ||
+                                      void 0 === b
+                                        ? void 0
+                                        : b.error.message,
+                                  });
+                            case 17:
+                            case "end":
+                              return e.stop();
+                          }
+                      },
+                      e,
+                      null,
+                      [[5, 13]]
+                    );
+                  })
+                );
+                return function (n, t) {
+                  return e.apply(this, arguments);
+                };
+              })(),
+              children: function (e) {
+                var t = e.isSubmitting;
+                return Object(z.jsxs)(w.a, {
+                  children: [
+                    Object(z.jsx)(ae.f, {
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      pb: "0",
+                      children: "Join a Server",
+                    }),
+                    Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                    Object(z.jsxs)(ae.b, {
+                      pb: 3,
+                      children: [
+                        Object(z.jsx)(y.a, {
+                          fontSize: "14px",
+                          textColor: "brandGray.accent",
+                          children: "Enter an invite below to join an existing server",
+                        }),
+                        Object(z.jsx)(A, { label: "invite link", name: "link" }),
+                        Object(z.jsx)(y.a, {
+                          mt: "4",
+                          fontSize: "12px",
+                          fontWeight: "semibold",
+                          textColor: "brandGray.accent",
+                          textTransform: "uppercase",
+                          children: "invite links should look like",
+                        }),
+                        Object(z.jsx)(y.a, {
+                          mt: "2",
+                          fontSize: "12px",
+                          textColor: "brandGray.accent",
+                          children: "AlDwda",
+                        }),
+                        Object(z.jsx)(y.a, {
+                          fontSize: "12px",
+                          textColor: "brandGray.accent",
+                          children: "https://xoniaapp.com/AlDwda",
+                        }),
+                      ],
+                    }),
+                    Object(z.jsxs)(ae.e, {
+                      bg: "brandGray.dark",
+                      children: [
+                        Object(z.jsx)(v.a, {
+                          mr: 6,
+                          variant: "link",
+                          onClick: n,
+                          fontSize: "14px",
+                          _focus: { outline: "none" },
+                          children: "Back",
+                        }),
+                        Object(z.jsx)(v.a, {
+                          background: "highlight.standard",
+                          color: "white",
+                          type: "submit",
+                          _hover: { bg: "highlight.hover" },
+                          _active: { bg: "highlight.active" },
+                          _focus: { boxShadow: "none" },
+                          isLoading: t,
+                          fontSize: "14px",
+                          children: "Join Server",
+                        }),
+                      ],
+                    }),
+                  ],
+                });
+              },
+            }),
+          });
+        },
+        me = function (e) {
+          var n = e.goBack,
+            t = e.submitClose,
+            r = P(function (e) {
+              return e.current;
+            }),
+            a = Object(u.useQueryClient)(),
+            c = Object(b.g)();
+          return Object(z.jsx)(ae.d, {
+            bg: "brandGray.light",
+            children: Object(z.jsx)(w.b, {
+              initialValues: { name: "".concat(null === r || void 0 === r ? void 0 : r.username, "'s server") },
+              validationSchema: ie,
+              onSubmit: (function () {
+                var e = Object(x.a)(
+                  h.a.mark(function e(n, r) {
+                    var i, s, o, l, u, d, b, j, x;
+                    return h.a.wrap(
+                      function (e) {
+                        for (;;)
+                          switch ((e.prev = e.next)) {
+                            case 0:
+                              return (i = r.setErrors), (e.prev = 1), (e.next = 4), (h = n), V.post("guilds/create", h);
+                            case 4:
+                              (s = e.sent),
+                                (o = s.data) &&
+                                  (a.setQueryData(ue, function (e) {
+                                    return [].concat(Object(re.a)(e), [o]);
+                                  }),
+                                  t(),
+                                  c.push("/channels/".concat(o.id, "/").concat(o.default_channel_id))),
+                                (e.next = 13);
+                              break;
+                            case 9:
+                              (e.prev = 9),
+                                (e.t0 = e.catch(1)),
+                                400 ===
+                                  (null === e.t0 || void 0 === e.t0 || null === (l = e.t0.response) || void 0 === l
+                                    ? void 0
+                                    : l.status) && i({ name: "The server limit is 100" }),
+                                (null === e.t0 ||
+                                void 0 === e.t0 ||
+                                null === (u = e.t0.response) ||
+                                void 0 === u ||
+                                null === (d = u.data) ||
+                                void 0 === d
+                                  ? void 0
+                                  : d.errors) &&
+                                  ((x =
+                                    null === e.t0 ||
+                                    void 0 === e.t0 ||
+                                    null === (b = e.t0.response) ||
+                                    void 0 === b ||
+                                    null === (j = b.data) ||
+                                    void 0 === j
+                                      ? void 0
+                                      : j.errors),
+                                  i(E(x)));
+                            case 13:
+                            case "end":
+                              return e.stop();
+                          }
+                        var h;
+                      },
+                      e,
+                      null,
+                      [[1, 9]]
+                    );
+                  })
+                );
+                return function (n, t) {
+                  return e.apply(this, arguments);
+                };
+              })(),
+              children: function (e) {
+                var t = e.isSubmitting,
+                  r = e.values;
+                return Object(z.jsxs)(w.a, {
+                  children: [
+                    Object(z.jsx)(ae.f, {
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      pb: "0",
+                      children: "Create your server",
+                    }),
+                    Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                    Object(z.jsx)(ae.b, {
+                      pb: 3,
+                      children: Object(z.jsx)(A, { label: "server name", name: "name", value: r.name }),
+                    }),
+                    Object(z.jsxs)(ae.e, {
+                      bg: "brandGray.dark",
+                      children: [
+                        Object(z.jsx)(v.a, {
+                          mr: 6,
+                          fontSize: "14px",
+                          variant: "link",
+                          onClick: n,
+                          _focus: { outline: "none" },
+                          children: "Back",
+                        }),
+                        Object(z.jsx)(v.a, {
+                          background: "highlight.standard",
+                          color: "white",
+                          type: "submit",
+                          _hover: { bg: "highlight.hover" },
+                          _active: { bg: "highlight.active" },
+                          _focus: { boxShadow: "none" },
+                          isLoading: t,
+                          fontSize: "14px",
+                          children: "Create",
+                        }),
+                      ],
+                    }),
+                  ],
+                });
+              },
+            }),
+          });
+        },
+        ge = t(618),
+        ve = t(637),
+        ye = function (e) {
+          var n = e.label,
+            t = e.position,
+            r = e.disabled,
+            a = void 0 !== r && r,
+            c = e.children;
+          return Object(z.jsx)(ve.a, {
+            hasArrow: !0,
+            label: n,
+            placement: t,
+            isDisabled: a,
+            bg: "brandGray.darkest",
+            color: "white",
+            fontWeight: "semibold",
+            py: 1,
+            px: 3,
+            children: c,
+          });
+        },
+        we = function () {
+          return Object(z.jsx)(O.a, {
+            w: "8px",
+            h: "8px",
+            bg: "white",
+            position: "absolute",
+            borderRadius: "0 4px 4px 0",
+            ml: "-4px",
+            mt: "20px",
+            left: 0,
+          });
+        },
+        ke = function () {
+          return Object(z.jsx)(O.a, {
+            w: "8px",
+            h: "8px",
+            bg: "white",
+            position: "absolute",
+            borderRadius: "0 4px 4px 0",
+            ml: "-4px",
+            mt: "8px",
+            left: "-10px",
+          });
+        },
+        Ce = function () {
+          return Object(z.jsx)(O.a, {
+            w: "8px",
+            h: "40px",
+            bg: "white",
+            position: "absolute",
+            borderRadius: "0 4px 4px 0",
+            ml: "-4px",
+            left: 0,
+            mt: "4px",
+          });
+        },
+        Se = function () {
+          return Object(z.jsx)(O.a, {
+            w: "8px",
+            h: "24px",
+            bg: "white",
+            position: "absolute",
+            borderRadius: "0 4px 4px 0",
+            ml: "-4px",
+            left: 0,
+            mt: "12px",
+          });
+        },
+        _e = function (e) {
+          var n = e.guild,
+            t = Object(b.h)().pathname.includes(n.id),
+            r = Object(i.useState)(!1),
+            a = Object(C.a)(r, 2),
+            c = a[0],
+            s = a[1],
+            o = Object(u.useQueryClient)();
+          return (
+            Object(i.useEffect)(function () {
+              n.hasNotification &&
+                t &&
+                o.setQueryData(ue, function (e) {
+                  var t = null !== e && void 0 !== e ? e : [],
+                    r = t.findIndex(function (e) {
+                      return e.id === n.id;
+                    });
+                  return -1 !== r && (t[r] = Object(k.a)(Object(k.a)({}, t[r]), {}, { hasNotification: !1 })), t;
+                });
+            }),
+            Object(z.jsxs)(f.a, {
+              mb: "2",
+              justify: "center",
+              position: "relative",
+              children: [
+                t && Object(z.jsx)(Ce, {}),
+                c && Object(z.jsx)(Se, {}),
+                n.hasNotification && Object(z.jsx)(we, {}),
+                Object(z.jsx)(ye, {
+                  label: n.name,
+                  position: "right",
+                  children: Object(z.jsx)(d.b, {
+                    to: "/channels/".concat(n.id, "/").concat(n.default_channel_id),
+                    children: n.icon
+                      ? Object(z.jsx)(ge.a, {
+                          src: n.icon,
+                          borderRadius: t || c ? "35%" : "50%",
+                          name: n.name,
+                          color: "#fff",
+                          bg: "brandGray.light",
+                          onMouseLeave: function () {
+                            return s(!1);
+                          },
+                          onMouseEnter: function () {
+                            return s(!0);
+                          },
+                        })
+                      : Object(z.jsx)(f.a, {
+                          justify: "center",
+                          align: "center",
+                          bg: t ? "highlight.standard" : "brandGray.light",
+                          borderRadius: t ? "35%" : "50%",
+                          h: "48px",
+                          w: "48px",
+                          color: t ? "white" : void 0,
+                          fontSize: "20px",
+                          _hover: { borderRadius: "35%", bg: "highlight.standard", color: "white" },
+                          onMouseLeave: function () {
+                            return s(!1);
+                          },
+                          onMouseEnter: function () {
+                            return s(!0);
+                          },
+                          children: n.name[0],
+                        }),
+                  }),
+                }),
+              ],
+            })
+          );
+        },
+        Ie = t(119),
+        Re = function (e) {
+          var n = e.onOpen,
+            t = Object(i.useState)(!1),
+            r = Object(C.a)(t, 2),
+            a = r[0],
+            c = r[1];
+          return Object(z.jsxs)(z.Fragment, {
+            children: [
+              a && Object(z.jsx)(Se, {}),
+              Object(z.jsx)(ye, {
+                label: "Add a Server",
+                position: "right",
+                children: Object(z.jsx)(f.a, {
+                  id: "add-guild-icon",
+                  direction: "column",
+                  m: "auto",
+                  align: "center",
+                  justify: "center",
+                  bg: "brandGray.light",
+                  borderRadius: "50%",
+                  h: "48px",
+                  w: "48px",
+                  _hover: { cursor: "pointer", borderRadius: "35%", bg: "brandGreen", color: "white" },
+                  onClick: n,
+                  onMouseLeave: function () {
+                    return c(!1);
+                  },
+                  onMouseEnter: function () {
+                    return c(!0);
+                  },
+                  children: Object(z.jsx)(Ie.c, { fontSize: "25px" }),
+                }),
+              }),
+            ],
+          });
+        },
+        Ge = t(383),
+        ze = D()(function (e) {
+          return {
+            notifCount: 0,
+            requestCount: 0,
+            increment: function () {
+              return e(function (e) {
+                return { notifCount: e.notifCount + 1 };
+              });
+            },
+            reset: function () {
+              return e({ notifCount: 0 });
+            },
+            resetRequest: function () {
+              return e({ requestCount: 0 });
+            },
+            setRequests: function (n) {
+              return e({ requestCount: n });
+            },
+            isPending: !1,
+            toggleDisplay: function () {
+              return e(function (e) {
+                return { isPending: !e.isPending };
+              });
+            },
+          };
+        }),
+        Te = function (e) {
+          var n = e.count;
+          return Object(z.jsx)(f.a, {
+            borderRadius: "50%",
+            bg: "menuRed",
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            transform: "translate(25%, 25%)",
+            border: "0.3em solid",
+            borderColor: "brandBorder",
+            w: "1.4em",
+            h: "1.4em",
+            justify: "center",
+            align: "center",
+            children: Object(z.jsx)(y.a, { fontSize: "12px", fontWeight: "bold", color: "white", children: n }),
+          });
+        },
+        Ae = function (e) {
+          var n = e.count;
+          return Object(z.jsx)(f.a, {
+            borderRadius: "50%",
+            bg: "menuRed",
+            w: "1.2em",
+            h: "1.2em",
+            justify: "center",
+            align: "center",
+            ml: 2,
+            children: Object(z.jsx)(y.a, { fontSize: "11px", fontWeight: "bold", color: "white", children: n }),
+          });
+        },
+        Ee = function () {
+          var e = "/channels/me" === Object(b.h)().pathname,
+            n = Object(i.useState)(!1),
+            t = Object(C.a)(n, 2),
+            r = t[0],
+            a = t[1],
+            c = ze(function (e) {
+              return e.notifCount;
+            }),
+            s = ze(function (e) {
+              return e.reset;
+            });
+          return (
+            Object(i.useEffect)(function () {
+              e && s();
+            }),
+            Object(z.jsx)(ye, {
+              label: "Home",
+              position: "right",
+              children: Object(z.jsxs)(f.a, {
+                direction: "column",
+                my: "2",
+                align: "center",
+                children: [
+                  e && Object(z.jsx)(Ce, {}),
+                  r && Object(z.jsx)(Se, {}),
+                  Object(z.jsx)(d.b, {
+                    to: "/channels/me",
+                    children: Object(z.jsxs)(f.a, {
+                      direction: "column",
+                      m: "auto",
+                      align: "center",
+                      justify: "center",
+                      bg: e ? "highlight.standard" : "brandGray.light",
+                      borderRadius: e ? "35%" : "50%",
+                      h: "48px",
+                      w: "48px",
+                      color: "white",
+                      position: "relative",
+                      _hover: { cursor: "pointer", borderRadius: "35%", bg: "highlight.standard" },
+                      onMouseLeave: function () {
+                        return a(!1);
+                      },
+                      onMouseEnter: function () {
+                        return a(!0);
+                      },
+                      children: [Object(z.jsx)(Ne, {}), c > 0 && Object(z.jsx)(Te, { count: c })],
+                    }),
+                  }),
+                ],
+              }),
+            })
+          );
+        },
+        Ne = function () {
+          var e = Object(Ge.e)("#2D3748", "#fff");
+          return Object(z.jsx)("img", {
+            src: "https://xoniaapp.com/static/media/logo.4b835ae4.png",
+            alt: e,
+            width: "50px",
+            height: "50px",
+          });
+        },
+        De = { "&::-webkit-scrollbar": { width: "0" } },
+        Qe = t(272),
+        Pe = function () {
+          return new Qe.a("wss://gateway.xoniaapp.com/ws");
+        },
+        Me = null;
+      var Le = t(359),
+        Fe = t.n(Le),
+        qe = function (e) {
+          var n = e.notification,
+            t = Object(b.h)().pathname.includes(n.id),
+            r = Object(i.useState)(!1),
+            a = Object(C.a)(r, 2),
+            c = a[0],
+            s = a[1],
+            o = Object(u.useQueryClient)();
+          Object(i.useEffect)(function () {
+            t &&
+              o.setQueryData(he, function (e) {
+                return e.filter(function (e) {
+                  return e.id !== n.id;
+                });
+              });
+          });
+          return Object(z.jsxs)(f.a, {
+            mb: "2",
+            justify: "center",
+            position: "relative",
+            children: [
+              t && Object(z.jsx)(Ce, {}),
+              c && Object(z.jsx)(Se, {}),
+              Object(z.jsx)(we, {}),
+              Object(z.jsx)(ye, {
+                label: n.user.username,
+                position: "right",
+                children: Object(z.jsx)(d.b, {
+                  to: "/channels/me/".concat(n.id),
+                  children: Object(z.jsx)(ge.a, {
+                    src: n.user.image,
+                    borderRadius: t || c ? "35%" : "50%",
+                    name: n.user.username,
+                    color: "#fff",
+                    bg: "brandGray.light",
+                    onMouseLeave: function () {
+                      return s(!1);
+                    },
+                    onMouseEnter: function () {
+                      return s(!0);
+                    },
+                    onClick: function () {
+                      return (function () {
+                        if (window.location.pathname.includes("/channels/me")) {
+                          var e = { id: n.id, user: n.user };
+                          o.setQueryData(de, function (t) {
+                            var r = null !== t && void 0 !== t ? t : [];
+                            return -1 ===
+                              t.findIndex(function (e) {
+                                return e.id === n.id;
+                              })
+                              ? [e].concat(Object(re.a)(r))
+                              : r;
+                          });
+                        }
+                      })();
+                    },
+                    onLoad: function () {
+                      Fe()({
+                        title: n.user.username,
+                        subtitle: n.user.id,
+                        message: "New message for you!",
+                        theme: "darkblue",
+                        native: !0,
+                      });
+                    },
+                    children: Object(z.jsx)(Te, { count: n.count }),
+                  }),
+                }),
+              }),
+            ],
+          });
+        },
+        We = function () {
+          var e = Object(X.a)(),
+            n = e.isOpen,
+            t = e.onOpen,
+            r = e.onClose,
+            a = Object(u.useQuery)(
+              ue,
+              function () {
+                return V.get("/guilds").then(function (e) {
+                  return e.data;
+                });
+              },
+              { cacheTime: 1 / 0 }
+            ).data,
+            c = Object(u.useQuery)(
+              he,
+              function () {
+                return [];
+              },
+              { cacheTime: 1 / 0 }
+            ).data;
+          return (
+            (function () {
+              var e = Object(b.g)(),
+                n = Object(u.useQueryClient)(),
+                t = P(function (e) {
+                  return e.current;
+                }),
+                r = Object(b.h)();
+              Object(i.useEffect)(
+                function () {
+                  var a = Pe();
+                  return (
+                    a.send(JSON.stringify({ action: "joinUser", room: null === t || void 0 === t ? void 0 : t.id })),
+                    a.addEventListener("message", function (t) {
+                      var a = JSON.parse(t.data);
+                      switch (a.action) {
+                        case "edit_guild":
+                          var c = a.data;
+                          n.setQueryData(ue, function (e) {
+                            var n = null !== e && void 0 !== e ? e : [],
+                              t = n.findIndex(function (e) {
+                                return e.id === c.id;
+                              });
+                            return (
+                              -1 !== t &&
+                                (n[t] = Object(k.a)(Object(k.a)({}, n[t]), {}, { name: c.name, icon: c.icon })),
+                              n
+                            );
+                          });
+                          break;
+                        case "delete_guild":
+                          var i = a.data;
+                          n.setQueryData(ue, function (n) {
+                            return (
+                              r.pathname.includes(i) && e.replace("/channels/me"),
+                              n.filter(function (e) {
+                                return e.id !== i;
+                              })
+                            );
+                          });
+                          break;
+                        case "new_notification":
+                          var s = a.data;
+                          r.pathname.includes(s) ||
+                            n.setQueryData(ue, function (e) {
+                              var n = null !== e && void 0 !== e ? e : [],
+                                t = n.findIndex(function (e) {
+                                  return e.id === s;
+                                });
+                              return (
+                                -1 !== t && (n[t] = Object(k.a)(Object(k.a)({}, n[t]), {}, { hasNotification: !0 })), n
+                              );
+                            });
+                          break;
+                        case "remove_from_guild":
+                          n.setQueryData(ue, function (n) {
+                            var t = a.data;
+                            return (
+                              r.pathname.includes(t) && e.replace("/channels/me"),
+                              n.filter(function (e) {
+                                return e.id !== t;
+                              })
+                            );
+                          });
+                      }
+                    }),
+                    function () {
+                      a.send(JSON.stringify({ action: "leaveRoom", room: null === t || void 0 === t ? void 0 : t.id })),
+                        a.close();
+                    }
+                  );
+                },
+                [t, n, e, r]
+              );
+            })(),
+            Object(z.jsxs)(ee.b, {
+              gridColumn: 1,
+              gridRow: "1 / 4",
+              bg: "brandGray.darker",
+              overflowY: "auto",
+              css: De,
+              zIndex: 2,
+              children: [
+                Object(z.jsx)(Ee, {}),
+                Object(z.jsx)(ne.e, {
+                  listStyleType: "none",
+                  ml: "0",
+                  id: "guild-list",
+                  children:
+                    null === c || void 0 === c
+                      ? void 0
+                      : c.map(function (e) {
+                          return Object(z.jsx)(qe, { notification: e }, e.id);
+                        }),
+                }),
+                Object(z.jsx)(f.a, {
+                  direction: "column",
+                  my: "2",
+                  align: "center",
+                  children: Object(z.jsx)(te.a, { w: "40px" }),
+                }),
+                Object(z.jsx)(ne.e, {
+                  listStyleType: "none",
+                  ml: "0",
+                  children:
+                    null === a || void 0 === a
+                      ? void 0
+                      : a.map(function (e) {
+                          return Object(z.jsx)(_e, { guild: e }, e.id);
+                        }),
+                }),
+                Object(z.jsx)(Re, { onOpen: t }),
+                n && Object(z.jsx)(Oe, { isOpen: n, onClose: r }),
+                Object(z.jsx)(O.a, { h: "20px" }),
+              ],
+            })
+          );
+        },
+        Be = t(619),
+        Je = t(338),
+        Ue = t(158),
+        Ve = function () {
+          var e = P(function (e) {
+              return e.current;
+            }),
+            n = Object(Be.a)((null === e || void 0 === e ? void 0 : e.id) || ""),
+            t = n.hasCopied,
+            r = n.onCopy;
+          return Object(z.jsxs)(f.a, {
+            p: "10px",
+            pos: "absolute",
+            bottom: "0",
+            w: "240px",
+            bg: "accountBar",
+            align: "center",
+            justify: "space-between",
+            children: [
+              Object(z.jsx)(ve.a, {
+                hasArrow: !0,
+                label: t ? "Copied!" : "Click to copy ID",
+                placement: "top",
+                bg: t ? "brandGreen" : "brandGray.darkest",
+                color: "white",
+                closeOnClick: !1,
+                children: Object(z.jsxs)(f.a, {
+                  align: "center",
+                  w: "full",
+                  mr: 2,
+                  _hover: { cursor: "pointer" },
+                  onClick: r,
+                  children: [
+                    Object(z.jsx)(ge.a, { size: "sm", src: null === e || void 0 === e ? void 0 : e.image }),
+                    Object(z.jsx)(y.a, { ml: "2", children: null === e || void 0 === e ? void 0 : e.username }),
+                  ],
+                }),
+              }),
+              Object(z.jsx)(d.b, {
+                to: "/channels/me",
+                children: Object(z.jsx)(ve.a, {
+                  hasArrow: !0,
+                  label: "Home",
+                  placement: "top",
+                  bg: "brandGray.darkest",
+                  color: "white",
+                  children: Object(z.jsx)(Je.a, {
+                    icon: Object(z.jsx)(Ue.a, {}),
+                    "aria-label": "settings",
+                    size: "sm",
+                    fontSize: "20px",
+                    variant: "ghost",
+                  }),
+                }),
+              }),
+              Object(z.jsx)(ve.a, {
+                hasArrow: !0,
+                label: "Coming soon",
+                placement: "top",
+                bg: "brandGray.darkest",
+                color: "white",
+                children: Object(z.jsx)(Je.a, {
+                  icon: Object(z.jsx)(Ue.b, {}),
+                  "aria-label": "settings",
+                  size: "sm",
+                  fontSize: "20px",
+                  variant: "ghost",
+                }),
+              }),
+              Object(z.jsx)(d.b, {
+                to: "/account",
+                children: Object(z.jsx)(ve.a, {
+                  hasArrow: !0,
+                  label: "Settings",
+                  placement: "top",
+                  bg: "brandGray.darkest",
+                  color: "white",
+                  children: Object(z.jsx)(Je.a, {
+                    icon: Object(z.jsx)(Ue.c, {}),
+                    "aria-label": "settings",
+                    size: "sm",
+                    fontSize: "20px",
+                    variant: "ghost",
+                  }),
+                }),
+              }),
+            ],
+          });
+        },
+        Ye = t(100),
+        He = t(103),
+        Ke = function () {
+          var e = "/channels/me" === Object(b.h)().pathname,
+            n = ze(function (e) {
+              return e.requestCount;
+            });
+          return Object(z.jsx)(d.b, {
+            to: "/channels/me",
+            children: Object(z.jsxs)(f.a, {
+              m: "2",
+              p: "3",
+              align: "center",
+              justify: "space-between",
+              color: e ? "#fff" : "brandGray.accent",
+              _hover: { bg: "brandGray.light", borderRadius: "5px", cursor: "pointer", color: "#fff" },
+              bg: e ? "brandGray.active" : void 0,
+              children: [
+                Object(z.jsxs)(f.a, {
+                  align: "center",
+                  children: [
+                    Object(z.jsx)(Ye.a, { as: He.c, fontSize: "20px" }),
+                    Object(z.jsx)(y.a, { fontSize: "14px", ml: "4", fontWeight: "semibold", children: "Friends" }),
+                  ],
+                }),
+                n > 0 && Object(z.jsx)(Ae, { count: n }),
+              ],
+            }),
+          });
+        },
+        Ze = t(361),
+        $e = function (e) {
+          return V.post("/channels/".concat(e, "/dm"));
+        },
+        Xe = function (e) {
+          var n = e.dm,
+            t = "/channels/me/".concat(n.id),
+            r = Object(b.h)().pathname === t,
+            a = Object(i.useState)(!1),
+            c = Object(C.a)(a, 2),
+            s = c[0],
+            o = c[1],
+            l = Object(b.g)(),
+            j = Object(u.useQueryClient)(),
+            O = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), (t = n.id), V.delete("/channels/".concat(t, "/dm"));
+                          case 3:
+                            j.setQueryData(de, function (e) {
+                              return e.filter(function (e) {
+                                return e.id !== n.id;
+                              });
+                            }),
+                              r && l.replace("/channels/me"),
+                              (e.next = 9);
+                            break;
+                          case 7:
+                            (e.prev = 7), (e.t0 = e.catch(0));
+                          case 9:
+                          case "end":
+                            return e.stop();
+                        }
+                      var t;
+                    },
+                    e,
+                    null,
+                    [[0, 7]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsx)(d.b, {
+            to: "/channels/me/".concat(n.id),
+            children: Object(z.jsx)(ne.c, {
+              p: "2",
+              mx: "2",
+              color: r ? "#fff" : "brandGray.accent",
+              _hover: { bg: "brandGray.light", borderRadius: "5px", cursor: "pointer", color: "#fff" },
+              bg: r ? "brandGray.active" : void 0,
+              onMouseLeave: function () {
+                return o(!1);
+              },
+              onMouseEnter: function () {
+                return o(!0);
+              },
+              children: Object(z.jsxs)(f.a, {
+                align: "center",
+                justify: "space-between",
+                children: [
+                  Object(z.jsxs)(f.a, {
+                    align: "center",
+                    children: [
+                      Object(z.jsx)(ge.a, {
+                        size: "sm",
+                        src: n.user.image,
+                        children: Object(z.jsx)(ge.b, {
+                          boxSize: "1.25em",
+                          bg: n.user.isOnline ? "green.500" : "gray.500",
+                        }),
+                      }),
+                      Object(z.jsx)(y.a, { ml: "2", children: n.user.username }),
+                    ],
+                  }),
+                  s &&
+                    Object(z.jsx)(Ye.a, {
+                      "aria-label": "close dm",
+                      as: Ze.a,
+                      onClick: (function () {
+                        var e = Object(x.a)(
+                          h.a.mark(function e(n) {
+                            return h.a.wrap(function (e) {
+                              for (;;)
+                                switch ((e.prev = e.next)) {
+                                  case 0:
+                                    return n.preventDefault(), (e.next = 3), O();
+                                  case 3:
+                                  case "end":
+                                    return e.stop();
+                                }
+                            }, e);
+                          })
+                        );
+                        return function (n) {
+                          return e.apply(this, arguments);
+                        };
+                      })(),
+                    }),
+                ],
+              }),
+            }),
+          });
+        },
+        en = {
+          "&::-webkit-scrollbar": { width: "4px" },
+          "&::-webkit-scrollbar-track": { width: "4px" },
+          "&::-webkit-scrollbar-thumb": { background: "brandGray.darker", borderRadius: "18px" },
+        };
+      var nn = function () {
+          return Object(z.jsxs)(f.a, {
+            align: "center",
+            m: "3",
+            children: [
+              Object(z.jsx)(O.a, { w: "32px", h: "32px", borderRadius: "50%", bg: "brandGray.light" }),
+              Object(z.jsx)(O.a, { ml: 2, height: "20px", w: "144px", bg: "brandGray.light", borderRadius: "10px" }),
+            ],
+          });
+        },
+        tn = function () {
+          var e = Object(u.useQuery)(de, function () {
+            return V.get("/channels/me/dm").then(function (e) {
+              return e.data;
+            });
+          }).data;
+          return (
+            (function () {
+              var e = P(function (e) {
+                  return e.current;
+                }),
+                n = Object(u.useQueryClient)();
+              Object(i.useEffect)(
+                function () {
+                  var t = Pe();
+                  return (
+                    t.send(JSON.stringify({ action: "joinUser", room: null === e || void 0 === e ? void 0 : e.id })),
+                    t.addEventListener("message", function (e) {
+                      var t = JSON.parse(e.data);
+                      if ("push_to_top" === t.action) {
+                        var r = t.data;
+                        n.setQueryData(de, function (e) {
+                          var n = null !== e && void 0 !== e ? e : [],
+                            t = n.findIndex(function (e) {
+                              return e.id === r;
+                            });
+                          return 0 === t || -1 === t
+                            ? Object(re.a)(n)
+                            : [n[t]].concat(
+                                Object(re.a)(
+                                  n.filter(function (e) {
+                                    return e.id !== r;
+                                  })
+                                )
+                              );
+                        });
+                      }
+                    }),
+                    function () {
+                      t.send(JSON.stringify({ action: "leaveRoom", room: null === e || void 0 === e ? void 0 : e.id })),
+                        t.close();
+                    }
+                  );
+                },
+                [e, n]
+              );
+            })(),
+            Object(z.jsxs)(ee.b, {
+              gridColumn: "2",
+              gridRow: "1 / 4",
+              bg: "brandGray.dark",
+              overflowY: "hidden",
+              _hover: { overflowY: "auto" },
+              css: en,
+              children: [
+                Object(z.jsx)(Ke, {}),
+                Object(z.jsx)(y.a, {
+                  ml: "4",
+                  textTransform: "uppercase",
+                  fontSize: "12px",
+                  fontWeight: "semibold",
+                  color: "brandGray.accent",
+                  children: "Direct Messages",
+                }),
+                Object(z.jsxs)(ne.e, {
+                  listStyleType: "none",
+                  ml: "0",
+                  mt: "4",
+                  id: "dm-list",
+                  children: [
+                    null === e || void 0 === e
+                      ? void 0
+                      : e.map(function (e) {
+                          return Object(z.jsx)(Xe, { dm: e }, e.id);
+                        }),
+                    0 === (null === e || void 0 === e ? void 0 : e.length) &&
+                      Object(z.jsxs)(O.a, {
+                        children: [
+                          Object(z.jsx)(nn, {}),
+                          Object(z.jsx)(nn, {}),
+                          Object(z.jsx)(nn, {}),
+                          Object(z.jsx)(nn, {}),
+                          Object(z.jsx)(nn, {}),
+                        ],
+                      }),
+                  ],
+                }),
+                Object(z.jsx)(Ve, {}),
+              ],
+            })
+          );
+        },
+        rn = t(339),
+        an = t(340),
+        cn = t(341),
+        sn = function (e) {
+          return V.post("/account/".concat(e, "/friend"));
+        },
+        on = function (e) {
+          var n = e.isOpen,
+            t = e.onClose,
+            r = P(function (e) {
+              return e.current;
+            }),
+            a = Object(u.useQueryClient)(),
+            c = Object(Be.a)((null === r || void 0 === r ? void 0 : r.id) || ""),
+            i = c.hasCopied,
+            s = c.onCopy;
+          return Object(z.jsxs)(ae.a, {
+            isOpen: n,
+            onClose: t,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsx)(ae.d, {
+                bg: "brandGray.light",
+                children: Object(z.jsx)(w.b, {
+                  initialValues: { id: "" },
+                  onSubmit: (function () {
+                    var e = Object(x.a)(
+                      h.a.mark(function e(n, r) {
+                        var c, i, s, o, l, u, d, b;
+                        return h.a.wrap(
+                          function (e) {
+                            for (;;)
+                              switch ((e.prev = e.next)) {
+                                case 0:
+                                  if (((c = r.setErrors), "" !== n.id || 20 === n.id.length)) {
+                                    e.next = 5;
+                                    break;
+                                  }
+                                  c({ id: "Enter a valid ID" }), (e.next = 19);
+                                  break;
+                                case 5:
+                                  return (e.prev = 5), (e.next = 8), sn(n.id);
+                                case 8:
+                                  if (((i = e.sent), !i.data)) {
+                                    e.next = 14;
+                                    break;
+                                  }
+                                  return t(), (e.next = 14), a.invalidateQueries(je);
+                                case 14:
+                                  e.next = 19;
+                                  break;
+                                case 16:
+                                  (e.prev = 16),
+                                    (e.t0 = e.catch(5)),
+                                    (null === e.t0 ||
+                                    void 0 === e.t0 ||
+                                    null === (s = e.t0.response) ||
+                                    void 0 === s ||
+                                    null === (o = s.data) ||
+                                    void 0 === o
+                                      ? void 0
+                                      : o.error) &&
+                                      ((b =
+                                        null === e.t0 ||
+                                        void 0 === e.t0 ||
+                                        null === (l = e.t0.response) ||
+                                        void 0 === l ||
+                                        null === (u = l.data) ||
+                                        void 0 === u ||
+                                        null === (d = u.error) ||
+                                        void 0 === d
+                                          ? void 0
+                                          : d.message),
+                                      c({ id: b }));
+                                case 19:
+                                case "end":
+                                  return e.stop();
+                              }
+                          },
+                          e,
+                          null,
+                          [[5, 16]]
+                        );
+                      })
+                    );
+                    return function (n, t) {
+                      return e.apply(this, arguments);
+                    };
+                  })(),
+                  children: function (e) {
+                    var n = e.isSubmitting;
+                    return Object(z.jsxs)(w.a, {
+                      children: [
+                        Object(z.jsx)(ae.f, { fontWeight: "bold", pb: "0", children: "ADD FRIEND" }),
+                        Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                        Object(z.jsxs)(ae.b, {
+                          children: [
+                            Object(z.jsx)(y.a, { mb: "4", children: "Add friends using their User ID" }),
+                            Object(z.jsxs)(rn.a, {
+                              mb: 2,
+                              children: [
+                                Object(z.jsx)(an.b, { bg: "#202225", borderColor: "black", children: "User ID" }),
+                                Object(z.jsx)(R.a, {
+                                  bg: "brandGray.dark",
+                                  borderColor: i ? "brandGreen" : "black",
+                                  borderRadius: "3px",
+                                  focusBorderColor: "highlight.standard",
+                                  value: (null === r || void 0 === r ? void 0 : r.id) || "",
+                                  isReadOnly: !0,
+                                }),
+                                Object(z.jsx)(cn.b, {
+                                  width: "4.5rem",
+                                  children: Object(z.jsx)(v.a, {
+                                    h: "1.75rem",
+                                    size: "sm",
+                                    bg: i ? "brandGreen" : "highlight.standard",
+                                    color: "white",
+                                    _hover: { bg: "highlight.hover" },
+                                    _active: { bg: "highlight.active" },
+                                    _focus: { boxShadow: "none" },
+                                    onClick: s,
+                                    children: i ? "Copied" : "Copy",
+                                  }),
+                                }),
+                              ],
+                            }),
+                            Object(z.jsx)(A, { label: "Enter a user ID", name: "id" }),
+                          ],
+                        }),
+                        Object(z.jsxs)(ae.e, {
+                          bg: "brandGray.dark",
+                          mt: "2",
+                          children: [
+                            Object(z.jsx)(v.a, {
+                              mr: 6,
+                              variant: "link",
+                              onClick: t,
+                              fontSize: "14px",
+                              _focus: { outline: "none" },
+                              children: "Cancel",
+                            }),
+                            Object(z.jsx)(v.a, {
+                              background: "highlight.standard",
+                              color: "white",
+                              type: "submit",
+                              _hover: { bg: "highlight.hover" },
+                              _active: { bg: "highlight.active" },
+                              _focus: { boxShadow: "none" },
+                              isLoading: n,
+                              fontSize: "14px",
+                              children: "Send Friend Request",
+                            }),
+                          ],
+                        }),
+                      ],
+                    });
+                  },
+                }),
+              }),
+            ],
+          });
+        },
+        ln = function () {
+          var e = Object(X.a)(),
+            n = e.isOpen,
+            t = e.onOpen,
+            r = e.onClose,
+            a = ze(function (e) {
+              return e.toggleDisplay;
+            }),
+            c = ze(function (e) {
+              return e.isPending;
+            }),
+            i = ze(function (e) {
+              return e.requestCount;
+            });
+          return Object(z.jsxs)(ee.b, {
+            gridColumn: 3,
+            gridRow: "1",
+            bg: "brandGray.light",
+            padding: "10px",
+            zIndex: "2",
+            boxShadow: "md",
+            children: [
+              Object(z.jsxs)(f.a, {
+                align: "center",
+                justify: "space-between",
+                children: [
+                  Object(z.jsxs)(f.a, {
+                    align: "center",
+                    ml: 2,
+                    fontSize: "14px",
+                    children: [
+                      Object(z.jsx)(Ye.a, { as: He.c, fontSize: "20px" }),
+                      Object(z.jsx)(y.a, { ml: "2", fontWeight: "semibold", children: "Friends" }),
+                      Object(z.jsx)(v.a, {
+                        fontSize: "14px",
+                        ml: "4",
+                        size: "xs",
+                        colorScheme: "gray",
+                        onClick: function () {
+                          c && a();
+                        },
+                        variant: c ? "ghost" : "solid",
+                        _focus: { boxShadow: "none" },
+                        children: "Friends",
+                      }),
+                      Object(z.jsxs)(v.a, {
+                        fontSize: "14px",
+                        size: "xs",
+                        ml: "2",
+                        colorScheme: "gray",
+                        variant: c ? "solid" : "ghost",
+                        onClick: function () {
+                          c || a();
+                        },
+                        _focus: { boxShadow: "none" },
+                        children: ["Pending", i > 0 && Object(z.jsx)(Ae, { count: i })],
+                      }),
+                    ],
+                  }),
+                  Object(z.jsx)(Ge.c, {
+                    children: Object(z.jsx)(v.a, {
+                      fontSize: "14px",
+                      size: "xs",
+                      bg: "brandGreen",
+                      _hover: { bg: "brandGreen" },
+                      _active: { bg: "brandGreen" },
+                      onClick: t,
+                      children: "Add Friend",
+                    }),
+                  }),
+                ],
+              }),
+              n && Object(z.jsx)(on, { isOpen: n, onClose: r }),
+            ],
+          });
+        },
+        un = function (e) {
+          var n = e.label;
+          return Object(z.jsx)(y.a, {
+            fontSize: "12px",
+            color: "brandGray.accent",
+            textTransform: "uppercase",
+            fontWeight: "semibold",
+            mx: "4",
+            mt: "4",
+            mb: "1",
+            w: "50%",
+            children: n,
+          });
+        },
+        dn = t(50),
+        bn = function (e) {
+          var n = e.member,
+            t = e.isOpen,
+            r = e.onClose,
+            a = Object(u.useQueryClient)();
+          return Object(z.jsxs)(ae.a, {
+            isOpen: t,
+            onClose: r,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsxs)(ae.d, {
+                bg: "brandGray.light",
+                children: [
+                  Object(z.jsxs)(ae.f, {
+                    textTransform: "uppercase",
+                    fontWeight: "bold",
+                    mb: 0,
+                    pb: 0,
+                    children: ["Remove '", null === n || void 0 === n ? void 0 : n.username, "'"],
+                  }),
+                  Object(z.jsx)(ae.b, {
+                    children: Object(z.jsxs)(y.a, {
+                      mb: "4",
+                      children: [
+                        "Are you sure you want to permanently remove ",
+                        Object(z.jsx)("b", { children: null === n || void 0 === n ? void 0 : n.username }),
+                        " from your friends?",
+                      ],
+                    }),
+                  }),
+                  Object(z.jsxs)(ae.e, {
+                    bg: "brandGray.dark",
+                    children: [
+                      Object(z.jsx)(v.a, {
+                        onClick: r,
+                        mr: 6,
+                        variant: "link",
+                        fontSize: "14px",
+                        _focus: { outline: "none" },
+                        children: "Cancel",
+                      }),
+                      Object(z.jsx)(Ge.c, {
+                        children: Object(z.jsx)(v.a, {
+                          colorScheme: "red",
+                          fontSize: "14px",
+                          onClick: Object(x.a)(
+                            h.a.mark(function e() {
+                              var t;
+                              return h.a.wrap(
+                                function (e) {
+                                  for (;;)
+                                    switch ((e.prev = e.next)) {
+                                      case 0:
+                                        return (
+                                          r(),
+                                          (e.prev = 1),
+                                          (e.next = 4),
+                                          (c = n.id),
+                                          V.delete("/account/".concat(c, "/friend"))
+                                        );
+                                      case 4:
+                                        (t = e.sent),
+                                          t.data &&
+                                            a.setQueryData(be, function (e) {
+                                              return e.filter(function (e) {
+                                                return e.id !== n.id;
+                                              });
+                                            }),
+                                          (e.next = 11);
+                                        break;
+                                      case 9:
+                                        (e.prev = 9), (e.t0 = e.catch(1));
+                                      case 11:
+                                      case "end":
+                                        return e.stop();
+                                    }
+                                  var c;
+                                },
+                                e,
+                                null,
+                                [[1, 9]]
+                              );
+                            })
+                          ),
+                          children: "Remove Friend",
+                        }),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        jn = function (e) {
+          var n = e.friend,
+            t = Object(b.g)(),
+            r = Object(X.a)(),
+            a = r.isOpen,
+            c = r.onOpen,
+            i = r.onClose,
+            s = Object(u.useQueryClient)(),
+            o = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var r, a;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), $e(n.id);
+                          case 3:
+                            (r = e.sent),
+                              (a = r.data) &&
+                                (s.setQueryData(de, function (e) {
+                                  var n = null !== e && void 0 !== e ? e : [];
+                                  return -1 ===
+                                    n.findIndex(function (e) {
+                                      return e.id === a.id;
+                                    })
+                                    ? [a].concat(Object(re.a)(n))
+                                    : n;
+                                }),
+                                t.push("/channels/me/".concat(a.id))),
+                              (e.next = 10);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(0));
+                          case 10:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ne.c, {
+            p: "3",
+            mx: "3",
+            _hover: { bg: "brandGray.dark", borderRadius: "5px" },
+            children: [
+              Object(z.jsxs)(f.a, {
+                align: "center",
+                justify: "space-between",
+                children: [
+                  Object(z.jsxs)(f.a, {
+                    align: "center",
+                    w: "full",
+                    onClick: o,
+                    _hover: { cursor: "pointer" },
+                    children: [
+                      Object(z.jsx)(ge.a, {
+                        size: "sm",
+                        src: n.image,
+                        children: Object(z.jsx)(ge.b, { boxSize: "1.25em", bg: n.isOnline ? "green.500" : "gray.500" }),
+                      }),
+                      Object(z.jsx)(y.a, { ml: "2", children: n.username }),
+                    ],
+                  }),
+                  Object(z.jsx)(Je.a, {
+                    icon: Object(z.jsx)(dn.c, {}),
+                    borderRadius: "50%",
+                    "aria-label": "remove friend",
+                    onClick: function (e) {
+                      e.preventDefault(), c();
+                    },
+                  }),
+                ],
+              }),
+              a && Object(z.jsx)(bn, { member: n, isOpen: !0, onClose: i }),
+            ],
+          });
+        };
+      var hn,
+        xn = function () {
+          var e = Object(u.useQuery)(be, function () {
+            return V.get("/account/me/friends").then(function (e) {
+              return e.data;
+            });
+          }).data;
+          return (
+            (function () {
+              var e = P(function (e) {
+                  return e.current;
+                }),
+                n = ze(function (e) {
+                  return e.setRequests;
+                }),
+                t = Object(u.useQueryClient)();
+              Object(i.useEffect)(
+                function () {
+                  var r = Pe();
+                  return (
+                    r.send(JSON.stringify({ action: "joinUser", room: null === e || void 0 === e ? void 0 : e.id })),
+                    r.send(JSON.stringify({ action: "getRequestCount" })),
+                    r.addEventListener("message", function (e) {
+                      var r = JSON.parse(e.data);
+                      switch (r.action) {
+                        case "toggle_online":
+                          t.setQueryData(be, function (e) {
+                            var n = null !== e && void 0 !== e ? e : [],
+                              t = n.findIndex(function (e) {
+                                return e.id === r.data;
+                              });
+                            return -1 !== t && (n[t].isOnline = !0), n;
+                          });
+                          break;
+                        case "toggle_offline":
+                          t.setQueryData(be, function (e) {
+                            var n = null !== e && void 0 !== e ? e : [],
+                              t = n.findIndex(function (e) {
+                                return e.id === r.data;
+                              });
+                            return -1 !== t && (n[t].isOnline = !1), n;
+                          });
+                          break;
+                        case "requestCount":
+                          n(r.data);
+                          break;
+                        case "add_friend":
+                          t.setQueryData(be, function (e) {
+                            return [].concat(Object(re.a)(e), [r.data]).sort(function (e, n) {
+                              return e.username.localeCompare(n.username);
+                            });
+                          });
+                          break;
+                        case "remove_friend":
+                          t.setQueryData(be, function (e) {
+                            return Object(re.a)(
+                              e.filter(function (e) {
+                                return e.id !== r.data;
+                              })
+                            );
+                          });
+                      }
+                    }),
+                    function () {
+                      r.send(JSON.stringify({ action: "leaveRoom", room: null === e || void 0 === e ? void 0 : e.id })),
+                        r.close();
+                    }
+                  );
+                },
+                [t, e, n]
+              );
+            })(),
+            e
+              ? 0 === e.length
+                ? Object(z.jsx)(f.a, {
+                    justify: "center",
+                    align: "center",
+                    w: "full",
+                    children: Object(z.jsx)(y.a, { textColor: "brandGray.accent", children: "Sad, No one here!" }),
+                  })
+                : Object(z.jsx)(z.Fragment, {
+                    children: Object(z.jsxs)(ne.e, {
+                      listStyleType: "none",
+                      ml: "0",
+                      w: "full",
+                      mt: "2",
+                      id: "friend-list",
+                      children: [
+                        Object(z.jsx)(un, {
+                          label: "friends \u2014 ".concat((null === e || void 0 === e ? void 0 : e.length) || 0),
+                        }),
+                        e.map(function (e) {
+                          return Object(z.jsx)(jn, { friend: e }, e.id);
+                        }),
+                      ],
+                    }),
+                  })
+              : null
+          );
+        },
+        fn = t(226);
+      !(function (e) {
+        (e[(e.OUTGOING = 0)] = "OUTGOING"), (e[(e.INCOMING = 1)] = "INCOMING");
+      })(hn || (hn = {}));
+      var On = function (e) {
+        var n = e.request,
+          t = Object(u.useQueryClient)(),
+          r = (function () {
+            var e = Object(x.a)(
+              h.a.mark(function e() {
+                var r;
+                return h.a.wrap(
+                  function (e) {
+                    for (;;)
+                      switch ((e.prev = e.next)) {
+                        case 0:
+                          return (
+                            (e.prev = 0), (e.next = 3), (a = n.id), V.post("/account/".concat(a, "/friend/accept"))
+                          );
+                        case 3:
+                          if (((r = e.sent), !r.data)) {
+                            e.next = 9;
+                            break;
+                          }
+                          return (
+                            t.setQueryData(je, function (e) {
+                              return (null !== e && void 0 !== e ? e : []).filter(function (e) {
+                                return e.id !== n.id;
+                              });
+                            }),
+                            (e.next = 9),
+                            t.invalidateQueries(be)
+                          );
+                        case 9:
+                          e.next = 13;
+                          break;
+                        case 11:
+                          (e.prev = 11), (e.t0 = e.catch(0));
+                        case 13:
+                        case "end":
+                          return e.stop();
+                      }
+                    var a;
+                  },
+                  e,
+                  null,
+                  [[0, 11]]
+                );
+              })
+            );
+            return function () {
+              return e.apply(this, arguments);
+            };
+          })(),
+          a = (function () {
+            var e = Object(x.a)(
+              h.a.mark(function e() {
+                var r;
+                return h.a.wrap(
+                  function (e) {
+                    for (;;)
+                      switch ((e.prev = e.next)) {
+                        case 0:
+                          return (
+                            (e.prev = 0), (e.next = 3), (a = n.id), V.post("/account/".concat(a, "/friend/cancel"))
+                          );
+                        case 3:
+                          (r = e.sent),
+                            r.data &&
+                              t.setQueryData(je, function (e) {
+                                return (null !== e && void 0 !== e ? e : []).filter(function (e) {
+                                  return e.id !== n.id;
+                                });
+                              }),
+                            (e.next = 10);
+                          break;
+                        case 8:
+                          (e.prev = 8), (e.t0 = e.catch(0));
+                        case 10:
+                        case "end":
+                          return e.stop();
+                      }
+                    var a;
+                  },
+                  e,
+                  null,
+                  [[0, 8]]
+                );
+              })
+            );
+            return function () {
+              return e.apply(this, arguments);
+            };
+          })();
+        return Object(z.jsx)(ne.c, {
+          p: "3",
+          mx: "3",
+          _hover: { bg: "brandGray.dark", borderRadius: "5px" },
+          children: Object(z.jsxs)(f.a, {
+            align: "center",
+            justify: "space-between",
+            children: [
+              Object(z.jsxs)(f.a, {
+                align: "center",
+                children: [
+                  Object(z.jsx)(ge.a, { size: "sm", src: n.image }),
+                  Object(z.jsxs)(O.a, {
+                    ml: "2",
+                    children: [
+                      Object(z.jsx)(y.a, { children: n.username }),
+                      Object(z.jsx)(y.a, {
+                        fontSize: "12px",
+                        children: n.type === hn.INCOMING ? "Incoming Friend Request" : "Outgoing Friend Request",
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+              Object(z.jsxs)(f.a, {
+                align: "center",
+                children: [
+                  1 === n.type &&
+                    Object(z.jsx)(ye, {
+                      label: "Accept",
+                      position: "top",
+                      children: Object(z.jsx)(Je.a, {
+                        icon: Object(z.jsx)(fn.a, {}),
+                        borderRadius: "50%",
+                        "aria-label": "accept request",
+                        fontSize: "28px",
+                        onClick: r,
+                        mr: "2",
+                      }),
+                    }),
+                  Object(z.jsx)(ye, {
+                    label: "Decline",
+                    position: "top",
+                    children: Object(z.jsx)(Je.a, {
+                      icon: Object(z.jsx)(Ie.a, {}),
+                      borderRadius: "50%",
+                      "aria-label": "decline request",
+                      fontSize: "20px",
+                      onClick: a,
+                    }),
+                  }),
+                ],
+              }),
+            ],
+          }),
+        });
+      };
+      var pn = function () {
+          var e = Object(u.useQuery)(
+            je,
+            function () {
+              return V.get("/account/me/pending").then(function (e) {
+                return e.data;
+              });
+            },
+            { staleTime: 0 }
+          ).data;
+          !(function () {
+            var e = P(function (e) {
+                return e.current;
+              }),
+              n = ze(function (e) {
+                return e.setRequests;
+              }),
+              t = Object(u.useQueryClient)();
+            Object(i.useEffect)(
+              function () {
+                var n = Pe();
+                return (
+                  n.send(JSON.stringify({ action: "joinUser", room: null === e || void 0 === e ? void 0 : e.id })),
+                  n.addEventListener("message", function (e) {
+                    var n = JSON.parse(e.data);
+                    "add_request" === n.action &&
+                      t.setQueryData(je, function (e) {
+                        return [].concat(Object(re.a)(e), [n.data]).sort(function (e, n) {
+                          return e.username.localeCompare(n.username);
+                        });
+                      });
+                  }),
+                  function () {
+                    n.send(JSON.stringify({ action: "leaveRoom", room: null === e || void 0 === e ? void 0 : e.id })),
+                      n.close();
+                  }
+                );
+              },
+              [t, e, n]
+            );
+          })();
+          var n = ze(function (e) {
+            return e.resetRequest;
+          });
+          return (
+            Object(i.useEffect)(function () {
+              n();
+            }),
+            e
+              ? 0 === e.length
+                ? Object(z.jsx)(f.a, {
+                    justify: "center",
+                    align: "center",
+                    w: "full",
+                    children: Object(z.jsx)(y.a, {
+                      textColor: "brandGray.accent",
+                      children: "There are no pending friend requests",
+                    }),
+                  })
+                : Object(z.jsx)(z.Fragment, {
+                    children: Object(z.jsxs)(ne.e, {
+                      listStyleType: "none",
+                      ml: "0",
+                      w: "full",
+                      mt: "2",
+                      children: [
+                        Object(z.jsx)(un, {
+                          label: "Pending \u2014 ".concat((null === e || void 0 === e ? void 0 : e.length) || 0),
+                        }),
+                        e.map(function (e) {
+                          return Object(z.jsx)(On, { request: e }, e.id);
+                        }),
+                      ],
+                    }),
+                  })
+              : null
+          );
+        },
+        mn = t(620),
+        gn = t(241),
+        vn = {
+          global: function (e) {
+            return { body: { bg: Object(gn.a)("gray.100", "#1b1c1d")(e) } };
+          },
+        },
+        yn = Object(mn.a)({
+          colors: {
+            highlight: { standard: "#b53a3a", hover: "#bf3434", active: "#000000" },
+            brandGray: {
+              accent: "#bdbdbd",
+              active: "#212121",
+              light: "#131314",
+              dark: "#161717",
+              darker: "#000000",
+              darkest: "#18191c",
+              hover: "#1c1c1c",
+            },
+            brandGreen: "#bd0d39",
+            labelGray: "#72767d",
+            menuRed: "#f04747",
+            brandBorder: "#e04848",
+            accountBar: "#121212",
+            memberList: "#121112",
+            iconColor: "#6e6e6e",
+            messageInput: "black",
+          },
+          config: { initialColorMode: "dark" },
+          styles: vn,
+        }),
+        wn = {
+          "&::-webkit-scrollbar": { width: "8px" },
+          "&::-webkit-scrollbar-track": { background: "#2f3136", width: "10px" },
+          "&::-webkit-scrollbar-thumb": { background: "brandGray.darker", borderRadius: "18px" },
+        },
+        kn = function () {
+          var e = ze(function (e) {
+            return e.isPending;
+          });
+          return Object(z.jsxs)(z.Fragment, {
+            children: [
+              Object(z.jsx)(ln, {}),
+              Object(z.jsx)(ee.b, {
+                gridColumn: 3,
+                gridRow: "2",
+                bg: "brandGray.light",
+                mr: "5px",
+                display: "flex",
+                overflowY: "auto",
+                css: wn,
+                children: e ? Object(z.jsx)(pn, {}) : Object(z.jsx)(xn, {}),
+              }),
+            ],
+          });
+        },
+        Cn = function (e) {
+          var n = e.showLastColumn,
+            t = void 0 !== n && n,
+            r = e.children;
+          return Object(z.jsx)(ee.a, {
+            height: "100vh",
+            templateColumns: "75px 240px 1fr ".concat(t ? "240px" : "", " "),
+            templateRows: "auto 1fr auto",
+            bg: "brandGray.light",
+            children: r,
+          });
+        },
+        Sn = t(587),
+        _n = t(362),
+        In = t(58),
+        Rn = t(122),
+        Gn = t(628),
+        zn = t(376),
+        Tn = function (e) {
+          var n = e.message,
+            t = n.attachment,
+            r = n.text,
+            a = n.createdAt,
+            c = n.updatedAt;
+          if (t) {
+            var i = t.filetype,
+              s = t.url;
+            if (i.startsWith("image/"))
+              return Object(z.jsx)(O.a, {
+                boxSize: "sm",
+                my: "2",
+                h: "full",
+                children: Object(z.jsx)(p.a, { fit: "contain", src: s, alt: "", borderRadius: "md" }),
+              });
+            if (i.startsWith("audio/"))
+              return Object(z.jsx)(O.a, {
+                my: "2",
+                children: Object(z.jsx)("audio", {
+                  controls: !0,
+                  children: Object(z.jsx)("source", { src: s, type: i }),
+                }),
+              });
+          }
+          return Object(z.jsxs)(f.a, {
+            alignItems: "center",
+            children: [
+              Object(z.jsx)(y.a, {
+                children: Object(z.jsx)(Gn.a, {
+                  linkTarget: "_blank",
+                  remarkPlugins: [[zn.a, { singleTilde: !1 }]],
+                  children: r,
+                }),
+              }),
+              a !== c && Object(z.jsx)(y.a, { fontSize: "10px", ml: "1", color: "labelGray", children: "(edited)" }),
+            ],
+          });
+        },
+        An = t(112),
+        En = t.n(An),
+        Nn = t(366),
+        Dn = t.n(Nn);
+      En.a.extend(Dn.a);
+      var Qn = function (e) {
+          return En()(e).calendar();
+        },
+        Pn = function (e) {
+          return En()(e).format("MMMM D, YYYY");
+        },
+        Mn = function (e, n, t) {
+          return V.post("messages/".concat(e), n, {
+            headers: { "Content-Type": "multipart/form-data" },
+            onUploadProgress: t,
+          });
+        },
+        Ln = function (e, n) {
+          return V.put("messages/".concat(e), { text: n });
+        },
+        Fn = function (e) {
+          var n,
+            t,
+            r = e.message,
+            a = e.isOpen,
+            c = e.onClose,
+            s = Object(i.useState)(!1),
+            o = Object(C.a)(s, 2),
+            l = o[0],
+            u = o[1],
+            d = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var n;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), (t = r.id), V.delete("messages/".concat(t));
+                          case 3:
+                            (n = e.sent), n.data && c(), (e.next = 11);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(0)), u(!0);
+                          case 11:
+                          case "end":
+                            return e.stop();
+                        }
+                      var t;
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ae.a, {
+            isOpen: a,
+            onClose: c,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsxs)(ae.d, {
+                bg: "brandGray.light",
+                children: [
+                  Object(z.jsx)(ae.f, { fontWeight: "bold", mb: 0, pb: 0, children: "Delete Message" }),
+                  Object(z.jsxs)(ae.b, {
+                    children: [
+                      Object(z.jsx)(y.a, { mb: "4", children: "Are you sure you want to delete this message?" }),
+                      Object(z.jsx)(f.a, {
+                        alignItems: "center",
+                        my: "2",
+                        mr: "1",
+                        justify: "space-between",
+                        boxShadow: "dark-lg",
+                        py: 2,
+                        children: Object(z.jsxs)(f.a, {
+                          children: [
+                            Object(z.jsx)(ge.a, { h: "40px", w: "40px", ml: "4", mt: "1", src: r.user.image }),
+                            Object(z.jsxs)(O.a, {
+                              ml: "3",
+                              children: [
+                                Object(z.jsxs)(f.a, {
+                                  alignItems: "center",
+                                  children: [
+                                    Object(z.jsx)(y.a, { children: r.user.username }),
+                                    Object(z.jsx)(y.a, {
+                                      fontSize: "12px",
+                                      color: "brandGray.accent",
+                                      ml: "3",
+                                      children: Qn(r.createdAt),
+                                    }),
+                                  ],
+                                }),
+                                Object(z.jsx)(y.a, {
+                                  children:
+                                    null !== (n = null === (t = r.attachment) || void 0 === t ? void 0 : t.filename) &&
+                                    void 0 !== n
+                                      ? n
+                                      : r.text,
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      }),
+                      l &&
+                        Object(z.jsx)(y.a, {
+                          my: "2",
+                          color: "menuRed",
+                          align: "center",
+                          children: "Server Error. Try again later",
+                        }),
+                    ],
+                  }),
+                  Object(z.jsxs)(ae.e, {
+                    bg: "brandGray.dark",
+                    children: [
+                      Object(z.jsx)(v.a, {
+                        onClick: c,
+                        mr: 6,
+                        variant: "link",
+                        fontSize: "14px",
+                        _focus: { outline: "none" },
+                        children: "Cancel",
+                      }),
+                      Object(z.jsx)(Ge.c, {
+                        children: Object(z.jsx)(v.a, {
+                          type: "submit",
+                          colorScheme: "red",
+                          fontSize: "14px",
+                          onClick: function () {
+                            return d();
+                          },
+                          children: "Delete",
+                        }),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        qn = function (e) {
+          var n = e.message,
+            t = e.isOpen,
+            r = e.onClose,
+            a = Object(i.useState)(n.text),
+            c = Object(C.a)(a, 2),
+            s = c[0],
+            o = c[1],
+            l = Object(i.useState)(!1),
+            u = Object(C.a)(l, 2),
+            d = u[0],
+            b = u[1],
+            j = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            if (s && s.trim()) {
+                              e.next = 2;
+                              break;
+                            }
+                            return e.abrupt("return");
+                          case 2:
+                            return (e.prev = 2), (e.next = 5), Ln(n.id, s.trim());
+                          case 5:
+                            r(), (e.next = 11);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(2)), b(!0);
+                          case 11:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[2, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ae.a, {
+            isOpen: t,
+            onClose: r,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsxs)(ae.d, {
+                bg: "brandGray.light",
+                children: [
+                  Object(z.jsx)(ae.f, { fontWeight: "bold", mb: 0, pb: 0, children: "Edit Message" }),
+                  Object(z.jsxs)(ae.b, {
+                    children: [
+                      Object(z.jsx)(f.a, {
+                        alignItems: "center",
+                        my: "2",
+                        mr: "1",
+                        justify: "space-between",
+                        boxShadow: "dark-lg",
+                        py: 2,
+                        children: Object(z.jsxs)(f.a, {
+                          alignItems: "center",
+                          children: [
+                            Object(z.jsx)(ge.a, { h: "40px", w: "40px", ml: "4", src: n.user.image }),
+                            Object(z.jsxs)(O.a, {
+                              ml: "3",
+                              children: [
+                                Object(z.jsxs)(f.a, {
+                                  alignItems: "center",
+                                  children: [
+                                    Object(z.jsx)(y.a, { children: n.user.username }),
+                                    Object(z.jsx)(y.a, {
+                                      fontSize: "12px",
+                                      color: "brandGray.accent",
+                                      ml: "3",
+                                      children: Qn(n.createdAt),
+                                    }),
+                                  ],
+                                }),
+                                Object(z.jsx)(R.a, {
+                                  id: "editMessage",
+                                  value: s,
+                                  onChange: function (e) {
+                                    return o(e.target.value);
+                                  },
+                                  bg: "brandGray.dark",
+                                  borderColor: "black",
+                                  borderRadius: "3px",
+                                  focusBorderColor: "none",
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      }),
+                      d &&
+                        Object(z.jsx)(y.a, {
+                          my: "2",
+                          color: "menuRed",
+                          align: "center",
+                          children: "Server Error. Try again later",
+                        }),
+                    ],
+                  }),
+                  Object(z.jsxs)(ae.e, {
+                    bg: "brandGray.dark",
+                    children: [
+                      Object(z.jsx)(v.a, {
+                        onClick: r,
+                        mr: 6,
+                        variant: "link",
+                        fontSize: "14px",
+                        _focus: { outline: "none" },
+                        children: "Cancel",
+                      }),
+                      Object(z.jsx)(Ge.c, {
+                        children: Object(z.jsx)(v.a, {
+                          colorScheme: "green",
+                          fontSize: "14px",
+                          onClick: j,
+                          children: "Save",
+                        }),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          });
+        };
+      function Wn(e) {
+        var n = Object(u.useQuery)(ue).data;
+        return null === n || void 0 === n
+          ? void 0
+          : n.find(function (n) {
+              return n.id === e;
+            });
+      }
+      var Bn = function (e, n) {
+          return V.post("guilds/".concat(e, "/kick"), { memberId: n });
+        },
+        Jn = function (e, n) {
+          return V.post("guilds/".concat(e, "/bans"), { memberId: n });
+        },
+        Un = function (e, n) {
+          return V.delete("guilds/".concat(e, "/bans"), { data: { memberId: n } });
+        },
+        Vn = function (e) {
+          var n = e.member,
+            t = e.isOpen,
+            r = e.onClose,
+            a = e.isBan,
+            c = Object(u.useQueryClient)(),
+            i = a ? "Ban " : "Kick ",
+            s = Object(b.i)().guildId;
+          return Object(z.jsxs)(ae.a, {
+            isOpen: t,
+            onClose: r,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsxs)(ae.d, {
+                bg: "brandGray.light",
+                children: [
+                  Object(z.jsxs)(ae.f, {
+                    textTransform: "uppercase",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    mb: 0,
+                    pb: 0,
+                    children: [i, "'", n.username, "'"],
+                  }),
+                  Object(z.jsx)(ae.b, {
+                    children: Object(z.jsxs)(y.a, {
+                      mb: "4",
+                      children: [
+                        "Are you sure you want to ",
+                        i.toLocaleLowerCase(),
+                        " @",
+                        n.username,
+                        "?",
+                        !a && " They will be able to rejoin again with a new invite.",
+                      ],
+                    }),
+                  }),
+                  Object(z.jsxs)(ae.e, {
+                    bg: "brandGray.dark",
+                    children: [
+                      Object(z.jsx)(v.a, {
+                        onClick: r,
+                        mr: 6,
+                        variant: "link",
+                        fontSize: "14px",
+                        _focus: { outline: "none" },
+                        children: "Cancel",
+                      }),
+                      Object(z.jsx)(Ge.c, {
+                        children: Object(z.jsx)(v.a, {
+                          colorScheme: "red",
+                          fontSize: "14px",
+                          onClick: Object(x.a)(
+                            h.a.mark(function e() {
+                              var t;
+                              return h.a.wrap(
+                                function (e) {
+                                  for (;;)
+                                    switch ((e.prev = e.next)) {
+                                      case 0:
+                                        if ((r(), (e.prev = 1), !a)) {
+                                          e.next = 8;
+                                          break;
+                                        }
+                                        return (e.next = 5), Jn(s, n.id);
+                                      case 5:
+                                        (e.t0 = e.sent), (e.next = 11);
+                                        break;
+                                      case 8:
+                                        return (e.next = 10), Bn(s, n.id);
+                                      case 10:
+                                        e.t0 = e.sent;
+                                      case 11:
+                                        (t = e.t0),
+                                          t.data &&
+                                            c.setQueryData(fe(s), function (e) {
+                                              return void 0 !== e
+                                                ? e.filter(function (e) {
+                                                    return e.id !== n.id;
+                                                  })
+                                                : e;
+                                            }),
+                                          (e.next = 18);
+                                        break;
+                                      case 16:
+                                        (e.prev = 16), (e.t1 = e.catch(1));
+                                      case 18:
+                                      case "end":
+                                        return e.stop();
+                                    }
+                                },
+                                e,
+                                null,
+                                [[1, 16]]
+                              );
+                            })
+                          ),
+                          children: i,
+                        }),
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        Yn = function (e) {
+          var n = e.member,
+            t = e.isOwner,
+            r = e.id,
+            a = Object(b.g)(),
+            c = Object(X.a)(),
+            s = c.isOpen,
+            o = c.onOpen,
+            l = c.onClose,
+            u = Object(X.a)(),
+            d = u.isOpen,
+            j = u.onOpen,
+            O = u.onClose,
+            p = Object(i.useState)(!1),
+            m = Object(C.a)(p, 2),
+            g = m[0],
+            v = m[1],
+            w = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var t, r;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), $e(n.id);
+                          case 3:
+                            (t = e.sent), (r = t.data) && a.push("/channels/me/".concat(r.id)), (e.next = 10);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(0));
+                          case 10:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })(),
+            k = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            if (n.isFriend) {
+                              e.next = 10;
+                              break;
+                            }
+                            return (e.prev = 1), (e.next = 4), sn(n.id);
+                          case 4:
+                            e.next = 8;
+                            break;
+                          case 6:
+                            (e.prev = 6), (e.t0 = e.catch(1));
+                          case 8:
+                            e.next = 11;
+                            break;
+                          case 10:
+                            o();
+                          case 11:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[1, 6]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(z.Fragment, {
+            children: [
+              Object(z.jsxs)(In.b, {
+                id: r,
+                theme: In.c.dark,
+                children: [
+                  Object(z.jsx)(In.a, {
+                    onClick: function () {
+                      return w();
+                    },
+                    className: "menu-item",
+                    children: Object(z.jsx)(f.a, {
+                      align: "center",
+                      justify: "space-between",
+                      w: "full",
+                      children: Object(z.jsx)(y.a, { children: "Message" }),
+                    }),
+                  }),
+                  Object(z.jsx)(In.a, {
+                    onClick: k,
+                    className: "menu-item",
+                    children: Object(z.jsx)(f.a, {
+                      align: "center",
+                      justify: "space-between",
+                      w: "full",
+                      children: Object(z.jsxs)(y.a, { children: [n.isFriend ? "Remove" : "Add", " Friend"] }),
+                    }),
+                  }),
+                  t &&
+                    Object(z.jsxs)(z.Fragment, {
+                      children: [
+                        Object(z.jsx)(f.a, {
+                          align: "center",
+                          justify: "center",
+                          w: "full",
+                          children: Object(z.jsx)(te.a, { my: "1", w: "90%" }),
+                        }),
+                        Object(z.jsx)(In.a, {
+                          onClick: function () {
+                            v(!1), j();
+                          },
+                          className: "delete-item",
+                          children: Object(z.jsx)(f.a, {
+                            align: "center",
+                            justify: "space-between",
+                            w: "full",
+                            children: Object(z.jsxs)(y.a, { children: ["Kick ", n.username] }),
+                          }),
+                        }),
+                        Object(z.jsx)(In.a, {
+                          onClick: function () {
+                            v(!0), j();
+                          },
+                          className: "delete-item",
+                          children: Object(z.jsx)(f.a, {
+                            align: "center",
+                            justify: "space-between",
+                            w: "full",
+                            children: Object(z.jsxs)(y.a, { children: ["Ban ", n.username] }),
+                          }),
+                        }),
+                      ],
+                    }),
+                ],
+              }),
+              s && Object(z.jsx)(bn, { member: n, isOpen: !0, onClose: l }),
+              d && Object(z.jsx)(Vn, { member: n, isOpen: d, isBan: g, onClose: O }),
+            ],
+          });
+        },
+        Hn = t(634),
+        Kn = function (e) {
+          var n,
+            t = e.member,
+            r = e.children;
+          return Object(z.jsxs)(Hn.a, {
+            isLazy: !0,
+            placement: "right-start",
+            children: [
+              Object(z.jsx)(Hn.e, { children: r }),
+              Object(z.jsxs)(Hn.b, {
+                w: "80%",
+                children: [
+                  Object(z.jsx)(Hn.d, {
+                    bg: "brandGray.darker",
+                    borderRadius: "md",
+                    children: Object(z.jsx)(f.a, {
+                      mt: 2,
+                      align: "center",
+                      justify: "center",
+                      children: Object(z.jsxs)(O.a, {
+                        children: [
+                          Object(z.jsx)(ge.a, {
+                            src: t.image,
+                            size: "xl",
+                            children: Object(z.jsx)(ge.b, {
+                              boxSize: "0.9em",
+                              bg: t.isOnline ? "green.500" : "gray.500",
+                            }),
+                          }),
+                          Object(z.jsx)(y.a, {
+                            mt: 2,
+                            textAlign: "center",
+                            color: "#fff",
+                            fontWeight: "semibold",
+                            children: null !== (n = t.nickname) && void 0 !== n ? n : t.username,
+                          }),
+                          t.nickname && Object(z.jsx)(y.a, { textAlign: "center", children: t.username }),
+                        ],
+                      }),
+                    }),
+                  }),
+                  Object(z.jsx)(Hn.c, {
+                    bg: "brandGray.dark",
+                    children: Object(z.jsx)(y.a, {
+                      textColor: "brandGray.accent",
+                      fontSize: "12px",
+                      textAlign: "center",
+                      children: "Right click user for more actions",
+                    }),
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        Zn =
+          (t(527),
+          function (e) {
+            var n,
+              t,
+              r,
+              a,
+              c,
+              s = e.message,
+              o = e.isCompact,
+              l = void 0 !== o && o,
+              u = Object(i.useState)(!1),
+              d = Object(C.a)(u, 2),
+              j = d[0],
+              h = d[1],
+              x = P(function (e) {
+                return e.current;
+              }),
+              p = (null === x || void 0 === x ? void 0 : x.id) === s.user.id,
+              m = Wn(Object(b.i)().guildId),
+              g = void 0 !== m && m.ownerId === (null === x || void 0 === x ? void 0 : x.id),
+              v = p || g || (null === (n = s.attachment) || void 0 === n ? void 0 : n.url),
+              w = Object(X.a)(),
+              k = w.isOpen,
+              S = w.onOpen,
+              _ = w.onClose,
+              I = Object(X.a)(),
+              R = I.isOpen,
+              G = I.onOpen,
+              T = I.onClose,
+              A = "".concat(s.user.id, "-").concat(Math.random().toString(36).substr(2, 5)),
+              E = Object(In.d)({ id: s.id }).show,
+              N = Object(In.d)({ id: A }).show;
+            return Object(z.jsxs)(z.Fragment, {
+              children: [
+                Object(z.jsx)(f.a, {
+                  alignItems: "center",
+                  mr: "1",
+                  mt: l ? "0" : "3",
+                  _hover: { bg: "brandGray.hover" },
+                  justify: "space-between",
+                  onMouseLeave: function () {
+                    return h(!1);
+                  },
+                  onMouseEnter: function () {
+                    return h(!0);
+                  },
+                  children: Object(z.jsx)(f.a, {
+                    w: "full",
+                    children: l
+                      ? Object(z.jsxs)(z.Fragment, {
+                          children: [
+                            Object(z.jsx)(O.a, {
+                              ml: "3",
+                              minW: "44px",
+                              textAlign: "center",
+                              children: Object(z.jsx)(y.a, {
+                                fontSize: "10px",
+                                color: "brandGray.accent",
+                                mt: "1",
+                                hidden: !j,
+                                children: ((c = s.createdAt), En()(c).format("h:mm A")),
+                              }),
+                            }),
+                            Object(z.jsx)(O.a, {
+                              ml: "3",
+                              w: "full",
+                              onContextMenu: E,
+                              children: Object(z.jsx)(Tn, { message: s }),
+                            }),
+                            j && v
+                              ? Object(z.jsx)(O.a, {
+                                  onClick: E,
+                                  mr: "2",
+                                  _hover: { cursor: "pointer" },
+                                  h: "5px",
+                                  children: Object(z.jsx)(dn.b, {}),
+                                })
+                              : Object(z.jsx)(O.a, { mr: "6" }),
+                          ],
+                        })
+                      : Object(z.jsxs)(z.Fragment, {
+                          children: [
+                            Object(z.jsx)(Kn, {
+                              member: s.user,
+                              children: Object(z.jsx)(ge.a, {
+                                h: "40px",
+                                w: "40px",
+                                ml: "4",
+                                mt: "1",
+                                src: s.user.image,
+                                _hover: { cursor: "pointer" },
+                                onContextMenu: function (e) {
+                                  p || N(e);
+                                },
+                              }),
+                            }),
+                            Object(z.jsxs)(O.a, {
+                              ml: "3",
+                              w: "full",
+                              onContextMenu: E,
+                              children: [
+                                Object(z.jsxs)(f.a, {
+                                  alignItems: "center",
+                                  justify: "space-between",
+                                  children: [
+                                    Object(z.jsxs)(f.a, {
+                                      alignItems: "center",
+                                      children: [
+                                        Object(z.jsx)(y.a, {
+                                          color: null !== (t = s.user.color) && void 0 !== t ? t : void 0,
+                                          children:
+                                            null !== (r = s.user.nickname) && void 0 !== r ? r : s.user.username,
+                                        }),
+                                        Object(z.jsx)(y.a, {
+                                          fontSize: "12px",
+                                          color: "brandGray.accent",
+                                          ml: "2",
+                                          children: Qn(s.createdAt),
+                                        }),
+                                      ],
+                                    }),
+                                    j &&
+                                      v &&
+                                      Object(z.jsx)(O.a, {
+                                        onClick: E,
+                                        mr: "2",
+                                        _hover: { cursor: "pointer" },
+                                        children: Object(z.jsx)(dn.b, {}),
+                                      }),
+                                  ],
+                                }),
+                                Object(z.jsx)(Tn, { message: s }),
+                              ],
+                            }),
+                          ],
+                        }),
+                  }),
+                }),
+                v &&
+                  Object(z.jsxs)(z.Fragment, {
+                    children: [
+                      Object(z.jsxs)(In.b, {
+                        id: s.id,
+                        theme: In.c.dark,
+                        children: [
+                          (null === (a = s.attachment) || void 0 === a ? void 0 : a.filetype)
+                            ? Object(z.jsx)(In.a, {
+                                className: "menu-item",
+                                onClick: function () {
+                                  var e;
+                                  (null === (e = s.attachment) || void 0 === e ? void 0 : e.url) &&
+                                    (function (e) {
+                                      var n = window.open(e, "_blank", "noopener,noreferrer");
+                                      n && (n.opener = null);
+                                    })(s.attachment.url);
+                                },
+                                children: Object(z.jsxs)(f.a, {
+                                  align: "center",
+                                  justify: "space-between",
+                                  w: "full",
+                                  children: [
+                                    Object(z.jsx)(y.a, { children: "Open Link" }),
+                                    Object(z.jsx)(Ye.a, { as: He.b }),
+                                  ],
+                                }),
+                              })
+                            : p &&
+                              Object(z.jsx)(In.a, {
+                                className: "menu-item",
+                                onClick: G,
+                                children: Object(z.jsxs)(f.a, {
+                                  align: "center",
+                                  justify: "space-between",
+                                  w: "full",
+                                  children: [
+                                    Object(z.jsx)(y.a, { children: "Edit Message" }),
+                                    Object(z.jsx)(Ye.a, { as: Rn.b }),
+                                  ],
+                                }),
+                              }),
+                          (p || g) &&
+                            Object(z.jsx)(In.a, {
+                              onClick: S,
+                              className: "delete-item",
+                              children: Object(z.jsxs)(f.a, {
+                                align: "center",
+                                justify: "space-between",
+                                w: "full",
+                                children: [
+                                  Object(z.jsx)(y.a, { children: "Delete Message" }),
+                                  Object(z.jsx)(Ye.a, { as: dn.e }),
+                                ],
+                              }),
+                            }),
+                        ],
+                      }),
+                      k && Object(z.jsx)(Fn, { message: s, isOpen: k, onClose: _ }),
+                      R && Object(z.jsx)(qn, { message: s, isOpen: R, onClose: T }),
+                    ],
+                  }),
+                !p && Object(z.jsx)(Yn, { member: s.user, isOwner: g, id: A }),
+              ],
+            });
+          });
+      function $n(e, n) {
+        var t = Object(u.useQuery)(n).data;
+        return null === t || void 0 === t
+          ? void 0
+          : t.find(function (n) {
+              return n.id === e;
+            });
+      }
+      function Xn(e) {
+        var n = Object(u.useQuery)(de).data;
+        return null === n || void 0 === n
+          ? void 0
+          : n.find(function (n) {
+              return n.id === e;
+            });
+      }
+      var et = function () {
+          return void 0 === Object(b.i)().guildId ? Object(z.jsx)(tt, {}) : Object(z.jsx)(nt, {});
+        },
+        nt = function () {
+          var e = Object(b.i)(),
+            n = e.guildId,
+            t = $n(e.channelId, xe(n));
+          return Object(z.jsx)(f.a, {
+            alignItems: "center",
+            mb: "2",
+            justify: "center",
+            children: Object(z.jsxs)(O.a, {
+              textAlign: "center",
+              children: [
+                Object(z.jsxs)(m.a, { children: ["Welcome to #", null === t || void 0 === t ? void 0 : t.name] }),
+                Object(z.jsxs)(y.a, {
+                  children: ["This is the start of the #", null === t || void 0 === t ? void 0 : t.name, " channel"],
+                }),
+              ],
+            }),
+          });
+        },
+        tt = function () {
+          var e = Xn(Object(b.i)().channelId);
+          return Object(z.jsxs)(O.a, {
+            m: "4",
+            children: [
+              Object(z.jsx)(O.a, { h: "40px" }),
+              Object(z.jsx)(ge.a, { h: "80px", w: "80px", src: null === e || void 0 === e ? void 0 : e.user.image }),
+              Object(z.jsx)(m.a, { mt: 2, children: null === e || void 0 === e ? void 0 : e.user.username }),
+              Object(z.jsxs)(y.a, {
+                textColor: "brandGray.accent",
+                children: [
+                  "This is the beginning of your direct message history with @",
+                  null === e || void 0 === e ? void 0 : e.user.username,
+                ],
+              }),
+              Object(z.jsx)(te.a, { mt: 2 }),
+            ],
+          });
+        },
+        rt = D()(function (e) {
+          return {
+            typing: [],
+            addTyping: function (n) {
+              return e(function (e) {
+                return { typing: [].concat(Object(re.a)(e.typing), [n]) };
+              });
+            },
+            removeTyping: function (n) {
+              return e(function (e) {
+                return {
+                  typing: Object(re.a)(
+                    e.typing.filter(function (e) {
+                      return e !== n;
+                    })
+                  ),
+                };
+              });
+            },
+            reset: function () {
+              return e({ typing: [] });
+            },
+          };
+        });
+      var at = function (e) {
+          var n = e.date;
+          return Object(z.jsxs)(
+            f.a,
+            {
+              textAlign: "center",
+              align: "center",
+              mt: "2",
+              mx: "4",
+              children: [
+                Object(z.jsx)(te.a, {}),
+                Object(z.jsx)(y.a, {
+                  w: ["75%", "75%", "75%", "40%", "25%"],
+                  fontSize: "12px",
+                  color: "brandGray.accent",
+                  children: Pn(n),
+                }),
+                Object(z.jsx)(te.a, {}),
+              ],
+            },
+            n
+          );
+        },
+        ct = function (e) {
+          var n = e.children;
+          return Object(z.jsx)(ee.b, {
+            id: "chatGrid",
+            gridColumn: 3,
+            gridRow: "2",
+            bg: "brandGray.light",
+            mr: "5px",
+            display: "flex",
+            flexDirection: "column-reverse",
+            overflowY: "auto",
+            css: wn,
+            children: n,
+          });
+        },
+        it = function () {
+          var e = Object(b.i)().channelId,
+            n = Object(i.useState)(!0),
+            t = Object(C.a)(n, 2),
+            r = t[0],
+            a = t[1],
+            c = "messages-".concat(e),
+            o = Object(u.useInfiniteQuery)(
+              c,
+              (function () {
+                var n = Object(x.a)(
+                  h.a.mark(function n(t) {
+                    var r, c, i, s;
+                    return h.a.wrap(function (n) {
+                      for (;;)
+                        switch ((n.prev = n.next)) {
+                          case 0:
+                            return (
+                              (r = t.pageParam),
+                              (c = void 0 === r ? null : r),
+                              (n.next = 3),
+                              (o = e),
+                              (l = c),
+                              V.get("messages/".concat(o).concat(l ? "?cursor=".concat(l) : ""))
+                            );
+                          case 3:
+                            return (i = n.sent), 35 !== (s = i.data).length && a(!1), n.abrupt("return", s);
+                          case 7:
+                          case "end":
+                            return n.stop();
+                        }
+                      var o, l;
+                    }, n);
+                  })
+                );
+                return function (e) {
+                  return n.apply(this, arguments);
+                };
+              })(),
+              {
+                staleTime: 0,
+                cacheTime: 0,
+                getNextPageParam: function (e) {
+                  return r && e.length ? e[e.length - 1].createdAt : "";
+                },
+              }
+            ),
+            l = o.data,
+            d = o.isLoading,
+            j = o.fetchNextPage;
+          if (
+            ((function (e, n) {
+              var t = P(function (e) {
+                  return e.current;
+                }),
+                r = rt(),
+                a = Object(u.useQueryClient)();
+              Object(i.useEffect)(
+                function () {
+                  r.reset();
+                  var c = Pe();
+                  return (
+                    c.send(JSON.stringify({ action: "joinChannel", room: e })),
+                    c.addEventListener("message", function (e) {
+                      var c = JSON.parse(e.data);
+                      switch (c.action) {
+                        case "new_message":
+                          a.setQueryData(n, function (e) {
+                            return e.pages[0].unshift(c.data), e;
+                          });
+                          break;
+                        case "edit_message":
+                          var i = c.data;
+                          a.setQueryData(n, function (e) {
+                            var n = -1,
+                              t = -1,
+                              r = e;
+                            return (
+                              r.pages.forEach(function (e, r) {
+                                -1 !==
+                                  (t = e.findIndex(function (e) {
+                                    return e.id === i.id;
+                                  })) && (n = r);
+                              }),
+                              -1 !== n &&
+                                -1 !== t &&
+                                ((r.pages[n][t].text = i.text), (r.pages[n][t].updatedAt = i.updatedAt)),
+                              r
+                            );
+                          });
+                          break;
+                        case "delete_message":
+                          var s = c.data;
+                          a.setQueryData(n, function (e) {
+                            var n = -1,
+                              t = e;
+                            return (
+                              t.pages.forEach(function (e, t) {
+                                -1 !==
+                                  e.findIndex(function (e) {
+                                    return e.id === s;
+                                  }) && (n = t);
+                              }),
+                              -1 !== n &&
+                                (t.pages[n] = t.pages[n].filter(function (e) {
+                                  return e.id !== s;
+                                })),
+                              t
+                            );
+                          });
+                          break;
+                        case "addToTyping":
+                          var o = c.data;
+                          o !== (null === t || void 0 === t ? void 0 : t.username) && r.addTyping(o);
+                          break;
+                        case "removeFromTyping":
+                          var l = c.data;
+                          l !== (null === t || void 0 === t ? void 0 : t.username) && r.removeTyping(l);
+                      }
+                    }),
+                    function () {
+                      c.send(JSON.stringify({ action: "leaveRoom", room: e })), c.close();
+                    }
+                  );
+                },
+                [e, a, n, t]
+              );
+            })(e, c),
+            d)
+          )
+            return Object(z.jsx)(ct, {
+              children: Object(z.jsx)(f.a, {
+                align: "center",
+                justify: "center",
+                h: "full",
+                children: Object(z.jsx)(Sn.a, { size: "xl", thickness: "4px" }),
+              }),
+            });
+          var p = function (e, n) {
+              return (
+                e.user.id === n.user.id &&
+                e.createdAt !== n.createdAt &&
+                ((t = e.createdAt), (r = n.createdAt), En()(t).diff(En()(r), "minutes") <= 5)
+              );
+              var t, r;
+            },
+            m = l
+              ? l.pages
+                  .map(function (e) {
+                    return e.map(function (e) {
+                      return e;
+                    });
+                  })
+                  .flat()
+              : [];
+          return Object(z.jsxs)(ct, {
+            children: [
+              Object(z.jsx)(O.a, { h: "10px", mt: 4 }),
+              Object(z.jsx)(O.a, {
+                as: _n.a,
+                css: De,
+                dataLength: m.length,
+                next: function () {
+                  return j();
+                },
+                style: { display: "flex", flexDirection: "column-reverse" },
+                inverse: !0,
+                hasMore: r,
+                loader:
+                  m.length > 0 &&
+                  Object(z.jsx)(f.a, {
+                    align: "center",
+                    justify: "center",
+                    h: "50px",
+                    children: Object(z.jsx)(Sn.a, {}),
+                  }),
+                scrollableTarget: "chatGrid",
+                children: m.map(function (e, n) {
+                  return Object(z.jsxs)(
+                    s.a.Fragment,
+                    {
+                      children: [
+                        Object(z.jsx)(Zn, { message: e, isCompact: p(e, m[Math.min(n + 1, m.length - 1)]) }),
+                        ((t = e.createdAt),
+                        (r = m[Math.min(n + 1, m.length - 1)].createdAt),
+                        !En()(t).isSame(En()(r), "day") && Object(z.jsx)(at, { date: e.createdAt })),
+                      ],
+                    },
+                    e.id
+                  );
+                  var t, r;
+                }),
+              }),
+              !r && Object(z.jsx)(et, {}),
+            ],
+          });
+        },
+        st = function () {
+          var e = Xn(Object(b.i)().channelId);
+          return Object(z.jsx)(ee.b, {
+            gridColumn: 3,
+            gridRow: "1",
+            bg: "brandGray.light",
+            padding: "10px",
+            zIndex: "2",
+            boxShadow: "md",
+            children: Object(z.jsxs)(f.a, {
+              align: "center",
+              ml: 2,
+              children: [
+                Object(z.jsx)(Ye.a, { as: dn.a, fontSize: "20px", color: "brandGray.accent" }),
+                Object(z.jsx)(y.a, {
+                  ml: "2",
+                  fontWeight: "semibold",
+                  children: null === e || void 0 === e ? void 0 : e.user.username,
+                }),
+                Object(z.jsx)(O.a, {
+                  ml: "2",
+                  borderRadius: "50%",
+                  h: "10px",
+                  w: "10px",
+                  bg: (null === e || void 0 === e ? void 0 : e.user.isOnline) ? "green.500" : "gray.500",
+                }),
+              ],
+            }),
+          });
+        },
+        ot = t(624),
+        lt = t(378),
+        ut = t(640),
+        dt = ["image/jpg", "image/jpeg", "audio/mp3", "audio/mpeg", "image/png"],
+        bt = M.d().shape({
+          file: M.c()
+            .nullable()
+            .test("fileSize", "The file is too large", function (e) {
+              return (null === e || void 0 === e ? void 0 : e.size) < 5e6;
+            })
+            .test("type", "Only the following formats are accepted: Image and Audio", function (e) {
+              return e && dt.includes(e.type);
+            }),
+        }),
+        jt = function () {
+          var e = Object(b.i)().channelId,
+            n = Object(X.a)(),
+            t = n.isOpen,
+            r = n.onOpen,
+            a = n.onClose,
+            c = Object(i.useRef)(null),
+            s = Object(i.useState)(!1),
+            o = Object(C.a)(s, 2),
+            l = o[0],
+            u = o[1],
+            d = Object(i.useState)(0),
+            j = Object(C.a)(d, 2),
+            f = j[0],
+            O = j[1],
+            p = Object(i.useState)({}),
+            m = Object(C.a)(p, 2),
+            g = m[0],
+            v = m[1],
+            w = function () {
+              v({}), O(0), a();
+            },
+            k = (function () {
+              var n = Object(x.a)(
+                h.a.mark(function n(t) {
+                  var a;
+                  return h.a.wrap(
+                    function (n) {
+                      for (;;)
+                        switch ((n.prev = n.next)) {
+                          case 0:
+                            if (t) {
+                              n.next = 2;
+                              break;
+                            }
+                            return n.abrupt("return");
+                          case 2:
+                            return u(!0), (n.prev = 3), (n.next = 6), bt.validate({ file: t });
+                          case 6:
+                            n.next = 13;
+                            break;
+                          case 8:
+                            return (n.prev = 8), (n.t0 = n.catch(3)), v(n.t0.errors), r(), n.abrupt("return");
+                          case 13:
+                            return (
+                              (a = new FormData()).append("file", t),
+                              (n.next = 17),
+                              Mn(e, a, function (e) {
+                                var n = Math.round((100 * e.loaded) / e.total);
+                                O(n), n >= 100 && O(0);
+                              })
+                            );
+                          case 17:
+                          case "end":
+                            return n.stop();
+                        }
+                    },
+                    n,
+                    null,
+                    [[3, 8]]
+                  );
+                })
+              );
+              return function (e) {
+                return n.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsx)(ye, {
+            disabled: !0,
+            label: "Hmmm",
+            position: "top",
+            children: Object(z.jsxs)(cn.a, {
+              color: "iconColor",
+              _hover: { cursor: "pointer", color: "#fcfcfc" },
+              onClick: function () {
+                return c.current.click();
+              },
+              children: [
+                Object(z.jsx)(Ye.a, { as: Rn.a, boxSize: "20px" }),
+                Object(z.jsx)("input", {
+                  type: "file",
+                  ref: c,
+                  hidden: !0,
+                  disabled: l || false,
+                  onChange: (function () {
+                    var e = Object(x.a)(
+                      h.a.mark(function e(n) {
+                        return h.a.wrap(function (e) {
+                          for (;;)
+                            switch ((e.prev = e.next)) {
+                              case 0:
+                                if (n.currentTarget.files) {
+                                  e.next = 2;
+                                  break;
+                                }
+                                return e.abrupt("return");
+                              case 2:
+                                k(n.currentTarget.files[0]).then(function () {
+                                  u(!1), (n.target.value = "");
+                                });
+                              case 3:
+                              case "end":
+                                return e.stop();
+                            }
+                        }, e);
+                      })
+                    );
+                    return function (n) {
+                      return e.apply(this, arguments);
+                    };
+                  })(),
+                }),
+                g &&
+                  Object(z.jsxs)(ae.a, {
+                    size: "sm",
+                    isOpen: t,
+                    onClose: w,
+                    isCentered: !0,
+                    children: [
+                      Object(z.jsx)(ae.g, {}),
+                      Object(z.jsxs)(ae.d, {
+                        bg: "brandGray.light",
+                        textAlign: "center",
+                        children: [
+                          Object(z.jsx)(ae.f, { pb: "0", children: "Error Uploading File" }),
+                          Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                          Object(z.jsxs)(ae.b, {
+                            children: [
+                              Object(z.jsxs)(y.a, { mb: "2", children: ["Reason:", g] }),
+                              Object(z.jsx)(y.a, { children: "Please try something under 5MB" }),
+                            ],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                f > 0 &&
+                  Object(z.jsx)(ae.a, {
+                    size: "sm",
+                    isOpen: f > 0,
+                    closeOnOverlayClick: !1,
+                    onClose: w,
+                    isCentered: !0,
+                    children: Object(z.jsxs)(ae.d, {
+                      bg: "brandGray.darker",
+                      textAlign: "center",
+                      children: [
+                        Object(z.jsx)(ae.f, { pb: "0", children: "Upload Progress" }),
+                        Object(z.jsx)(ae.b, {
+                          children: Object(z.jsx)(ut.a, { hasStripe: !0, isAnimated: !0, value: f }),
+                        }),
+                      ],
+                    }),
+                  }),
+              ],
+            }),
+          });
+        },
+        ht =
+          (t(528),
+          function () {
+            var e = Object(i.useState)(""),
+              n = Object(C.a)(e, 2),
+              t = n[0],
+              r = n[1],
+              a = Object(i.useState)(!1),
+              c = Object(C.a)(a, 2),
+              s = c[0],
+              o = c[1],
+              l = Object(i.useState)(!1),
+              d = Object(C.a)(l, 2),
+              j = d[0],
+              O = d[1],
+              p = Object(i.useRef)(),
+              m = Object(b.i)(),
+              g = m.guildId,
+              v = m.channelId,
+              w = void 0 === g ? de : xe(g),
+              k = Object(u.useQuery)(w).data,
+              S =
+                null === k || void 0 === k
+                  ? void 0
+                  : k.find(function (e) {
+                      return e.id === v;
+                    }),
+              _ = (Me || (Me = new Qe.a("wss://gateway.xoniaapp.com/ws")), Me),
+              I = P(function (e) {
+                return e.current;
+              }),
+              R = rt(function (e) {
+                return e.typing;
+              }),
+              G = (function () {
+                var e = Object(x.a)(
+                  h.a.mark(function e() {
+                    var n;
+                    return h.a.wrap(
+                      function (e) {
+                        for (;;)
+                          switch ((e.prev = e.next)) {
+                            case 0:
+                              if (t && t.trim()) {
+                                e.next = 2;
+                                break;
+                              }
+                              return e.abrupt("return");
+                            case 2:
+                              return (
+                                _.send(
+                                  JSON.stringify({
+                                    action: "stopTyping",
+                                    room: v,
+                                    message: null === I || void 0 === I ? void 0 : I.username,
+                                  })
+                                ),
+                                (e.prev = 3),
+                                o(!0),
+                                O(!1),
+                                (n = new FormData()).append("text", t.trim()),
+                                (e.next = 10),
+                                Mn(v, n)
+                              );
+                            case 10:
+                              e.next = 14;
+                              break;
+                            case 12:
+                              (e.prev = 12), (e.t0 = e.catch(3));
+                            case 14:
+                            case "end":
+                              return e.stop();
+                          }
+                      },
+                      e,
+                      null,
+                      [[3, 12]]
+                    );
+                  })
+                );
+                return function () {
+                  return e.apply(this, arguments);
+                };
+              })();
+            return Object(z.jsxs)(ee.b, {
+              gridColumn: 3,
+              gridRow: 3,
+              px: "20px",
+              pb: R.length > 0 ? "0" : "26px",
+              bg: "brandGray.light",
+              children: [
+                Object(z.jsxs)(rn.a, {
+                  size: "md",
+                  bg: "messageInput",
+                  alignItems: "center",
+                  borderRadius: "8px",
+                  children: [
+                    Object(z.jsx)(ot.a, {
+                      as: lt.a,
+                      minH: "40px",
+                      transition: "height none",
+                      overflow: "hidden",
+                      w: "100%",
+                      resize: "none",
+                      minRows: 1,
+                      pl: "3rem",
+                      name: "text",
+                      placeholder: S
+                        ? (null === S || void 0 === S ? void 0 : S.user)
+                          ? "Message @".concat(null === S || void 0 === S ? void 0 : S.user.username)
+                          : "Message #".concat(null === S || void 0 === S ? void 0 : S.name)
+                        : "",
+                      border: "0",
+                      _focus: { border: "0" },
+                      ref: p,
+                      isDisabled: s,
+                      value: t,
+                      onChange: function (e) {
+                        var n = e.target.value;
+                        1 !== n.trim().length || j
+                          ? 0 === n.length &&
+                            (_.send(
+                              JSON.stringify({
+                                action: "stopTyping",
+                                room: v,
+                                message: null === I || void 0 === I ? void 0 : I.username,
+                              })
+                            ),
+                            O(!1))
+                          : (_.send(
+                              JSON.stringify({
+                                action: "startTyping",
+                                room: v,
+                                message: null === I || void 0 === I ? void 0 : I.username,
+                              })
+                            ),
+                            O(!0)),
+                          n.length <= 2e3 && r(n);
+                      },
+                      onKeyDown: function (e) {
+                        "Enter" === e.key &&
+                          G().then(function () {
+                            var e;
+                            r(""),
+                              o(!1),
+                              null === p || void 0 === p || null === (e = p.current) || void 0 === e || e.focus();
+                          });
+                      },
+                    }),
+                    Object(z.jsx)(jt, {}),
+                  ],
+                }),
+                R.length > 0 &&
+                  Object(z.jsxs)(f.a, {
+                    align: "center",
+                    fontSize: "12px",
+                    my: 1,
+                    children: [
+                      Object(z.jsxs)("div", {
+                        className: "typing-indicator",
+                        children: [Object(z.jsx)("span", {}), Object(z.jsx)("span", {}), Object(z.jsx)("span", {})],
+                      }),
+                      Object(z.jsx)(y.a, {
+                        ml: "1",
+                        fontWeight: "semibold",
+                        children: (function (e) {
+                          switch (e.length) {
+                            case 1:
+                              return e[0];
+                            case 2:
+                              return "".concat(e[0], " and ").concat(e[1]);
+                            case 3:
+                              return "".concat(e[0], ", ").concat(e[1], " and ").concat(e[2]);
+                            default:
+                              return "Several people";
+                          }
+                        })(R),
+                      }),
+                      Object(z.jsxs)(y.a, { ml: "1", children: [1 === R.length ? "is" : "are", " typing... "] }),
+                    ],
+                  }),
+              ],
+            });
+          }),
+        xt = function () {
+          var e = Object(b.i)().channelId;
+          return Object(z.jsxs)(Cn, {
+            children: [
+              Object(z.jsx)(We, {}),
+              Object(z.jsx)(tn, {}),
+              void 0 === e
+                ? Object(z.jsx)(kn, {})
+                : Object(z.jsxs)(z.Fragment, {
+                    children: [Object(z.jsx)(st, {}), Object(z.jsx)(it, {}), Object(z.jsx)(ht, {})],
+                  }),
+            ],
+          });
+        },
+        ft = t(625),
+        Ot = t(230),
+        pt = M.d().shape({
+          name: M.f().min(3).max(30).required("This field is required"),
+          isPublic: M.b().optional().default(!0),
+          members: M.a(M.f().optional().max(20, "Must provide memberIds")).optional(),
+        }),
+        mt = function (e, n) {
+          return V.put("channels/".concat(e), n);
+        },
+        gt = function (e) {
+          return V.delete("channels/".concat(e));
+        },
+        vt = function (e) {
+          return V.get("channels/".concat(e, "/members"));
+        },
+        yt = function (e) {
+          var n = e.guildId,
+            t = e.isOpen,
+            r = e.onClose,
+            a = fe(n),
+            c = Object(b.g)(),
+            s = Object(u.useQuery)(a, function () {
+              return le(n).then(function (e) {
+                return e.data;
+              });
+            }).data,
+            o = Object(i.useState)(!1),
+            l = Object(C.a)(o, 2),
+            d = l[0],
+            j = l[1],
+            p = [],
+            m = Object(i.useState)([]),
+            g = Object(C.a)(m, 2),
+            S = g[0],
+            R = g[1];
+          null === s ||
+            void 0 === s ||
+            s.map(function (e) {
+              return p.push({ label: e.username, value: e.id, image: e.image });
+            });
+          var G = function (e) {
+              R(function (n) {
+                return [].concat(Object(re.a)(n), [e]);
+              });
+            },
+            T = function (e) {
+              var n = e.image,
+                t = e.label;
+              return Object(z.jsxs)(f.a, {
+                align: "center",
+                children: [
+                  Object(z.jsx)(ge.a, { mr: 2, size: "sm", src: n }),
+                  Object(z.jsx)(y.a, { textColor: "#000", children: t }),
+                ],
+              });
+            };
+          return Object(z.jsxs)(ae.a, {
+            isOpen: t,
+            onClose: r,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsx)(ae.d, {
+                bg: "brandGray.light",
+                children: Object(z.jsx)(w.b, {
+                  initialValues: { name: "", isPublic: !0 },
+                  validationSchema: pt,
+                  onSubmit: (function () {
+                    var e = Object(x.a)(
+                      h.a.mark(function e(t, a) {
+                        var i, s, o, l, u, d, b, x, f, O, p;
+                        return h.a.wrap(
+                          function (e) {
+                            for (;;)
+                              switch ((e.prev = e.next)) {
+                                case 0:
+                                  return (
+                                    (i = a.setErrors),
+                                    (s = a.resetForm),
+                                    (e.prev = 1),
+                                    (o = []),
+                                    S.map(function (e) {
+                                      return o.push(e.value);
+                                    }),
+                                    (e.next = 6),
+                                    (h = n),
+                                    (m = Object(k.a)(Object(k.a)({}, t), {}, { members: o })),
+                                    V.post("channels/".concat(h), m)
+                                  );
+                                case 6:
+                                  (l = e.sent),
+                                    (u = l.data) && (s(), r(), c.push("/channels/".concat(n, "/").concat(u.id))),
+                                    (e.next = 15);
+                                  break;
+                                case 11:
+                                  (e.prev = 11),
+                                    (e.t0 = e.catch(1)),
+                                    500 ===
+                                      (null === e.t0 || void 0 === e.t0 || null === (d = e.t0.response) || void 0 === d
+                                        ? void 0
+                                        : d.status) && j(!0),
+                                    (null === e.t0 ||
+                                    void 0 === e.t0 ||
+                                    null === (b = e.t0.response) ||
+                                    void 0 === b ||
+                                    null === (x = b.data) ||
+                                    void 0 === x
+                                      ? void 0
+                                      : x.errors) &&
+                                      ((p =
+                                        null === e.t0 ||
+                                        void 0 === e.t0 ||
+                                        null === (f = e.t0.response) ||
+                                        void 0 === f ||
+                                        null === (O = f.data) ||
+                                        void 0 === O
+                                          ? void 0
+                                          : O.errors),
+                                      i(E(p)));
+                                case 15:
+                                case "end":
+                                  return e.stop();
+                              }
+                            var h, m;
+                          },
+                          e,
+                          null,
+                          [[1, 11]]
+                        );
+                      })
+                    );
+                    return function (n, t) {
+                      return e.apply(this, arguments);
+                    };
+                  })(),
+                  children: function (e) {
+                    var n = e.isSubmitting,
+                      t = e.setFieldValue,
+                      a = e.values;
+                    return Object(z.jsxs)(w.a, {
+                      children: [
+                        Object(z.jsx)(ae.f, {
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          children: "Create Text Channel",
+                        }),
+                        Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                        Object(z.jsxs)(ae.b, {
+                          children: [
+                            Object(z.jsx)(A, { label: "channel name", name: "name" }),
+                            Object(z.jsxs)(_.a, {
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              mt: "4",
+                              children: [
+                                Object(z.jsx)(I.a, {
+                                  htmlFor: "email-alerts",
+                                  mb: "0",
+                                  children: Object(z.jsxs)(f.a, {
+                                    align: "center",
+                                    children: [
+                                      Object(z.jsx)(Ie.b, {}),
+                                      Object(z.jsx)(y.a, { ml: "2", children: "Private Channel" }),
+                                    ],
+                                  }),
+                                }),
+                                Object(z.jsx)(ft.a, {
+                                  onChange: function (e) {
+                                    t("isPublic", !e.target.checked);
+                                  },
+                                }),
+                              ],
+                            }),
+                            Object(z.jsx)(y.a, {
+                              mt: "4",
+                              fontSize: "14px",
+                              textColor: "brandGray.accent",
+                              children:
+                                "By making a channel private, only selected members will be able to view this channel",
+                            }),
+                            !a.isPublic &&
+                              Object(z.jsx)(O.a, {
+                                mt: "2",
+                                pb: 0,
+                                children: Object(z.jsx)(Ot.CUIAutoComplete, {
+                                  label: "Who can access this channel",
+                                  placeholder: "",
+                                  onCreateItem: G,
+                                  items: p,
+                                  selectedItems: S,
+                                  itemRenderer: T,
+                                  onSelectedItemsChange: function (e) {
+                                    var n;
+                                    (n = e.selectedItems) && R(n);
+                                  },
+                                }),
+                              }),
+                            d &&
+                              Object(z.jsx)(y.a, {
+                                my: "2",
+                                color: "menuRed",
+                                align: "center",
+                                children: "Server Error. Try again later",
+                              }),
+                          ],
+                        }),
+                        Object(z.jsxs)(ae.e, {
+                          bg: "brandGray.dark",
+                          children: [
+                            Object(z.jsx)(v.a, {
+                              onClick: r,
+                              fontSize: "14px",
+                              mr: 6,
+                              variant: "link",
+                              _focus: { outline: "none" },
+                              children: "Cancel",
+                            }),
+                            Object(z.jsx)(v.a, {
+                              background: "highlight.standard",
+                              color: "white",
+                              type: "submit",
+                              fontSize: "14px",
+                              _hover: { bg: "highlight.hover" },
+                              _active: { bg: "highlight.active" },
+                              _focus: { boxShadow: "none" },
+                              isLoading: n,
+                              children: "Create Channel",
+                            }),
+                          ],
+                        }),
+                      ],
+                    });
+                  },
+                }),
+              }),
+            ],
+          });
+        },
+        wt = t(632),
+        kt = t(372),
+        Ct = function (e) {
+          var n = e.children;
+          return Object(z.jsx)(wt.e, { bg: "brandGray.darkest", px: "2", children: n });
+        },
+        St = function (e) {
+          var n = e.label,
+            t = e.icon,
+            r = e.handleClick;
+          return Object(z.jsx)(wt.d, {
+            _hover: { bg: "highlight.standard", borderRadius: "2px" },
+            onClick: r,
+            children: Object(z.jsxs)(f.a, {
+              align: "center",
+              justify: "space-between",
+              w: "full",
+              children: [Object(z.jsx)(y.a, { children: n }), Object(z.jsx)(Ye.a, { as: t })],
+            }),
+          });
+        },
+        _t = function (e) {
+          var n = e.label,
+            t = e.icon,
+            r = e.handleClick;
+          return Object(z.jsx)(wt.d, {
+            _hover: { bg: "menuRed", color: "#fff", borderRadius: "2px" },
+            onClick: r,
+            children: Object(z.jsxs)(f.a, {
+              align: "center",
+              justify: "space-between",
+              w: "full",
+              children: [Object(z.jsx)(y.a, { children: n }), Object(z.jsx)(Ye.a, { as: t })],
+            }),
+          });
+        },
+        It = t(275),
+        Rt = t(369),
+        Gt = t(633),
+        zt = t(379),
+        Tt = function (e) {
+          return new Promise(function (n, t) {
+            var r = new Image();
+            r.addEventListener("load", function () {
+              return n(r);
+            }),
+              r.addEventListener("error", function (e) {
+                return t(e);
+              }),
+              r.setAttribute("crossOrigin", "anonymous"),
+              (r.src = e);
+          });
+        };
+      function At(e) {
+        return (e * Math.PI) / 180;
+      }
+      function Et(e, n) {
+        return Nt.apply(this, arguments);
+      }
+      function Nt() {
+        return (
+          (Nt = Object(x.a)(
+            h.a.mark(function e(n, t) {
+              var r,
+                a,
+                c,
+                i,
+                s,
+                o,
+                l,
+                u = arguments;
+              return h.a.wrap(function (e) {
+                for (;;)
+                  switch ((e.prev = e.next)) {
+                    case 0:
+                      return (r = u.length > 2 && void 0 !== u[2] ? u[2] : 0), (e.next = 3), Tt(n);
+                    case 3:
+                      return (
+                        (a = e.sent),
+                        (c = document.createElement("canvas")),
+                        (i = c.getContext("2d")),
+                        (s = Math.max(a.width, a.height)),
+                        (o = (s / 2) * Math.sqrt(2) * 2),
+                        (c.width = o),
+                        (c.height = o),
+                        i.translate(o / 2, o / 2),
+                        i.rotate(At(r)),
+                        i.translate(-o / 2, -o / 2),
+                        i.drawImage(a, o / 2 - 0.5 * a.width, o / 2 - 0.5 * a.height),
+                        (l = i.getImageData(0, 0, o, o)),
+                        (c.width = t.width),
+                        (c.height = t.height),
+                        i.putImageData(
+                          l,
+                          Math.round(0 - o / 2 + 0.5 * a.width - t.x),
+                          Math.round(0 - o / 2 + 0.5 * a.height - t.y)
+                        ),
+                        e.abrupt(
+                          "return",
+                          new Promise(function (e) {
+                            c.toBlob(function (n) {
+                              e(n);
+                            }, "image/jpeg");
+                          })
+                        )
+                      );
+                    case 19:
+                    case "end":
+                      return e.stop();
+                  }
+              }, e);
+            })
+          )),
+          Nt.apply(this, arguments)
+        );
+      }
+      var Dt,
+        Qt = function (e) {
+          var n = e.isOpen,
+            t = e.onClose,
+            r = e.applyCrop,
+            a = e.initialImage,
+            c = Object(i.useState)({ x: 0, y: 0 }),
+            s = Object(C.a)(c, 2),
+            o = s[0],
+            l = s[1],
+            u = Object(i.useState)(1),
+            d = Object(C.a)(u, 2),
+            b = d[0],
+            j = d[1],
+            f = Object(i.useState)(null),
+            p = Object(C.a)(f, 2),
+            m = p[0],
+            g = p[1],
+            y = Object(i.useCallback)(function (e, n) {
+              g(n);
+            }, []),
+            w = Object(i.useCallback)(
+              Object(x.a)(
+                h.a.mark(function e() {
+                  var n;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), Et(a, m);
+                          case 3:
+                            (n = e.sent), r(n), (e.next = 9);
+                            break;
+                          case 7:
+                            (e.prev = 7), (e.t0 = e.catch(0));
+                          case 9:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[0, 7]]
+                  );
+                })
+              ),
+              [m, a, r]
+            );
+          return Object(z.jsxs)(ae.a, {
+            isOpen: n,
+            onClose: t,
+            isCentered: !0,
+            closeOnOverlayClick: !1,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsxs)(ae.d, {
+                bg: "brandGray.light",
+                children: [
+                  Object(z.jsx)(ae.f, { fontWeight: "bold", children: "EDIT MEDIA" }),
+                  Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                  Object(z.jsxs)(ae.b, {
+                    children: [
+                      Object(z.jsx)(O.a, {
+                        h: "400px",
+                        overflow: "hidden",
+                        position: "relative",
+                        children: Object(z.jsx)(zt.a, {
+                          image: a,
+                          crop: o,
+                          zoom: b,
+                          aspect: 1,
+                          cropShape: "round",
+                          onCropChange: l,
+                          onCropComplete: y,
+                          onZoomChange: j,
+                        }),
+                      }),
+                      Object(z.jsxs)(Gt.a, {
+                        "aria-label": "zoom",
+                        min: 1,
+                        max: 3,
+                        step: 0.01,
+                        value: b,
+                        onChange: function (e) {
+                          return j(e);
+                        },
+                        my: "4",
+                        children: [Object(z.jsx)(Gt.d, { children: Object(z.jsx)(Gt.b, {}) }), Object(z.jsx)(Gt.c, {})],
+                      }),
+                    ],
+                  }),
+                  Object(z.jsxs)(ae.e, {
+                    bg: "brandGray.dark",
+                    children: [
+                      Object(z.jsx)(v.a, { onClick: t, fontSize: "14px", mr: 6, variant: "link", children: "Cancel" }),
+                      Object(z.jsx)(v.a, {
+                        background: "highlight.standard",
+                        color: "white",
+                        type: "submit",
+                        fontSize: "14px",
+                        _hover: { bg: "highlight.hover" },
+                        _active: { bg: "highlight.active" },
+                        _focus: { boxShadow: "none" },
+                        onClick: w,
+                        children: "Apply",
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        Pt = {
+          "&::-webkit-scrollbar": { width: "4px" },
+          "&::-webkit-scrollbar-track": { width: "4px" },
+          "&::-webkit-scrollbar-thumb": { background: "brandGray.darker", borderRadius: "18px" },
+        };
+      !(function (e) {
+        (e[(e.START = 0)] = "START"), (e[(e.CONFIRM = 1)] = "CONFIRM"), (e[(e.BANLIST = 2)] = "BANLIST");
+      })(Dt || (Dt = {}));
+      var Mt,
+        Lt = function (e) {
+          var n = e.guildId,
+            t = e.isOpen,
+            r = e.onClose,
+            a = Wn(n),
+            c = Object(i.useState)(Dt.START),
+            s = Object(C.a)(c, 2),
+            o = s[0],
+            l = s[1],
+            u = Object(i.useState)(!1),
+            d = Object(C.a)(u, 2),
+            b = d[0],
+            j = d[1],
+            p = Object(i.useState)(!1),
+            m = Object(C.a)(p, 2),
+            g = m[0],
+            k = m[1],
+            S = function () {
+              return l(Dt.START);
+            },
+            _ = Object(X.a)(),
+            I = _.isOpen,
+            R = _.onOpen,
+            G = _.onClose,
+            T = Object(i.useRef)(null),
+            N = Object(i.useState)((null === a || void 0 === a ? void 0 : a.icon) || ""),
+            D = Object(C.a)(N, 2),
+            Q = D[0],
+            P = D[1],
+            M = Object(i.useState)(""),
+            L = Object(C.a)(M, 2),
+            F = L[0],
+            q = L[1],
+            W = Object(i.useState)(null),
+            B = Object(C.a)(W, 2),
+            J = B[0],
+            U = B[1];
+          if (!a) return null;
+          var Y = (function () {
+            var e = Object(x.a)(
+              h.a.mark(function e() {
+                var n;
+                return h.a.wrap(
+                  function (e) {
+                    for (;;)
+                      switch ((e.prev = e.next)) {
+                        case 0:
+                          return (e.prev = 0), (e.next = 3), (t = a.id), V.delete("guilds/".concat(t, "/invite"));
+                        case 3:
+                          (n = e.sent), n.data && j(!0), (e.next = 10);
+                          break;
+                        case 8:
+                          (e.prev = 8), (e.t0 = e.catch(0));
+                        case 10:
+                        case "end":
+                          return e.stop();
+                      }
+                    var t;
+                  },
+                  e,
+                  null,
+                  [[0, 8]]
+                );
+              })
+            );
+            return function () {
+              return e.apply(this, arguments);
+            };
+          })();
+          return Object(z.jsxs)(ae.a, {
+            isOpen: t,
+            onClose: r,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              o === Dt.START &&
+                Object(z.jsxs)(ae.d, {
+                  bg: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(w.b, {
+                      initialValues: { name: a.name },
+                      validationSchema: ie,
+                      onSubmit: (function () {
+                        var e = Object(x.a)(
+                          h.a.mark(function e(t, a) {
+                            var c, i, s, o, l, u, d, b, j, x;
+                            return h.a.wrap(
+                              function (e) {
+                                for (;;)
+                                  switch ((e.prev = e.next)) {
+                                    case 0:
+                                      return (
+                                        (c = a.setErrors),
+                                        (i = a.resetForm),
+                                        (e.prev = 1),
+                                        (s = new FormData()).append("name", t.name),
+                                        F ? s.append("image", J) : Q && s.append("icon", Q),
+                                        (e.next = 7),
+                                        (h = n),
+                                        (f = s),
+                                        V.put("guilds/".concat(h), f, {
+                                          headers: { "Content-Type": "multipart/form-data" },
+                                        })
+                                      );
+                                    case 7:
+                                      (o = e.sent), o.data && (i(), r()), (e.next = 16);
+                                      break;
+                                    case 12:
+                                      (e.prev = 12),
+                                        (e.t0 = e.catch(1)),
+                                        500 ===
+                                          (null === e.t0 ||
+                                          void 0 === e.t0 ||
+                                          null === (l = e.t0.response) ||
+                                          void 0 === l
+                                            ? void 0
+                                            : l.status) && k(!0),
+                                        (null === e.t0 ||
+                                        void 0 === e.t0 ||
+                                        null === (u = e.t0.response) ||
+                                        void 0 === u ||
+                                        null === (d = u.data) ||
+                                        void 0 === d
+                                          ? void 0
+                                          : d.errors) &&
+                                          ((x =
+                                            null === e.t0 ||
+                                            void 0 === e.t0 ||
+                                            null === (b = e.t0.response) ||
+                                            void 0 === b ||
+                                            null === (j = b.data) ||
+                                            void 0 === j
+                                              ? void 0
+                                              : j.errors),
+                                          c(E(x)));
+                                    case 16:
+                                    case "end":
+                                      return e.stop();
+                                  }
+                                var h, f;
+                              },
+                              e,
+                              null,
+                              [[1, 12]]
+                            );
+                          })
+                        );
+                        return function (n, t) {
+                          return e.apply(this, arguments);
+                        };
+                      })(),
+                      children: function (e) {
+                        var n = e.isSubmitting;
+                        return Object(z.jsxs)(w.a, {
+                          children: [
+                            Object(z.jsx)(ae.f, {
+                              textAlign: "center",
+                              fontWeight: "bold",
+                              pb: 0,
+                              children: "Server Overview",
+                            }),
+                            Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                            Object(z.jsxs)(ae.b, {
+                              children: [
+                                Object(z.jsxs)(f.a, {
+                                  mb: "4",
+                                  justify: "center",
+                                  children: [
+                                    Object(z.jsxs)(O.a, {
+                                      textAlign: "center",
+                                      children: [
+                                        Object(z.jsx)(ve.a, {
+                                          label: "Change Icon",
+                                          "aria-label": "Change Icon",
+                                          children: Object(z.jsx)(ge.a, {
+                                            size: "xl",
+                                            name: null === a || void 0 === a ? void 0 : a.name[0],
+                                            bg: "brandGray.darker",
+                                            color: "#fff",
+                                            src: Q || "",
+                                            _hover: { cursor: "pointer", opacity: 0.5 },
+                                            onClick: function () {
+                                              return T.current.click();
+                                            },
+                                          }),
+                                        }),
+                                        Object(z.jsx)(y.a, {
+                                          mt: "2",
+                                          _hover: { cursor: "pointer", color: "brandGray.accent" },
+                                          onClick: function () {
+                                            U(null), P(null);
+                                          },
+                                          children: "Remove",
+                                        }),
+                                      ],
+                                    }),
+                                    Object(z.jsx)("input", {
+                                      type: "file",
+                                      name: "image",
+                                      accept: "image/*",
+                                      ref: T,
+                                      hidden: !0,
+                                      onChange: (function () {
+                                        var e = Object(x.a)(
+                                          h.a.mark(function e(n) {
+                                            return h.a.wrap(function (e) {
+                                              for (;;)
+                                                switch ((e.prev = e.next)) {
+                                                  case 0:
+                                                    if (n.currentTarget.files) {
+                                                      e.next = 2;
+                                                      break;
+                                                    }
+                                                    return e.abrupt("return");
+                                                  case 2:
+                                                    q(URL.createObjectURL(n.currentTarget.files[0])), R();
+                                                  case 4:
+                                                  case "end":
+                                                    return e.stop();
+                                                }
+                                            }, e);
+                                          })
+                                        );
+                                        return function (n) {
+                                          return e.apply(this, arguments);
+                                        };
+                                      })(),
+                                    }),
+                                  ],
+                                }),
+                                Object(z.jsx)(A, { label: "server name", name: "name" }),
+                                Object(z.jsx)(te.a, { my: "4" }),
+                                Object(z.jsx)(y.a, {
+                                  fontWeight: "semibold",
+                                  mb: 2,
+                                  children: "Additional Configuration",
+                                }),
+                                Object(z.jsxs)(f.a, {
+                                  align: "center",
+                                  justify: "space-between",
+                                  mb: "2",
+                                  children: [
+                                    Object(z.jsx)(v.a, {
+                                      onClick: Y,
+                                      fontSize: "14px",
+                                      rightIcon: b ? Object(z.jsx)(It.a, {}) : Object(z.jsx)(fn.b, {}),
+                                      colorScheme: b ? "green" : "gray",
+                                      children: "Invalidate Links",
+                                    }),
+                                    Object(z.jsx)(v.a, {
+                                      onClick: function () {
+                                        return l(Dt.BANLIST);
+                                      },
+                                      fontSize: "14px",
+                                      rightIcon: Object(z.jsx)(Rt.a, {}),
+                                      children: "Bans",
+                                    }),
+                                  ],
+                                }),
+                                Object(z.jsx)(f.a, {
+                                  align: "center",
+                                  justify: "space-between",
+                                  mb: "2",
+                                  children: Object(z.jsx)(Ge.c, {
+                                    children: Object(z.jsx)(v.a, {
+                                      onClick: function () {
+                                        return l(Dt.CONFIRM);
+                                      },
+                                      colorScheme: "red",
+                                      variant: "ghost",
+                                      fontSize: "14px",
+                                      textColor: "menuRed",
+                                      rightIcon: Object(z.jsx)(dn.e, {}),
+                                      children: "Delete Server",
+                                    }),
+                                  }),
+                                }),
+                                g &&
+                                  Object(z.jsx)(y.a, {
+                                    my: "2",
+                                    color: "menuRed",
+                                    align: "center",
+                                    children: "Server Error. Try again later",
+                                  }),
+                              ],
+                            }),
+                            Object(z.jsxs)(ae.e, {
+                              bg: "brandGray.dark",
+                              children: [
+                                Object(z.jsx)(v.a, {
+                                  onClick: r,
+                                  mr: 6,
+                                  variant: "link",
+                                  fontSize: "14px",
+                                  children: "Cancel",
+                                }),
+                                Object(z.jsx)(v.a, {
+                                  background: "highlight.standard",
+                                  color: "white",
+                                  type: "submit",
+                                  _hover: { bg: "highlight.hover" },
+                                  _active: { bg: "highlight.active" },
+                                  _focus: { boxShadow: "none" },
+                                  isLoading: n,
+                                  fontSize: "14px",
+                                  children: "Save Changes",
+                                }),
+                              ],
+                            }),
+                          ],
+                        });
+                      },
+                    }),
+                    I &&
+                      Object(z.jsx)(Qt, {
+                        isOpen: I,
+                        onClose: G,
+                        initialImage: F,
+                        applyCrop: function (e) {
+                          P(URL.createObjectURL(e)), U(new File([e], "icon", { type: "image/jpeg" })), G();
+                        },
+                      }),
+                  ],
+                }),
+              o === Dt.CONFIRM &&
+                Object(z.jsx)(Ft, {
+                  goBack: S,
+                  submitClose: function () {
+                    l(Dt.START), r();
+                  },
+                  name: a.name,
+                  guildId: n,
+                }),
+              o === Dt.BANLIST && Object(z.jsx)(qt, { goBack: S, guildId: n }),
+            ],
+          });
+        },
+        Ft = function (e) {
+          var n = e.goBack,
+            t = e.submitClose,
+            r = e.name,
+            a = e.guildId,
+            c = Object(i.useState)(!1),
+            s = Object(C.a)(c, 2),
+            o = s[0],
+            l = s[1],
+            u = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var n, r;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), (c = a), V.delete("guilds/".concat(c, "/delete"));
+                          case 3:
+                            (n = e.sent), n.data && t(), (e.next = 11);
+                            break;
+                          case 8:
+                            (e.prev = 8),
+                              (e.t0 = e.catch(0)),
+                              500 ===
+                                (null === e.t0 || void 0 === e.t0 || null === (r = e.t0.response) || void 0 === r
+                                  ? void 0
+                                  : r.status) && l(!0);
+                          case 11:
+                          case "end":
+                            return e.stop();
+                        }
+                      var c;
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ae.d, {
+            bg: "brandGray.light",
+            children: [
+              Object(z.jsxs)(ae.f, { fontWeight: "bold", pb: "0", children: ["Delete ", r] }),
+              Object(z.jsxs)(ae.b, {
+                pb: 3,
+                children: [
+                  Object(z.jsxs)(y.a, {
+                    children: [
+                      "Are you sure you want to delete ",
+                      Object(z.jsx)("b", { children: r }),
+                      "? This cannot be undone.",
+                    ],
+                  }),
+                  o &&
+                    Object(z.jsx)(y.a, {
+                      my: "2",
+                      color: "menuRed",
+                      align: "center",
+                      children: "Server Error. Try again later",
+                    }),
+                ],
+              }),
+              Object(z.jsxs)(ae.e, {
+                bg: "brandGray.dark",
+                children: [
+                  Object(z.jsx)(v.a, {
+                    mr: 6,
+                    variant: "link",
+                    onClick: n,
+                    fontSize: "14px",
+                    _focus: { outline: "none" },
+                    children: "Cancel",
+                  }),
+                  Object(z.jsx)(Ge.c, {
+                    children: Object(z.jsx)(v.a, {
+                      colorScheme: "red",
+                      fontSize: "14px",
+                      onClick: function () {
+                        return u();
+                      },
+                      children: "Delete Server",
+                    }),
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        qt = function (e) {
+          var n = e.goBack,
+            t = e.guildId,
+            r = "bans-".concat(t),
+            a = Object(u.useQuery)(r, function () {
+              return ((e = t), V.get("guilds/".concat(e, "/bans"))).then(function (e) {
+                return e.data;
+              });
+              var e;
+            }).data,
+            c = Object(u.useQueryClient)(),
+            i = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e(n) {
+                  var a;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), Un(t, n);
+                          case 3:
+                            (a = e.sent),
+                              a.data &&
+                                c.setQueryData(r, function (e) {
+                                  return e.filter(function (e) {
+                                    return e.id !== n;
+                                  });
+                                }),
+                              (e.next = 10);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(0));
+                          case 10:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function (n) {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ae.d, {
+            bg: "brandGray.light",
+            maxH: "500px",
+            children: [
+              Object(z.jsxs)(ae.f, {
+                fontWeight: "bold",
+                pb: "0",
+                children: [null === a || void 0 === a ? void 0 : a.length, " Bans"],
+              }),
+              Object(z.jsxs)(ae.b, {
+                pb: 3,
+                overflowY: "auto",
+                css: Pt,
+                children: [
+                  Object(z.jsx)(y.a, { mb: 2, children: "Bans are by account. Click on the icon to unban." }),
+                  null === a || void 0 === a
+                    ? void 0
+                    : a.map(function (e) {
+                        return Object(z.jsxs)(f.a, {
+                          p: "3",
+                          _hover: { bg: "brandGray.dark", borderRadius: "5px" },
+                          align: "center",
+                          justify: "space-between",
+                          children: [
+                            Object(z.jsxs)(f.a, {
+                              align: "center",
+                              w: "full",
+                              children: [
+                                Object(z.jsx)(ge.a, { size: "sm", src: e.image }),
+                                Object(z.jsx)(y.a, { ml: "2", children: e.username }),
+                              ],
+                            }),
+                            Object(z.jsx)(Je.a, {
+                              icon: Object(z.jsx)(It.b, {}),
+                              borderRadius: "50%",
+                              "aria-label": "unban user",
+                              onClick: (function () {
+                                var n = Object(x.a)(
+                                  h.a.mark(function n(t) {
+                                    return h.a.wrap(function (n) {
+                                      for (;;)
+                                        switch ((n.prev = n.next)) {
+                                          case 0:
+                                            return t.preventDefault(), (n.next = 3), i(e.id);
+                                          case 3:
+                                          case "end":
+                                            return n.stop();
+                                        }
+                                    }, n);
+                                  })
+                                );
+                                return function (e) {
+                                  return n.apply(this, arguments);
+                                };
+                              })(),
+                            }),
+                          ],
+                        });
+                      }),
+                  0 === (null === a || void 0 === a ? void 0 : a.length) &&
+                    Object(z.jsx)(y.a, { children: "No bans yet." }),
+                ],
+              }),
+              Object(z.jsx)(ae.e, {
+                bg: "brandGray.dark",
+                children: Object(z.jsx)(v.a, {
+                  mr: 6,
+                  variant: "link",
+                  onClick: n,
+                  fontSize: "14px",
+                  _focus: { outline: "none" },
+                  children: "Back",
+                }),
+              }),
+            ],
+          });
+        },
+        Wt = t(374),
+        Bt = M.d().shape({
+          nickname: M.f().nullable().min(3).max(30),
+          color: M.f()
+            .nullable()
+            .matches(/^#[0-9a-f]{3}(?:[0-9a-f]{3})?$/i, "The color must be a valid hex color"),
+        }),
+        Jt = function (e) {
+          var n = e.guildId,
+            t = e.isOpen,
+            r = e.onClose,
+            a = P(function (e) {
+              return e.current;
+            }),
+            c = Object(u.useQuery)("settings-".concat(n), function () {
+              return ((e = n), V.get("guilds/".concat(e, "/member"))).then(function (e) {
+                return e.data;
+              });
+              var e;
+            }).data,
+            s = Object(i.useState)(!1),
+            o = Object(C.a)(s, 2),
+            l = o[0],
+            d = o[1];
+          return c
+            ? Object(z.jsxs)(ae.a, {
+                isOpen: t,
+                onClose: r,
+                isCentered: !0,
+                children: [
+                  Object(z.jsx)(ae.g, {}),
+                  Object(z.jsx)(ae.d, {
+                    bg: "brandGray.light",
+                    children: Object(z.jsx)(w.b, {
+                      initialValues: { color: c.color, nickname: c.nickname },
+                      validationSchema: Bt,
+                      onSubmit: (function () {
+                        var e = Object(x.a)(
+                          h.a.mark(function e(t, a) {
+                            var c, i, s, o, l, u, b, j, x;
+                            return h.a.wrap(
+                              function (e) {
+                                for (;;)
+                                  switch ((e.prev = e.next)) {
+                                    case 0:
+                                      return (
+                                        (c = a.setErrors),
+                                        (i = a.setFieldValue),
+                                        (e.prev = 1),
+                                        "#fff" === t.color && i("color", null),
+                                        (e.next = 5),
+                                        (h = n),
+                                        (f = t),
+                                        V.put("guilds/".concat(h, "/member"), f)
+                                      );
+                                    case 5:
+                                      (s = e.sent), s.data && r(), (e.next = 14);
+                                      break;
+                                    case 10:
+                                      (e.prev = 10),
+                                        (e.t0 = e.catch(1)),
+                                        500 ===
+                                          (null === e.t0 ||
+                                          void 0 === e.t0 ||
+                                          null === (o = e.t0.response) ||
+                                          void 0 === o
+                                            ? void 0
+                                            : o.status) && d(!0),
+                                        (null === e.t0 ||
+                                        void 0 === e.t0 ||
+                                        null === (l = e.t0.response) ||
+                                        void 0 === l ||
+                                        null === (u = l.data) ||
+                                        void 0 === u
+                                          ? void 0
+                                          : u.errors) &&
+                                          ((x =
+                                            null === e.t0 ||
+                                            void 0 === e.t0 ||
+                                            null === (b = e.t0.response) ||
+                                            void 0 === b ||
+                                            null === (j = b.data) ||
+                                            void 0 === j
+                                              ? void 0
+                                              : j.errors),
+                                          c(E(x)));
+                                    case 14:
+                                    case "end":
+                                      return e.stop();
+                                  }
+                                var h, f;
+                              },
+                              e,
+                              null,
+                              [[1, 10]]
+                            );
+                          })
+                        );
+                        return function (n, t) {
+                          return e.apply(this, arguments);
+                        };
+                      })(),
+                      children: function (e) {
+                        var n,
+                          t,
+                          c = e.isSubmitting,
+                          i = e.setFieldValue,
+                          s = e.values;
+                        return Object(z.jsxs)(w.a, {
+                          children: [
+                            Object(z.jsx)(ae.f, { fontWeight: "bold", pb: 0, children: "Change Appearance" }),
+                            Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                            Object(z.jsxs)(ae.b, {
+                              children: [
+                                Object(z.jsx)(A, {
+                                  color: null !== (n = s.color) && void 0 !== n ? n : void 0,
+                                  label: "nickname",
+                                  name: "nickname",
+                                  value:
+                                    null !== (t = s.nickname) && void 0 !== t
+                                      ? t
+                                      : null === a || void 0 === a
+                                      ? void 0
+                                      : a.username,
+                                }),
+                                Object(z.jsx)(y.a, {
+                                  mt: "2",
+                                  ml: "1",
+                                  color: "brandGray.accent",
+                                  _hover: { cursor: "pointer", color: "highlight.standard" },
+                                  fontSize: "14px",
+                                  onClick: function () {
+                                    return i("nickname", null);
+                                  },
+                                  children: "Reset Nickname",
+                                }),
+                                Object(z.jsx)(te.a, { my: "4" }),
+                                Object(z.jsx)(Wt.a, {
+                                  color: s.color || "#fff",
+                                  onChangeComplete: function (e) {
+                                    e && i("color", e.hex);
+                                  },
+                                  className: "picker",
+                                }),
+                                Object(z.jsx)(y.a, {
+                                  mt: "2",
+                                  ml: "1",
+                                  color: "brandGray.accent",
+                                  _hover: { cursor: "pointer", color: "highlight.standard" },
+                                  fontSize: "14px",
+                                  onClick: function () {
+                                    return i("color", "#fff");
+                                  },
+                                  children: "Reset Color",
+                                }),
+                                l &&
+                                  Object(z.jsx)(y.a, {
+                                    mt: "4",
+                                    color: "menuRed",
+                                    align: "center",
+                                    children: "Server Error. Try again later",
+                                  }),
+                              ],
+                            }),
+                            Object(z.jsxs)(ae.e, {
+                              bg: "brandGray.dark",
+                              children: [
+                                Object(z.jsx)(v.a, {
+                                  onClick: r,
+                                  mr: 6,
+                                  variant: "link",
+                                  fontSize: "14px",
+                                  _focus: { outline: "none" },
+                                  children: "Cancel",
+                                }),
+                                Object(z.jsx)(v.a, {
+                                  background: "highlight.standard",
+                                  color: "white",
+                                  type: "submit",
+                                  _hover: { bg: "highlight.hover" },
+                                  _active: { bg: "highlight.active" },
+                                  _focus: { boxShadow: "none" },
+                                  isLoading: c,
+                                  fontSize: "14px",
+                                  children: "Save",
+                                }),
+                              ],
+                            }),
+                          ],
+                        });
+                      },
+                    }),
+                  }),
+                ],
+              })
+            : null;
+        },
+        Ut = function (e) {
+          var n = e.channelOpen,
+            t = e.inviteOpen,
+            r = Object(b.i)().guildId,
+            a = Wn(r),
+            c = Object(b.g)(),
+            i = Object(u.useQueryClient)(),
+            s = P(function (e) {
+              return e.current;
+            }),
+            o = (null === a || void 0 === a ? void 0 : a.ownerId) === (null === s || void 0 === s ? void 0 : s.id),
+            l = Object(X.a)(),
+            d = l.isOpen,
+            j = l.onOpen,
+            O = l.onClose,
+            p = Object(X.a)(),
+            g = p.isOpen,
+            v = p.onOpen,
+            y = p.onClose,
+            w = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var n;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), (t = r), V.delete("guilds/".concat(t));
+                          case 3:
+                            (n = e.sent),
+                              n.data &&
+                                (i.setQueryData(ue, function (e) {
+                                  return e.filter(function (e) {
+                                    return e.id !== (null === a || void 0 === a ? void 0 : a.id);
+                                  });
+                                }),
+                                c.replace("/channels/me")),
+                              (e.next = 10);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(0));
+                          case 10:
+                          case "end":
+                            return e.stop();
+                        }
+                      var t;
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ee.b, {
+            gridColumn: 2,
+            gridRow: "1",
+            bg: "brandGray.light",
+            padding: "10px",
+            zIndex: "2",
+            boxShadow: "md",
+            children: [
+              Object(z.jsx)(wt.a, {
+                placement: "bottom-end",
+                isLazy: !0,
+                children: function (e) {
+                  var r = e.isOpen;
+                  return Object(z.jsxs)(z.Fragment, {
+                    children: [
+                      Object(z.jsxs)(f.a, {
+                        justify: "space-between",
+                        align: "center",
+                        children: [
+                          Object(z.jsx)(m.a, {
+                            fontSize: "20px",
+                            children: null === a || void 0 === a ? void 0 : a.name,
+                          }),
+                          Object(z.jsx)(wt.b, { children: Object(z.jsx)(Ye.a, { as: r ? He.d : He.a }) }),
+                        ],
+                      }),
+                      Object(z.jsxs)(Ct, {
+                        children: [
+                          Object(z.jsx)(St, { label: "Invite People", icon: dn.h, handleClick: t }),
+                          o && Object(z.jsx)(St, { label: "Server Settings", icon: Ue.c, handleClick: j }),
+                          o && Object(z.jsx)(St, { label: "Create Channel", icon: Rn.a, handleClick: n }),
+                          Object(z.jsx)(wt.c, {}),
+                          Object(z.jsx)(St, { label: "Change Appearance", icon: dn.f, handleClick: v }),
+                          !o &&
+                            Object(z.jsxs)(z.Fragment, {
+                              children: [
+                                Object(z.jsx)(wt.c, {}),
+                                Object(z.jsx)(_t, { label: "Leave Server", icon: kt.a, handleClick: w }),
+                              ],
+                            }),
+                        ],
+                      }),
+                    ],
+                  });
+                },
+              }),
+              d && Object(z.jsx)(Lt, { guildId: r, isOpen: d, onClose: O }),
+              g && Object(z.jsx)(Jt, { guildId: r, isOpen: g, onClose: y }),
+            ],
+          });
+        },
+        Vt = t(636),
+        Yt = function (e) {
+          var n = e.isOpen,
+            t = e.onClose,
+            r = Object(b.i)().guildId,
+            a = Object(i.useState)(""),
+            c = Object(C.a)(a, 2),
+            s = c[0],
+            o = c[1],
+            l = Object(Be.a)(s),
+            u = l.hasCopied,
+            d = l.onCopy,
+            j = Object(i.useState)(!1),
+            f = Object(C.a)(j, 2),
+            O = f[0],
+            p = f[1];
+          return (
+            Object(i.useEffect)(
+              function () {
+                if (n) {
+                  var e = (function () {
+                    var e = Object(x.a)(
+                      h.a.mark(function e() {
+                        var n, t;
+                        return h.a.wrap(
+                          function (e) {
+                            for (;;)
+                              switch ((e.prev = e.next)) {
+                                case 0:
+                                  return (e.prev = 0), (e.next = 3), oe(r, O);
+                                case 3:
+                                  (n = e.sent), (t = n.data) && o(t), (e.next = 10);
+                                  break;
+                                case 8:
+                                  (e.prev = 8), (e.t0 = e.catch(0));
+                                case 10:
+                                case "end":
+                                  return e.stop();
+                              }
+                          },
+                          e,
+                          null,
+                          [[0, 8]]
+                        );
+                      })
+                    );
+                    return function () {
+                      return e.apply(this, arguments);
+                    };
+                  })();
+                  e();
+                }
+              },
+              [n, o, r, O]
+            ),
+            Object(z.jsxs)(ae.a, {
+              isOpen: n,
+              onClose: t,
+              isCentered: !0,
+              children: [
+                Object(z.jsx)(ae.g, {}),
+                Object(z.jsxs)(ae.d, {
+                  bg: "brandGray.light",
+                  children: [
+                    Object(z.jsx)(ae.f, { textAlign: "center", fontWeight: "bold", pb: "0", children: "Invite Link" }),
+                    Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                    Object(z.jsxs)(ae.b, {
+                      children: [
+                        Object(z.jsx)(y.a, {
+                          mb: "4",
+                          children: "Share this link with others to grant access to this server",
+                        }),
+                        Object(z.jsx)(Vt.a, {
+                          onChange: function (e) {
+                            return p(e.target.checked);
+                          },
+                          mb: 4,
+                          children: "Never reset",
+                        }),
+                        Object(z.jsxs)(rn.a, {
+                          children: [
+                            Object(z.jsx)(R.a, {
+                              id: "invite-link",
+                              bg: "brandGray.dark",
+                              borderColor: u ? "brandGreen" : "black",
+                              borderRadius: "3px",
+                              focusBorderColor: "highlight.standard",
+                              value: s,
+                              isReadOnly: !0,
+                            }),
+                            Object(z.jsx)(cn.b, {
+                              width: "4.5rem",
+                              children: Object(z.jsx)(v.a, {
+                                h: "1.75rem",
+                                size: "sm",
+                                bg: u ? "brandGreen" : "highlight.standard",
+                                color: "white",
+                                type: "submit",
+                                fontSize: "14px",
+                                _hover: { bg: "highlight.hover" },
+                                _active: { bg: "highlight.active" },
+                                _focus: { boxShadow: "none" },
+                                onClick: d,
+                                children: u ? "Copied" : "Copy",
+                              }),
+                            }),
+                          ],
+                        }),
+                        Object(z.jsx)(y.a, {
+                          my: "2",
+                          fontSize: "12px",
+                          children: O
+                            ? "Your invite link won't expire"
+                            : "Your invite link expires in 1 day and can only be used once",
+                        }),
+                      ],
+                    }),
+                    Object(z.jsx)(ae.e, { bg: "brandGray.dark" }),
+                  ],
+                }),
+              ],
+            })
+          );
+        };
+      !(function (e) {
+        (e[(e.START = 0)] = "START"), (e[(e.CONFIRM = 1)] = "CONFIRM");
+      })(Mt || (Mt = {}));
+      var Ht = function (e) {
+          var n = e.guildId,
+            t = e.channelId,
+            r = e.isOpen,
+            a = e.onClose,
+            c = fe(n),
+            s = Object(u.useQuery)(c, function () {
+              return le(n).then(function (e) {
+                return e.data;
+              });
+            }).data,
+            o = $n(t, xe(n)),
+            l = [],
+            d = Object(i.useState)([]),
+            b = Object(C.a)(d, 2),
+            j = b[0],
+            p = b[1],
+            m = Object(i.useState)(Mt.START),
+            g = Object(C.a)(m, 2),
+            S = g[0],
+            R = g[1],
+            G = Object(i.useState)(!1),
+            T = Object(C.a)(G, 2),
+            N = T[0],
+            D = T[1];
+          null === s ||
+            void 0 === s ||
+            s.map(function (e) {
+              return l.push({ label: e.username, value: e.id, image: e.image });
+            });
+          Object(u.useQuery)(
+            "".concat(t, "-members"),
+            Object(x.a)(
+              h.a.mark(function e() {
+                var n, r, a;
+                return h.a.wrap(function (e) {
+                  for (;;)
+                    switch ((e.prev = e.next)) {
+                      case 0:
+                        return (e.next = 2), vt(t);
+                      case 2:
+                        return (
+                          (n = e.sent),
+                          (r = n.data),
+                          (a = l.filter(function (e) {
+                            return r.includes(e.value);
+                          })),
+                          p(a),
+                          e.abrupt("return", a)
+                        );
+                      case 7:
+                      case "end":
+                        return e.stop();
+                    }
+                }, e);
+              })
+            )
+          ).data;
+          var Q = function (e) {
+              p(function (n) {
+                return [].concat(Object(re.a)(n), [e]);
+              });
+            },
+            P = function (e) {
+              var n = e.image,
+                t = e.label;
+              return Object(z.jsxs)(f.a, {
+                align: "center",
+                children: [
+                  Object(z.jsx)(ge.a, { mr: 2, size: "sm", src: n }),
+                  Object(z.jsx)(y.a, { textColor: "#000", children: t }),
+                ],
+              });
+            };
+          return o
+            ? Object(z.jsxs)(ae.a, {
+                isOpen: r,
+                onClose: a,
+                isCentered: !0,
+                children: [
+                  Object(z.jsx)(ae.g, {}),
+                  S === Mt.START &&
+                    Object(z.jsx)(ae.d, {
+                      bg: "brandGray.light",
+                      children: Object(z.jsx)(w.b, {
+                        initialValues: { name: o.name, isPublic: o.isPublic },
+                        validationSchema: pt,
+                        onSubmit: (function () {
+                          var e = Object(x.a)(
+                            h.a.mark(function e(n, r) {
+                              var c, i, s, o, l, u, d, b, x, f;
+                              return h.a.wrap(
+                                function (e) {
+                                  for (;;)
+                                    switch ((e.prev = e.next)) {
+                                      case 0:
+                                        return (
+                                          (c = r.setErrors),
+                                          (i = r.resetForm),
+                                          (e.prev = 1),
+                                          (s = []),
+                                          j.map(function (e) {
+                                            return s.push(e.value);
+                                          }),
+                                          (e.next = 6),
+                                          mt(t, Object(k.a)(Object(k.a)({}, n), {}, { members: s }))
+                                        );
+                                      case 6:
+                                        (o = e.sent), o.data && (i(), a()), (e.next = 15);
+                                        break;
+                                      case 11:
+                                        (e.prev = 11),
+                                          (e.t0 = e.catch(1)),
+                                          500 ===
+                                            (null === e.t0 ||
+                                            void 0 === e.t0 ||
+                                            null === (l = e.t0.response) ||
+                                            void 0 === l
+                                              ? void 0
+                                              : l.status) && D(!0),
+                                          (null === e.t0 ||
+                                          void 0 === e.t0 ||
+                                          null === (u = e.t0.response) ||
+                                          void 0 === u ||
+                                          null === (d = u.data) ||
+                                          void 0 === d
+                                            ? void 0
+                                            : d.errors) &&
+                                            ((f =
+                                              null === e.t0 ||
+                                              void 0 === e.t0 ||
+                                              null === (b = e.t0.response) ||
+                                              void 0 === b ||
+                                              null === (x = b.data) ||
+                                              void 0 === x
+                                                ? void 0
+                                                : x.errors),
+                                            c(E(f)));
+                                      case 15:
+                                      case "end":
+                                        return e.stop();
+                                    }
+                                },
+                                e,
+                                null,
+                                [[1, 11]]
+                              );
+                            })
+                          );
+                          return function (n, t) {
+                            return e.apply(this, arguments);
+                          };
+                        })(),
+                        children: function (e) {
+                          var n = e.isSubmitting,
+                            t = e.setFieldValue,
+                            r = e.values;
+                          return Object(z.jsxs)(w.a, {
+                            children: [
+                              Object(z.jsx)(ae.f, {
+                                textAlign: "center",
+                                fontWeight: "bold",
+                                children: "Channel Settings",
+                              }),
+                              Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                              Object(z.jsxs)(ae.b, {
+                                children: [
+                                  Object(z.jsx)(A, { label: "channel name", name: "name" }),
+                                  Object(z.jsxs)(_.a, {
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    mt: "4",
+                                    children: [
+                                      Object(z.jsx)(I.a, {
+                                        mb: "0",
+                                        children: Object(z.jsxs)(f.a, {
+                                          align: "center",
+                                          children: [
+                                            Object(z.jsx)(Ie.b, {}),
+                                            Object(z.jsx)(y.a, { ml: "2", children: "Private Channel" }),
+                                          ],
+                                        }),
+                                      }),
+                                      Object(z.jsx)(ft.a, {
+                                        defaultChecked: !r.isPublic,
+                                        onChange: function (e) {
+                                          t("isPublic", !e.target.checked);
+                                        },
+                                      }),
+                                    ],
+                                  }),
+                                  Object(z.jsx)(y.a, {
+                                    mt: "4",
+                                    fontSize: "14px",
+                                    textColor: "brandGray.accent",
+                                    children:
+                                      "By making a channel private, only selected members will be able to view this channel",
+                                  }),
+                                  !r.isPublic &&
+                                    Object(z.jsx)(O.a, {
+                                      mt: "2",
+                                      pb: 0,
+                                      children: Object(z.jsx)(Ot.CUIAutoComplete, {
+                                        label: "Who can access this channel",
+                                        placeholder: "",
+                                        onCreateItem: Q,
+                                        items: l,
+                                        selectedItems: j,
+                                        itemRenderer: P,
+                                        onSelectedItemsChange: function (e) {
+                                          var n;
+                                          (n = e.selectedItems) && p(n);
+                                        },
+                                      }),
+                                    }),
+                                  Object(z.jsx)(te.a, { my: "2" }),
+                                  Object(z.jsx)(Ge.c, {
+                                    children: Object(z.jsx)(v.a, {
+                                      onClick: function () {
+                                        return R(Mt.CONFIRM);
+                                      },
+                                      colorScheme: "red",
+                                      variant: "ghost",
+                                      fontSize: "14px",
+                                      rightIcon: Object(z.jsx)(dn.e, {}),
+                                      children: "Delete Channel",
+                                    }),
+                                  }),
+                                  N &&
+                                    Object(z.jsx)(y.a, {
+                                      my: "2",
+                                      color: "menuRed",
+                                      align: "center",
+                                      children: "Server Error. Try again later",
+                                    }),
+                                ],
+                              }),
+                              Object(z.jsxs)(ae.e, {
+                                bg: "brandGray.dark",
+                                children: [
+                                  Object(z.jsx)(v.a, {
+                                    onClick: a,
+                                    mr: 6,
+                                    variant: "link",
+                                    fontSize: "14px",
+                                    _focus: { outline: "none" },
+                                    children: "Cancel",
+                                  }),
+                                  Object(z.jsx)(v.a, {
+                                    background: "highlight.standard",
+                                    color: "white",
+                                    type: "submit",
+                                    _hover: { bg: "highlight.hover" },
+                                    _active: { bg: "highlight.active" },
+                                    _focus: { boxShadow: "none" },
+                                    isLoading: n,
+                                    fontSize: "14px",
+                                    children: "Save Changes",
+                                  }),
+                                ],
+                              }),
+                            ],
+                          });
+                        },
+                      }),
+                    }),
+                  S === Mt.CONFIRM &&
+                    Object(z.jsx)(Kt, {
+                      goBack: function () {
+                        return R(Mt.START);
+                      },
+                      submitClose: function () {
+                        R(Mt.START), a();
+                      },
+                      name: o.name,
+                      channelId: o.id,
+                    }),
+                ],
+              })
+            : null;
+        },
+        Kt = function (e) {
+          var n = e.goBack,
+            t = e.submitClose,
+            r = e.name,
+            a = e.channelId,
+            c = Object(i.useState)(!1),
+            s = Object(C.a)(c, 2),
+            o = s[0],
+            l = s[1],
+            u = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var n;
+                  return h.a.wrap(
+                    function (e) {
+                      for (;;)
+                        switch ((e.prev = e.next)) {
+                          case 0:
+                            return (e.prev = 0), (e.next = 3), gt(a);
+                          case 3:
+                            (n = e.sent), n.data && t(), (e.next = 11);
+                            break;
+                          case 8:
+                            (e.prev = 8), (e.t0 = e.catch(0)), l(!0);
+                          case 11:
+                          case "end":
+                            return e.stop();
+                        }
+                    },
+                    e,
+                    null,
+                    [[0, 8]]
+                  );
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return Object(z.jsxs)(ae.d, {
+            bg: "brandGray.light",
+            children: [
+              Object(z.jsx)(ae.f, { fontWeight: "bold", pb: "0", children: "Delete Channel" }),
+              Object(z.jsxs)(ae.b, {
+                pb: 3,
+                children: [
+                  Object(z.jsxs)(y.a, {
+                    children: ["Are you sure you want to delete #", r, "? This cannot be undone."],
+                  }),
+                  o &&
+                    Object(z.jsx)(y.a, {
+                      my: "2",
+                      color: "menuRed",
+                      align: "center",
+                      children: "Server Error. Try again later",
+                    }),
+                ],
+              }),
+              Object(z.jsxs)(ae.e, {
+                bg: "brandGray.dark",
+                children: [
+                  Object(z.jsx)(v.a, {
+                    mr: 6,
+                    variant: "link",
+                    onClick: n,
+                    fontSize: "14px",
+                    _focus: { outline: "none" },
+                    children: "Cancel",
+                  }),
+                  Object(z.jsx)(Ge.c, {
+                    children: Object(z.jsx)(v.a, {
+                      colorScheme: "red",
+                      fontSize: "14px",
+                      onClick: function () {
+                        return u();
+                      },
+                      children: "Delete Channel",
+                    }),
+                  }),
+                ],
+              }),
+            ],
+          });
+        },
+        Zt = function (e) {
+          var n = e.channel,
+            t = e.guildId,
+            r = "/channels/".concat(t, "/").concat(n.id),
+            a = Object(b.h)().pathname === r,
+            c = Object(i.useState)(!1),
+            s = Object(C.a)(c, 2),
+            o = s[0],
+            l = s[1],
+            j = P(function (e) {
+              return e.current;
+            }),
+            h = Wn(t),
+            x = Object(X.a)(),
+            O = x.isOpen,
+            p = x.onOpen,
+            m = x.onClose,
+            g = Object(u.useQueryClient)();
+          return (
+            Object(i.useEffect)(function () {
+              n.hasNotification &&
+                a &&
+                g.setQueryData(xe(t), function (e) {
+                  var t = null !== e && void 0 !== e ? e : [],
+                    r = t.findIndex(function (e) {
+                      return e.id === n.id;
+                    });
+                  return -1 !== r && (t[r] = Object(k.a)(Object(k.a)({}, t[r]), {}, { hasNotification: !1 })), t;
+                });
+            }),
+            Object(z.jsx)(d.b, {
+              to: r,
+              children: Object(z.jsxs)(ne.c, {
+                p: "5px",
+                m: "0 10px",
+                color: a || n.hasNotification ? "#fff" : "brandGray.accent",
+                _hover: { bg: "brandGray.light", borderRadius: "5px", cursor: "pointer", color: "#fff" },
+                bg: a ? "brandGray.active" : void 0,
+                mb: "2px",
+                position: "relative",
+                onMouseLeave: function () {
+                  return l(!1);
+                },
+                onMouseEnter: function () {
+                  return l(!0);
+                },
+                children: [
+                  n.hasNotification && Object(z.jsx)(ke, {}),
+                  Object(z.jsxs)(f.a, {
+                    align: "center",
+                    justify: "space-between",
+                    children: [
+                      Object(z.jsxs)(f.a, {
+                        align: "center",
+                        children: [
+                          Object(z.jsx)(Ye.a, { as: n.isPublic ? dn.d : dn.g, color: "brandGray.accent" }),
+                          Object(z.jsx)(y.a, { ml: "2", children: n.name }),
+                        ],
+                      }),
+                      (null === j || void 0 === j ? void 0 : j.id) ===
+                        (null === h || void 0 === h ? void 0 : h.ownerId) &&
+                        (o || O) &&
+                        Object(z.jsxs)(z.Fragment, {
+                          children: [
+                            Object(z.jsx)(Ye.a, {
+                              "aria-label": "edit channel",
+                              as: Rn.c,
+                              color: "brandGray.accent",
+                              fontSize: "12px",
+                              _hover: { color: "#fff" },
+                              onClick: function (e) {
+                                e.preventDefault(), p();
+                              },
+                            }),
+                            O && Object(z.jsx)(Ht, { guildId: t, channelId: n.id, isOpen: O, onClose: m }),
+                          ],
+                        }),
+                    ],
+                  }),
+                ],
+              }),
+            })
+          );
+        };
+      var $t = function () {
+          var e = Object(X.a)(),
+            n = e.isOpen,
+            t = e.onOpen,
+            r = e.onClose,
+            a = Object(X.a)(),
+            c = a.isOpen,
+            s = a.onOpen,
+            o = a.onClose,
+            l = Object(b.i)().guildId,
+            d = xe(l),
+            j = Object(u.useQuery)(d, function () {
+              return ((e = l), V.get("channels/".concat(e))).then(function (e) {
+                return e.data;
+              });
+              var e;
+            }).data;
+          return (
+            (function (e, n) {
+              var t = Object(b.h)(),
+                r = Object(b.g)(),
+                a = Object(u.useQueryClient)(),
+                c = Wn(e),
+                s = P(function (e) {
+                  return e.current;
+                });
+              Object(i.useEffect)(
+                function () {
+                  var i = Pe();
+                  i.send(JSON.stringify({ action: "joinGuild", room: e })),
+                    i.send(JSON.stringify({ action: "joinUser", room: null === s || void 0 === s ? void 0 : s.id }));
+                  var o = function () {
+                    i.send(JSON.stringify({ action: "leaveGuild", room: e })),
+                      i.send(JSON.stringify({ action: "leaveRoom", room: null === s || void 0 === s ? void 0 : s.id })),
+                      i.close();
+                  };
+                  return (
+                    i.addEventListener("message", function (i) {
+                      var s = JSON.parse(i.data);
+                      switch (s.action) {
+                        case "add_channel":
+                        case "add_private_channel":
+                          a.setQueryData(n, function (e) {
+                            return [].concat(Object(re.a)(e), [s.data]);
+                          });
+                          break;
+                        case "edit_channel":
+                          var o = s.data;
+                          a.setQueryData(n, function (e) {
+                            var n = null !== e && void 0 !== e ? e : [],
+                              t = n.findIndex(function (e) {
+                                return e.id === o.id;
+                              });
+                            return -1 !== t ? (n[t] = o) : o.isPublic && n.push(o), n;
+                          });
+                          break;
+                        case "delete_channel":
+                          var l = s.data;
+                          a.setQueryData(n, function (n) {
+                            var a = "/channels/".concat(e, "/").concat(l);
+                            return (
+                              t.pathname === a &&
+                                c &&
+                                (l === c.default_channel_id
+                                  ? r.replace("/channels/me")
+                                  : r.replace("".concat(c.default_channel_id))),
+                              n.filter(function (e) {
+                                return e.id !== l;
+                              })
+                            );
+                          });
+                          break;
+                        case "new_notification":
+                          var u = s.data,
+                            d = "/channels/".concat(e, "/").concat(u);
+                          t.pathname !== d &&
+                            a.setQueryData(n, function (e) {
+                              var n = null !== e && void 0 !== e ? e : [],
+                                t = n.findIndex(function (e) {
+                                  return e.id === u;
+                                });
+                              return (
+                                -1 !== t && (n[t] = Object(k.a)(Object(k.a)({}, e[t]), {}, { hasNotification: !0 })), n
+                              );
+                            });
+                      }
+                    }),
+                    window.addEventListener("beforeunload", o),
+                    function () {
+                      return o();
+                    }
+                  );
+                },
+                [e, n, a, r, t, c, s]
+              );
+            })(l, d),
+            Object(z.jsxs)(z.Fragment, {
+              children: [
+                Object(z.jsx)(Ut, { channelOpen: s, inviteOpen: t }),
+                Object(z.jsxs)(ee.b, {
+                  gridColumn: 2,
+                  gridRow: "2/4",
+                  bg: "brandGray.dark",
+                  overflowY: "hidden",
+                  _hover: { overflowY: "auto" },
+                  css: Pt,
+                  children: [
+                    n && Object(z.jsx)(Yt, { isOpen: n, onClose: r }),
+                    c && Object(z.jsx)(yt, { guildId: l, onClose: o, isOpen: c }),
+                    Object(z.jsxs)(ne.e, {
+                      listStyleType: "none",
+                      ml: "0",
+                      mt: "4",
+                      children: [
+                        null === j || void 0 === j
+                          ? void 0
+                          : j.map(function (e) {
+                              return Object(z.jsx)(Zt, { channel: e, guildId: l }, "".concat(e.id));
+                            }),
+                        Object(z.jsx)(O.a, { h: "16" }),
+                      ],
+                    }),
+                    Object(z.jsx)(Ve, {}),
+                  ],
+                }),
+              ],
+            })
+          );
+        },
+        Xt = t(373),
+        er = D()(
+          Object(Q.persist)(
+            function (e, n) {
+              return {
+                showMembers: !0,
+                toggleShowMembers: function () {
+                  return e({ showMembers: !n().showMembers });
+                },
+              };
+            },
+            { name: "settings-storage" }
+          )
+        ),
+        nr = function () {
+          var e = er(function (e) {
+              return e.toggleShowMembers;
+            }),
+            n = Object(b.i)(),
+            t = n.guildId,
+            r = $n(n.channelId, xe(t));
+          return Object(z.jsx)(ee.b, {
+            gridColumn: 3,
+            gridRow: "1",
+            bg: "brandGray.light",
+            padding: "10px",
+            zIndex: "2",
+            boxShadow: "md",
+            children: Object(z.jsxs)(f.a, {
+              align: "center",
+              justify: "space-between",
+              children: [
+                Object(z.jsxs)(f.a, {
+                  align: "center",
+                  children: [
+                    Object(z.jsx)(dn.d, {}),
+                    Object(z.jsx)(y.a, {
+                      ml: "2",
+                      fontWeight: "semibold",
+                      children: null === r || void 0 === r ? void 0 : r.name,
+                    }),
+                  ],
+                }),
+                Object(z.jsx)(Ye.a, {
+                  as: Xt.a,
+                  fontSize: "20px",
+                  mr: "2",
+                  _hover: { cursor: "pointer" },
+                  onClick: e,
+                  "aria-label": "toggle member list",
+                }),
+              ],
+            }),
+          });
+        },
+        tr = function (e) {
+          var n,
+            t,
+            r = e.member,
+            a = P(function (e) {
+              return e.current;
+            }),
+            c = Wn(Object(b.i)().guildId),
+            i = void 0 !== c && c.ownerId === (null === a || void 0 === a ? void 0 : a.id),
+            s = Object(In.d)({ id: r.id }).show;
+          return Object(z.jsxs)(z.Fragment, {
+            children: [
+              Object(z.jsx)(ne.c, {
+                p: "2",
+                mx: "10px",
+                color: "brandGray.accent",
+                _hover: { bg: "brandGray.light", borderRadius: "5px", cursor: "pointer", color: "#fff" },
+                onContextMenu: s,
+                children: Object(z.jsxs)(f.a, {
+                  align: "center",
+                  children: [
+                    Object(z.jsx)(ge.a, {
+                      size: "sm",
+                      src: r.image,
+                      children: Object(z.jsx)(ge.b, { boxSize: "1.25em", bg: r.isOnline ? "green.500" : "gray.500" }),
+                    }),
+                    Object(z.jsx)(y.a, {
+                      ml: "2",
+                      color: null !== (n = r.color) && void 0 !== n ? n : void 0,
+                      children: null !== (t = r.nickname) && void 0 !== t ? t : r.username,
+                    }),
+                  ],
+                }),
+              }),
+              r.id !== (null === a || void 0 === a ? void 0 : a.id) &&
+                Object(z.jsx)(Yn, { member: r, isOwner: i, id: r.id }),
+            ],
+          });
+        },
+        rr = {
+          "&::-webkit-scrollbar": { width: "4px" },
+          "&::-webkit-scrollbar-track": { width: "4px" },
+          "&::-webkit-scrollbar-thumb": { background: "brandGray.darker", borderRadius: "18px" },
+        };
+      var ar = function () {
+          var e = Object(b.i)().guildId,
+            n = fe(e),
+            t = Object(u.useQuery)(n, function () {
+              return le(e).then(function (e) {
+                return e.data;
+              });
+            }).data,
+            r = [],
+            a = [];
+          return (
+            t &&
+              t.forEach(function (e) {
+                e.isOnline ? r.push(e) : a.push(e);
+              }),
+            (function (e, n) {
+              var t = Object(u.useQueryClient)();
+              Object(i.useEffect)(
+                function () {
+                  var r = Pe();
+                  return (
+                    r.send(JSON.stringify({ action: "joinGuild", room: e })),
+                    r.addEventListener("message", function (e) {
+                      var r = JSON.parse(e.data);
+                      switch (r.action) {
+                        case "add_member":
+                          t.setQueryData(n, function (e) {
+                            return [].concat(Object(re.a)(e), [r.data]).sort(function (e, n) {
+                              return e.nickname && n.nickname
+                                ? e.nickname.localeCompare(n.nickname)
+                                : e.nickname && !n.nickname
+                                ? e.nickname.localeCompare(n.username)
+                                : !e.nickname && n.nickname
+                                ? e.username.localeCompare(n.nickname)
+                                : e.username.localeCompare(n.username);
+                            });
+                          });
+                          break;
+                        case "remove_member":
+                          t.setQueryData(n, function (e) {
+                            return Object(re.a)(
+                              e.filter(function (e) {
+                                return e.id !== r.data;
+                              })
+                            );
+                          });
+                          break;
+                        case "toggle_online":
+                          var a = r.data;
+                          t.setQueryData(n, function (e) {
+                            var n = null !== e && void 0 !== e ? e : [],
+                              t = n.findIndex(function (e) {
+                                return e.id === a;
+                              });
+                            return -1 !== t && (n[t].isOnline = !0), n;
+                          });
+                          break;
+                        case "toggle_offline":
+                          var c = r.data;
+                          t.setQueryData(n, function (e) {
+                            var n = null !== e && void 0 !== e ? e : [],
+                              t = n.findIndex(function (e) {
+                                return e.id === c;
+                              });
+                            return -1 !== t && (n[t].isOnline = !1), n;
+                          });
+                      }
+                    }),
+                    function () {
+                      r.send(JSON.stringify({ action: "leaveRoom", room: e })), r.close();
+                    }
+                  );
+                },
+                [n, t, e]
+              );
+            })(e, n),
+            Object(z.jsx)(ee.b, {
+              gridColumn: 4,
+              gridRow: "1 / 4",
+              bg: "memberList",
+              overflowY: "hidden",
+              _hover: { overflowY: "auto" },
+              css: rr,
+              children: Object(z.jsxs)(ne.e, {
+                listStyleType: "none",
+                ml: "0",
+                id: "member-list",
+                children: [
+                  Object(z.jsx)(un, { label: "online\u2014".concat(r.length) }),
+                  r.map(function (e) {
+                    return Object(z.jsx)(tr, { member: e }, "".concat(e.id));
+                  }),
+                  Object(z.jsx)(un, { label: "offline\u2014".concat(a.length) }),
+                  a.map(function (e) {
+                    return Object(z.jsx)(tr, { member: e }, "".concat(e.id));
+                  }),
+                ],
+              }),
+            })
+          );
+        },
+        cr = function () {
+          var e = er(function (e) {
+            return e.showMembers;
+          });
+          return Object(z.jsxs)(Cn, {
+            showLastColumn: e,
+            children: [
+              Object(z.jsx)(We, {}),
+              Object(z.jsx)($t, {}),
+              Object(z.jsx)(nr, {}),
+              Object(z.jsx)(it, {}),
+              Object(z.jsx)(ht, {}),
+              e && Object(z.jsx)(ar, {}),
+            ],
+          });
+        },
+        ir = ["component"],
+        sr = function (e) {
+          var n = e.component,
+            t = Object(S.a)(e, ir),
+            r = JSON.parse(localStorage.getItem("user-storage")),
+            a = P(function (e) {
+              return e.current;
+            });
+          return Object(z.jsx)(
+            b.b,
+            Object(k.a)(
+              Object(k.a)({}, t),
+              {},
+              {
+                render: function (e) {
+                  var t;
+                  return a ||
+                    (null === r || void 0 === r || null === (t = r.state) || void 0 === t ? void 0 : t.current)
+                    ? Object(z.jsx)(n, Object(k.a)({}, e))
+                    : Object(z.jsx)(b.a, { to: "/login" });
+                },
+              }
+            )
+          );
+        },
+        or = t(342),
+        lr = function (e) {
+          var n = e.isOpen,
+            t = e.onClose,
+            r = Object(K.a)();
+          return Object(z.jsxs)(ae.a, {
+            isOpen: n,
+            onClose: t,
+            isCentered: !0,
+            children: [
+              Object(z.jsx)(ae.g, {}),
+              Object(z.jsx)(ae.d, {
+                bg: "brandGray.light",
+                children: Object(z.jsx)(w.b, {
+                  initialValues: { currentPassword: "", newPassword: "", confirmNewPassword: "" },
+                  validationSchema: B,
+                  onSubmit: (function () {
+                    var e = Object(x.a)(
+                      h.a.mark(function e(n, a) {
+                        var c, i, s, o, l, u, d, b;
+                        return h.a.wrap(
+                          function (e) {
+                            for (;;)
+                              switch ((e.prev = e.next)) {
+                                case 0:
+                                  return (
+                                    (c = a.setErrors),
+                                    (e.prev = 1),
+                                    (e.next = 4),
+                                    (j = n),
+                                    V.put("/account/change-password", j)
+                                  );
+                                case 4:
+                                  (i = e.sent),
+                                    i.data &&
+                                      (r({
+                                        title: "Changed Password",
+                                        status: "success",
+                                        duration: 5e3,
+                                        isClosable: !0,
+                                      }),
+                                      t()),
+                                    (e.next = 13);
+                                  break;
+                                case 9:
+                                  (e.prev = 9),
+                                    (e.t0 = e.catch(1)),
+                                    500 ===
+                                      (null === e.t0 || void 0 === e.t0 || null === (s = e.t0.response) || void 0 === s
+                                        ? void 0
+                                        : s.status) &&
+                                      r({
+                                        title: "Server Error",
+                                        description: "Try again later",
+                                        status: "error",
+                                        duration: 3e3,
+                                        isClosable: !0,
+                                      }),
+                                    (null === e.t0 ||
+                                    void 0 === e.t0 ||
+                                    null === (o = e.t0.response) ||
+                                    void 0 === o ||
+                                    null === (l = o.data) ||
+                                    void 0 === l
+                                      ? void 0
+                                      : l.errors) &&
+                                      ((b =
+                                        null === e.t0 ||
+                                        void 0 === e.t0 ||
+                                        null === (u = e.t0.response) ||
+                                        void 0 === u ||
+                                        null === (d = u.data) ||
+                                        void 0 === d
+                                          ? void 0
+                                          : d.errors),
+                                      c(E(b)));
+                                case 13:
+                                case "end":
+                                  return e.stop();
+                              }
+                            var j;
+                          },
+                          e,
+                          null,
+                          [[1, 9]]
+                        );
+                      })
+                    );
+                    return function (n, t) {
+                      return e.apply(this, arguments);
+                    };
+                  })(),
+                  children: function (e) {
+                    var n = e.isSubmitting;
+                    return Object(z.jsxs)(w.a, {
+                      children: [
+                        Object(z.jsx)(ae.f, {
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          children: "Change your password",
+                        }),
+                        Object(z.jsx)(ae.c, { _focus: { outline: "none" } }),
+                        Object(z.jsxs)(ae.b, {
+                          pb: 6,
+                          children: [
+                            Object(z.jsx)(y.a, { children: "Enter your current password and a new password" }),
+                            Object(z.jsx)(A, {
+                              label: "current password",
+                              name: "currentPassword",
+                              autoComplete: "password",
+                              type: "password",
+                            }),
+                            Object(z.jsx)(A, {
+                              label: "new password",
+                              name: "newPassword",
+                              autoComplete: "password",
+                              type: "password",
+                            }),
+                            Object(z.jsx)(A, {
+                              label: "confirm new password",
+                              name: "confirmNewPassword",
+                              autoComplete: "password",
+                              type: "password",
+                            }),
+                          ],
+                        }),
+                        Object(z.jsxs)(ae.e, {
+                          bg: "brandGray.dark",
+                          children: [
+                            Object(z.jsx)(v.a, {
+                              onClick: t,
+                              fontSize: "14px",
+                              mr: 6,
+                              variant: "link",
+                              _focus: { outline: "none" },
+                              children: "Cancel",
+                            }),
+                            Object(z.jsx)(v.a, {
+                              background: "highlight.standard",
+                              color: "white",
+                              type: "submit",
+                              _hover: { bg: "highlight.hover" },
+                              _active: { bg: "highlight.active" },
+                              _focus: { boxShadow: "none" },
+                              isLoading: n,
+                              fontSize: "14px",
+                              children: "Done",
+                            }),
+                          ],
+                        }),
+                      ],
+                    });
+                  },
+                }),
+              }),
+            ],
+          });
+        },
+        ur = function () {
+          var e,
+            n = Object(b.g)(),
+            t = Object(K.a)(),
+            r = Object(X.a)(),
+            a = r.isOpen,
+            c = r.onOpen,
+            s = r.onClose,
+            o = Object(X.a)(),
+            l = o.isOpen,
+            d = o.onOpen,
+            j = o.onClose,
+            p = Object(u.useQuery)("account", function () {
+              return V.get("/account").then(function (e) {
+                return e.data;
+              });
+            }).data,
+            g = Object(u.useQueryClient)(),
+            y = P(function (e) {
+              return e.logout;
+            }),
+            k = P(function (e) {
+              return e.setUser;
+            }),
+            S = Object(i.useRef)(null),
+            _ = Object(i.useState)(
+              null !== (e = null === p || void 0 === p ? void 0 : p.image) && void 0 !== e ? e : null
+            ),
+            I = Object(C.a)(_, 2),
+            R = I[0],
+            G = I[1],
+            T = Object(i.useState)(""),
+            N = Object(C.a)(T, 2),
+            D = N[0],
+            Q = N[1],
+            M = Object(i.useState)(null),
+            L = Object(C.a)(M, 2),
+            F = L[0],
+            W = L[1],
+            B = function () {
+              n.goBack();
+            },
+            J = (function () {
+              var e = Object(x.a)(
+                h.a.mark(function e() {
+                  var t;
+                  return h.a.wrap(function (e) {
+                    for (;;)
+                      switch ((e.prev = e.next)) {
+                        case 0:
+                          return (e.next = 2), V.post("/account/logout");
+                        case 2:
+                          (t = e.sent), t.data && (g.clear(), y(), n.replace("/"));
+                        case 5:
+                        case "end":
+                          return e.stop();
+                      }
+                  }, e);
+                })
+              );
+              return function () {
+                return e.apply(this, arguments);
+              };
+            })();
+          return p
+            ? Object(z.jsxs)(f.a, {
+                minHeight: "100vh",
+                width: "full",
+                align: "center",
+                justifyContent: "center",
+                children: [
+                  Object(z.jsxs)(O.a, {
+                    px: 4,
+                    width: "full",
+                    maxWidth: "500px",
+                    children: [
+                      Object(z.jsx)(f.a, {
+                        mb: "4",
+                        justify: "center",
+                        children: Object(z.jsx)(m.a, { fontSize: "24px", children: "Settings" }),
+                      }),
+                      Object(z.jsxs)(O.a, {
+                        p: 4,
+                        borderRadius: 4,
+                        background: "brandGray.light",
+                        children: [
+                          Object(z.jsx)(O.a, {
+                            children: Object(z.jsx)(w.b, {
+                              initialValues: { email: p.email, username: p.username, image: null },
+                              validationSchema: q,
+                              onSubmit: (function () {
+                                var e = Object(x.a)(
+                                  h.a.mark(function e(n, r) {
+                                    var a, c, i, s, o, l, u, d, b, j;
+                                    return h.a.wrap(
+                                      function (e) {
+                                        for (;;)
+                                          switch ((e.prev = e.next)) {
+                                            case 0:
+                                              return (
+                                                (a = r.setErrors),
+                                                (e.prev = 1),
+                                                (c = new FormData()).append("email", n.email),
+                                                c.append("username", n.username),
+                                                F && c.append("image", F),
+                                                (e.next = 8),
+                                                (h = c),
+                                                V.put("/account", h, {
+                                                  headers: { "Content-Type": "multipart/form-data" },
+                                                })
+                                              );
+                                            case 8:
+                                              (i = e.sent),
+                                                (s = i.data) &&
+                                                  (k(s),
+                                                  t({
+                                                    title: "Account Updated.",
+                                                    status: "success",
+                                                    duration: 3e3,
+                                                    isClosable: !0,
+                                                  })),
+                                                (e.next = 17);
+                                              break;
+                                            case 13:
+                                              (e.prev = 13),
+                                                (e.t0 = e.catch(1)),
+                                                500 ===
+                                                  (null === e.t0 ||
+                                                  void 0 === e.t0 ||
+                                                  null === (o = e.t0.response) ||
+                                                  void 0 === o
+                                                    ? void 0
+                                                    : o.status) &&
+                                                  t({
+                                                    title: "Something went wrong!",
+                                                    description: "Try again later",
+                                                    status: "error",
+                                                    duration: 3e3,
+                                                    isClosable: !0,
+                                                  }),
+                                                (null === e.t0 ||
+                                                void 0 === e.t0 ||
+                                                null === (l = e.t0.response) ||
+                                                void 0 === l ||
+                                                null === (u = l.data) ||
+                                                void 0 === u
+                                                  ? void 0
+                                                  : u.errors) &&
+                                                  ((j =
+                                                    null === e.t0 ||
+                                                    void 0 === e.t0 ||
+                                                    null === (d = e.t0.response) ||
+                                                    void 0 === d ||
+                                                    null === (b = d.data) ||
+                                                    void 0 === b
+                                                      ? void 0
+                                                      : b.errors),
+                                                  a(E(j)));
+                                            case 17:
+                                            case "end":
+                                              return e.stop();
+                                          }
+                                        var h;
+                                      },
+                                      e,
+                                      null,
+                                      [[1, 13]]
+                                    );
+                                  })
+                                );
+                                return function (n, t) {
+                                  return e.apply(this, arguments);
+                                };
+                              })(),
+                              children: function (e) {
+                                var n = e.isSubmitting,
+                                  t = e.values;
+                                return Object(z.jsxs)(w.a, {
+                                  children: [
+                                    Object(z.jsxs)(f.a, {
+                                      mb: "4",
+                                      justify: "center",
+                                      children: [
+                                        Object(z.jsx)(ve.a, {
+                                          label: "Change Avatar",
+                                          "aria-label": "Change Avatar",
+                                          children: Object(z.jsx)(ge.a, {
+                                            size: "xl",
+                                            name: null === p || void 0 === p ? void 0 : p.username,
+                                            src: R || (null === p || void 0 === p ? void 0 : p.image),
+                                            _hover: { cursor: "pointer", opacity: 0.5 },
+                                            onClick: function () {
+                                              return S.current.click();
+                                            },
+                                          }),
+                                        }),
+                                        Object(z.jsx)("input", {
+                                          type: "file",
+                                          name: "image",
+                                          accept: "image/*",
+                                          ref: S,
+                                          hidden: !0,
+                                          onChange: (function () {
+                                            var e = Object(x.a)(
+                                              h.a.mark(function e(n) {
+                                                return h.a.wrap(function (e) {
+                                                  for (;;)
+                                                    switch ((e.prev = e.next)) {
+                                                      case 0:
+                                                        if (n.currentTarget.files) {
+                                                          e.next = 2;
+                                                          break;
+                                                        }
+                                                        return e.abrupt("return");
+                                                      case 2:
+                                                        Q(URL.createObjectURL(n.currentTarget.files[0])), d();
+                                                      case 4:
+                                                      case "end":
+                                                        return e.stop();
+                                                    }
+                                                }, e);
+                                              })
+                                            );
+                                            return function (n) {
+                                              return e.apply(this, arguments);
+                                            };
+                                          })(),
+                                        }),
+                                      ],
+                                    }),
+                                    Object(z.jsxs)(O.a, {
+                                      my: 4,
+                                      children: [
+                                        Object(z.jsx)(A, {
+                                          value: t.email,
+                                          type: "email",
+                                          placeholder: "Email",
+                                          label: "Email",
+                                          name: "email",
+                                          autoComplete: "email",
+                                        }),
+                                        Object(z.jsx)(A, {
+                                          value: t.username,
+                                          placeholder: "Username",
+                                          label: "Username",
+                                          name: "username",
+                                          autoComplete: "username",
+                                        }),
+                                        Object(z.jsxs)(f.a, {
+                                          my: 8,
+                                          align: "end",
+                                          children: [
+                                            Object(z.jsx)(or.a, {}),
+                                            Object(z.jsx)(v.a, {
+                                              mr: 4,
+                                              colorScheme: "white",
+                                              variant: "outline",
+                                              onClick: B,
+                                              fontSize: "14px",
+                                              children: "Close",
+                                            }),
+                                            Object(z.jsx)(Ge.c, {
+                                              children: Object(z.jsx)(v.a, {
+                                                type: "submit",
+                                                colorScheme: "green",
+                                                isLoading: n,
+                                                fontSize: "14px",
+                                                children: "Update",
+                                              }),
+                                            }),
+                                            Object(z.jsx)(v.a, {
+                                              type: "submit",
+                                              colorScheme: "red",
+                                              onClick: J,
+                                              fontSize: "14px",
+                                              children: "Delete Account",
+                                            }),
+                                          ],
+                                        }),
+                                      ],
+                                    }),
+                                  ],
+                                });
+                              },
+                            }),
+                          }),
+                          Object(z.jsx)(te.a, { my: "4" }),
+                          Object(z.jsx)(f.a, {
+                            children: Object(z.jsx)(m.a, { fontSize: "18px", children: "Security" }),
+                          }),
+                          Object(z.jsxs)(f.a, {
+                            mt: "4",
+                            children: [
+                              Object(z.jsx)(v.a, {
+                                background: "highlight.standard",
+                                color: "white",
+                                _hover: { bg: "highlight.hover" },
+                                _active: { bg: "highlight.active" },
+                                _focus: { boxShadow: "none" },
+                                onClick: c,
+                                fontSize: "14px",
+                                children: "Change Password",
+                              }),
+                              Object(z.jsx)(or.a, {}),
+                              Object(z.jsx)(v.a, {
+                                colorScheme: "red",
+                                variant: "outline",
+                                onClick: J,
+                                fontSize: "14px",
+                                children: "Logout",
+                              }),
+                            ],
+                          }),
+                          Object(z.jsx)("a", {
+                            href: "https://git.services.xoniaapp.com/xonia/web",
+                            children: "dev@2.5.0",
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  a && Object(z.jsx)(lr, { isOpen: a, onClose: s }),
+                  l &&
+                    Object(z.jsx)(Qt, {
+                      isOpen: l,
+                      onClose: j,
+                      initialImage: D,
+                      applyCrop: function (e) {
+                        G(URL.createObjectURL(e)), W(new File([e], "avatar", { type: "image/jpeg" })), j();
+                      },
+                    }),
+                ],
+              })
+            : null;
+        },
+        dr = function () {
+          var e = Object(b.i)().link,
+            n = Object(i.useState)(null),
+            t = Object(C.a)(n, 2),
+            r = t[0],
+            a = t[1],
+            c = Object(b.g)();
+          return (
+            Object(i.useEffect)(
+              function () {
+                var n = (function () {
+                  var n = Object(x.a)(
+                    h.a.mark(function n() {
+                      var t, r, i, s, o, l, u;
+                      return h.a.wrap(
+                        function (n) {
+                          for (;;)
+                            switch ((n.prev = n.next)) {
+                              case 0:
+                                return (n.prev = 0), (n.next = 3), se({ link: e });
+                              case 3:
+                                (t = n.sent),
+                                  (r = t.data) &&
+                                    c.replace("/channels/".concat(r.id, "/").concat(r.default_channel_id)),
+                                  (n.next = 12);
+                                break;
+                              case 8:
+                                (n.prev = 8),
+                                  (n.t0 = n.catch(0)),
+                                  (400 !==
+                                    (s =
+                                      null === n.t0 || void 0 === n.t0 || null === (i = n.t0.response) || void 0 === i
+                                        ? void 0
+                                        : i.status) &&
+                                    404 !== s &&
+                                    500 !== s) ||
+                                    a(
+                                      null === n.t0 ||
+                                        void 0 === n.t0 ||
+                                        null === (o = n.t0.response) ||
+                                        void 0 === o ||
+                                        null === (l = o.data) ||
+                                        void 0 === l ||
+                                        null === (u = l.error) ||
+                                        void 0 === u
+                                        ? void 0
+                                        : u.message
+                                    );
+                              case 12:
+                              case "end":
+                                return n.stop();
+                            }
+                        },
+                        n,
+                        null,
+                        [[0, 8]]
+                      );
+                    })
+                  );
+                  return function () {
+                    return n.apply(this, arguments);
+                  };
+                })();
+                n();
+              },
+              [e, c]
+            ),
+            Object(z.jsx)(f.a, {
+              minHeight: "100vh",
+              align: "center",
+              justify: "center",
+              h: "full",
+              children: Object(z.jsxs)(O.a, {
+                textAlign: "center",
+                children: [
+                  Object(z.jsx)(f.a, {
+                    mb: "4",
+                    justify: "center",
+                    children: Object(z.jsx)(p.a, { src: "".concat("", "/logo.png"), w: "80px" }),
+                  }),
+                  Object(z.jsx)(y.a, { children: "Please wait..." }),
+                  Object(z.jsx)(y.a, { children: "You will be automatically redirected." }),
+                  r &&
+                    Object(z.jsxs)(O.a, {
+                      children: [
+                        Object(z.jsx)(y.a, { my: "2", textColor: "menuRed", children: r }),
+                        Object(z.jsxs)(y.a, {
+                          children: [
+                            "Click",
+                            " ",
+                            Object(z.jsx)(g.a, {
+                              as: d.b,
+                              to: "/channels/me",
+                              color: "highlight.standard",
+                              _focus: { outline: "none" },
+                              children: "here",
+                            }),
+                            " ",
+                            "to return.",
+                          ],
+                        }),
+                      ],
+                    }),
+                ],
+              }),
+            })
+          );
+        },
+        br = function () {
+          return Object(z.jsx)(d.a, {
+            children: Object(z.jsxs)(b.d, {
+              children: [
+                Object(z.jsx)(b.b, { exact: !0, path: "/", children: Object(z.jsx)(Y, {}) }),
+                Object(z.jsx)(b.b, { path: "/login", children: Object(z.jsx)(Y, {}) }),
+                Object(z.jsx)(b.b, { path: "/register", children: Object(z.jsx)(H, {}) }),
+                Object(z.jsx)(b.b, { path: "/forgot-password", children: Object(z.jsx)(Z, {}) }),
+                Object(z.jsx)(b.b, { path: "/reset-password/:token", children: Object(z.jsx)($, {}) }),
+                Object(z.jsx)(sr, { exact: !0, path: "/channels/me", component: xt }),
+                Object(z.jsx)(sr, { exact: !0, path: "/channels/me/:channelId", component: xt }),
+                Object(z.jsx)(sr, { exact: !0, path: "/channels/:guildId/:channelId", component: cr }),
+                Object(z.jsx)(sr, { exact: !0, path: "/account", component: ur }),
+                Object(z.jsx)(sr, { exact: !0, path: "/:link", component: dr }),
+              ],
+            }),
+          });
+        },
+        jr = function (e) {
+          var n = e.children,
+            t = P(function (e) {
+              return e.current;
+            }),
+            r = ze(function (e) {
+              return e.increment;
+            }),
+            a = Object(u.useQueryClient)();
+          return (
+            Object(i.useEffect)(
+              function () {
+                if (t) {
+                  var e = function () {
+                      n.send(JSON.stringify({ action: "toggleOffline" })), n.close();
+                    },
+                    n = Pe();
+                  return (
+                    n.send(JSON.stringify({ action: "toggleOnline" })),
+                    n.send(JSON.stringify({ action: "joinUser", room: null === t || void 0 === t ? void 0 : t.id })),
+                    n.addEventListener("message", function (e) {
+                      var n = JSON.parse(e.data);
+                      switch (n.action) {
+                        case "new_dm_notification":
+                          var c = n.data;
+                          c.user.id !== t.id &&
+                            a.setQueryData(he, function (e) {
+                              var n =
+                                null === e || void 0 === e
+                                  ? void 0
+                                  : e.findIndex(function (e) {
+                                      return e.id === c.id;
+                                    });
+                              return -1 !== n && void 0 !== n
+                                ? [Object(k.a)(Object(k.a)({}, c), {}, { count: e[n].count + 1 })].concat(
+                                    Object(re.a)(
+                                      e.filter(function (e) {
+                                        return e.id !== c.id;
+                                      })
+                                    )
+                                  )
+                                : [Object(k.a)(Object(k.a)({}, c), {}, { count: 1 })].concat(Object(re.a)(e || []));
+                            });
+                          break;
+                        case "send_request":
+                          window.location.pathname.includes("/channels/me") || r();
+                      }
+                    }),
+                    window.addEventListener("beforeunload", e),
+                    function () {
+                      return e();
+                    }
+                  );
+                }
+              },
+              [t, r, a]
+            ),
+            Object(z.jsx)(z.Fragment, { children: n })
+          );
+        },
+        hr = new u.QueryClient({
+          defaultOptions: { queries: { refetchOnWindowFocus: !1, staleTime: 1 / 0, cacheTime: 0 } },
+        }),
+        xr = function () {
+          return Object(z.jsx)(u.QueryClientProvider, {
+            client: hr,
+            children: Object(z.jsx)(jr, { children: Object(z.jsx)(br, {}) }),
+          });
+        };
+      l.a.render(
+        Object(z.jsxs)(i.StrictMode, {
+          children: [Object(z.jsx)(a.a, {}), Object(z.jsx)(c.a, { theme: yn, children: Object(z.jsx)(xr, {}) })],
+        }),
+        document.getElementById("root")
+      );
+    },
+  },
+  [[579, 1, 2]],
+]);
+//# sourceMappingURL=main.26f97521.chunk.js.map
