@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "xoniaapp-docs",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vuepress dev docs --temp .temp",
+    "build": "vuepress build docs --temp .temp"
+  },
+  "devDependencies": {
+    "vuepress": "1.9.7",
+    "vuepress-theme-vt": "0.4.1"
+  },
+  "description": "Xonia Official Documentation",
+  "author": "aelpxy<aelpxy@protonmail.com>"
+}
