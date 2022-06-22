@@ -6,8 +6,8 @@ export default defineConfig4CustomTheme<ThemeConfig>((ctx) => ({
     title: "Xonia",
     themeConfig: {
         enableDarkMode: true,
-        repo: "https://raw.githubusercontent.com/xoniaapp/app/main/logo.png",
-        logo: "/logo.svg",
+        repo: "https://github.com/xoniaapp/documentation",
+        logo: "https://raw.githubusercontent.com/xoniaapp/app/main/logo.png",
         nav: [
             {
                 text: "Website", link: "https://app.xoniaapp.com/"
