@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /logo.svg
-actionText: Getting Started
+actionText: Docs
 actionLink: /docs/
 subActionText: Quick Start
 subActionLink: /docs/getting-started.html
