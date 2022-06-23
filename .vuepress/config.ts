@@ -20,7 +20,8 @@ export default defineConfig4CustomTheme<ThemeConfig>((ctx) => ({
                     collapsable: false,
                     children: [
                         "/docs/",
-                        "/docs/getting-started"
+                        "/docs/getting-started",
+                        "/docs/api",
                     ],
                 },
                 {
