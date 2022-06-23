@@ -6,14 +6,14 @@ sidebarDepth: 0
 
 ### `.getToken`
 
-- _@params_ **email** - `string`
-- _@params_ **password** - `string`
+- _@params_: **email** - `string`
+- _@params_: **password** - `string`
 
 ### `.registerUser`
 
-- _@params_ **username** - `string`
-- _@params_ **email** - `string`
-- _@params_ **password** - `string`
+- _@params_: **username** - `string`
+- _@params_: **email** - `string`
+- _@params_: **password** - `string`
 
 ### `.sendMessage`
 
