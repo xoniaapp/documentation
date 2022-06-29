@@ -33,7 +33,7 @@ Grab the token and put this in the `index.js` file.
 
 ```js
 const { sendMessage } = require("xonia.js");
-sendMessage("message", "channelID", "sessionToken");
+sendMessage("message", "channelID", "xonia-auth=token");
 ```
 
 Okay, let's find the channelID now.
@@ -44,7 +44,7 @@ That's the channel ID, grab it then put in channelID.
 
 ```js
 const { sendMessage } = require("xonia.js");
-sendMessage("Hi, there!", "1535551883307913216", "afdswaeoihjtneshbermhrymkljmtdkljbnmfhkjrsih");
+sendMessage("Hi, there!", "1535551883307913216", "xonia-auth=token");
 ```
 
 Let's make a weather webhook!
@@ -58,9 +58,9 @@ const { sendMessage } = require("xonia.js");
 weather.find({search: 'London, CA', degreeType: 'F'}, function(err, result) {
   if(err) console.log(err);
  
-  const weatherData = JSON.stringify(result, null, 2);
+  const weatherData = result[0].location.name;
   
-  sendMessage(weatherData, "1535551883307913216", "afdswaeoihjtneshbermhrymkljmtdkljbnmfhkjrsih");
+  sendMessage(weatherData, "1535551883307913216", "xonia-auth=token");
 });
 ```
 
