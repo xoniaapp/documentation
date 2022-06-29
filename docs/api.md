@@ -41,8 +41,7 @@ sendMessage("message", "channelID", "sessionToken");
 
 ### `.getMessage`
 
-- _@params_: **username** - `string`
-- _@params_: **email** -    `string`
-- _@params_: **password** - `string`
+- _@params_: **channel** - `string`
+- _@params_: **token** - `string`
 
 ---
